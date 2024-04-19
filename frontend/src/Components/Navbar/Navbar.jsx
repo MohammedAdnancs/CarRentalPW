@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import './Navbar.css'
 import LogoNav from '../Assets/LogoNav.png'
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
 
-    const [menu, setMenu] = useState("Home")
-
+    const location = useLocation();
+    const [menu, setMenu] = useState(location.pathname.split('/')[1] || 'Home');
     return (
         <div className='navbar'>
             <div className='navlogo'>

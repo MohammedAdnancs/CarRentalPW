@@ -1,11 +1,10 @@
 .SearchHomePage {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    width: 100%;
+    width: 75%;
+    height: 220px;
     background-color: #070F2B;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     border-radius: 3px;
     margin-left: 100px;
     z-index: 10;
@@ -18,12 +17,6 @@
     gap: 30px;
     justify-content: space-around;
     align-items: center;
-    padding: 10px;
-}
-
-.Input label {
-    color: #FAF9F6;
-    font-size: 22px;
 }
 
 .SearchContainer button {
@@ -41,14 +34,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
-    margin-top: 20px;
+    gap: 10px
 }
 
 .SearchContainer button img {
     width: 60px;
     height: 40px;
-    margin-top: 4px;
 }
 
 .SearchContainer button p {
@@ -56,22 +47,52 @@
     font-size: 22px;
 }
 
-.SearchContainer input {
+
+.inputbox {
+    position: relative;
+    display: flex;
+    width: 350px;
+    gap: 10px;
+}
+
+.inputbox input {
     background-color: transparent;
+    width: 70%;
+    padding: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
     border-radius: 5px;
-    font-size: 20px;
-    height: 40px;
-    text-align:start;
+    outline: none;
+    font-size: 1em;
+    color: white;
 }
 
-.input-icons {
-    width: 100%;
-    margin-bottom: 10px;
-}
-
-.input-icons img {
+.inputbox span {
     position: absolute;
-    width: 30px;
-    margin-left: 10px;
-    margin-top: 8px;
+    left: 0;
+    pointer-events: none;
+    font-size: 1em;
+    color: rgba(255, 255, 255, 0.25);
+    text-transform: uppercase;
+    padding: 10px;
+    transition: 0.4s;
+    margin-left: 55px;
+}
+
+.inputbox input:focus+span,
+.inputbox input:valid+span {
+    color: aqua;
+    transform: translateX(10px) translateY(-7px);
+    font-size: 0.75em;
+    padding: 0 10px;
+    background: transparent;
+    border-left: 1px solid aqua;
+    letter-spacing: 0.2em;
+    background: #070F2B;
+}
+
+
+.SearchHomePage h2 {
+    color: white;
+    font-size: 40px;
+    letter-spacing: 2px;
 }

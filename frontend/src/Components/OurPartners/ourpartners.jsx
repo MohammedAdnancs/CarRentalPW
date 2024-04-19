@@ -15,8 +15,8 @@ const Hero = () => {
 
     return (
         <div className='ourpartners'>
+            <p>Our Partners</p>
             <div className='Wrapper'>
-                <p>Our Partners</p>
                 <div className='Marquee'>
                     <div className='Marqueegroup'>
                         {

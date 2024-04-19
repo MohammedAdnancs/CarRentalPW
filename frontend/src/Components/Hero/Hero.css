@@ -1,11 +1,8 @@
-.Container {
-    margin-bottom: 150px;
-}
-
 .Hero {
     flex: 1;
     margin-top: 50px;
     margin-left: 160px;
+    margin-bottom: 10%;
     border-radius: 10px;
     min-width: 90%;
     min-height: 700px;
@@ -14,7 +11,6 @@
     justify-content: center;
     overflow: hidden;
     z-index: -1;
-    position: relative;
 }
 
 .Hero-left {
@@ -59,10 +55,11 @@
     max-height: 100%;
 }
 
-.Search {
-    z-index: 10;
-    position: absolute;
-    bottom: 0;
-    left: 0;
+.Container {
+    position: relative;
 }
 
+.Search {
+    position: absolute;
+    bottom: -25%;
+}
