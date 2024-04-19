@@ -1,0 +1,77 @@
+.SearchHomePage {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: #070F2B;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border-radius: 3px;
+    margin-left: 100px;
+    z-index: 10;
+    position: relative;
+}
+
+.SearchContainer {
+    display: flex;
+    width: 80%;
+    gap: 30px;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+}
+
+.Input label {
+    color: #FAF9F6;
+    font-size: 22px;
+}
+
+.SearchContainer button {
+    width: 170px;
+    height: 40px;
+    outline: none;
+    border-radius: 10px;
+    color: #070F2B;
+    border: none;
+    font-size: 25px;
+    background: #8789FE;
+    cursor: pointer;
+    transition: background 0.6s, color 0.6s;
+    font-family: "Oswald", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.SearchContainer button img {
+    width: 60px;
+    height: 40px;
+    margin-top: 4px;
+}
+
+.SearchContainer button p {
+    color: #FAF9F6;
+    font-size: 22px;
+}
+
+.SearchContainer input {
+    background-color: transparent;
+    border-radius: 5px;
+    font-size: 20px;
+    height: 40px;
+    text-align:start;
+}
+
+.input-icons {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.input-icons img {
+    position: absolute;
+    width: 30px;
+    margin-left: 10px;
+    margin-top: 8px;
+}
