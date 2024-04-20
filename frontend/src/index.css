@@ -9,7 +9,7 @@ body {
   background-repeat: no-repeat;
   min-height: 100vh;
   background-size: cover;
-  background-image: linear-gradient(to bottom, #070f2b, #081336, #0c1640, #13184b, #1b1a55);
+  background-color: #272727
 }
 
 code {
