@@ -11,7 +11,7 @@ const SearchHomePage = () => {
             <h2>Find The Car Thats Suits You</h2>
             <div className="SearchContainer">
 
-                <div className="inputbox">
+                <div className="inputbox" style={{ width: "60%" }}>
                     <img src={location} style={{ width: "45px" }} />
                     <input type="text" id="PickupLocation" name="PickupLocation" required></input>
                     <span>Pickup Location</span>
