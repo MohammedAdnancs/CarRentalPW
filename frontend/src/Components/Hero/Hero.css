@@ -10,6 +10,7 @@
     justify-content: center;
     overflow: hidden;
     z-index: -1;
+    border-radius: 20px;
 }
 
 .Hero-left {
