@@ -38,15 +38,15 @@
 }
 
 .SearchContainer button img {
-    width: 60px;
+    width: 50px;
     height: 40px;
 }
 
 .SearchContainer button p {
     color: #FAF9F6;
-    font-size: 22px;
+    font-size: 30px;
+    letter-spacing: 1px;
 }
-
 
 .inputbox {
     position: relative;

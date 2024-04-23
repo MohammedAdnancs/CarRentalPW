@@ -1,0 +1,88 @@
+.FooterContainer {
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+}
+
+.Footer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    row-gap: 2%;
+    padding: 2% 0 2% 0%;
+    column-gap: 1%;
+    justify-items: center;
+    margin-left: 6%;
+    transition: 0.3s;
+}
+
+.Footer h2 {
+    color: white;
+    font-size: 30px;
+    margin-bottom: 5%;
+    letter-spacing: 1px;
+}
+
+.Footer p {
+    color: #d9d9c3;
+    font-size: 17px;
+    margin-left: 6%;
+    letter-spacing: 1px;
+}
+
+.Footer a {
+    position: relative;
+    color: #d9d9c3;
+    display: block;
+    text-decoration: none;
+    font-size: 17px;
+    margin-left: 7%;
+    letter-spacing: 1px;
+    width: 140px;
+    margin-bottom: 15%;
+}
+
+a::after {
+    content: "";
+    position: absolute;
+    background-color: #ff0000;
+    height: 3px;
+    width: 0%;
+    margin-top: 25px;
+    transition: 0.3s;
+    left: 0;
+}
+
+.Footer a:hover::after {
+    width: 60%;
+}
+
+.rights {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.rights p {
+    margin: 1%;
+    font-weight: 700;
+    color: whitesmoke;
+}
+
+.Socialmedia {
+    display: flex;
+    gap: 2%;
+    align-items: center;
+    margin-left: 6%;
+    transition: 0.3s;
+}
+
+.Socialmedia img {
+    transition: 0.3s;
+}
+
+.Socialmedia img:hover {
+    cursor: pointer;
+    filter: drop-shadow(2px 2px 2px #ff0000);
+    transform: scale(1.1);
+    transition: 0.3s;
+}
