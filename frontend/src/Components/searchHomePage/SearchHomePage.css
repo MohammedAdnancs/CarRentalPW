@@ -4,12 +4,11 @@
     align-items: center;
     width: 85%;
     height: 220px;
-    background-color: rgb(13, 12, 12);
+    background-color: #222831;
     border-radius: 3px;
     margin-left: 100px;
     z-index: 10;
     position: relative;
-    border-radius: 20px;
 }
 
 .SearchContainer {
@@ -24,11 +23,11 @@
     width: 170px;
     height: 40px;
     outline: none;
-    border-radius: 10px;
+    border-radius: 15px;
     color: #070F2B;
     border: none;
     font-size: 25px;
-    background-color: rgb(39, 36, 36);
+    background: #393E46;
     cursor: pointer;
     transition: background 0.6s, color 0.6s;
     font-family: "Oswald", sans-serif;
@@ -81,11 +80,14 @@
 
 .inputbox input:focus+span,
 .inputbox input:valid+span {
-    background-color: rgb(13, 12, 12);
+    color: #FFD369;
     transform: translateX(10px) translateY(-7px);
     font-size: 0.75em;
     padding: 0 10px;
+    background: transparent;
+    border-left: 1px solid rgba(255, 255, 255, 0.25);
     letter-spacing: 0.2em;
+    background: #222831;
 }
 
 

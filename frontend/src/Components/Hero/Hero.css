@@ -6,7 +6,7 @@
     border-radius: 10px;
     min-width: 90%;
     min-height: 700px;
-    background: linear-gradient(360deg, white, #070F2B 60%);
+    background: linear-gradient(300deg, #FFD369, #222831 60%);
     display: flex;
     justify-content: center;
     overflow: hidden;
@@ -48,11 +48,13 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    width: 250%;
 }
 
 .Hero-right img {
-    max-width: 100%;
+    max-width: 300%;
     max-height: 100%;
+    width: 200%;
 }
 
 .Container {
