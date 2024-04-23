@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './SearchHomePage.css'
-import arrowicon from '../Assets/arrow.png'
+import arrowRicon from '../Assets/arrowR.png'
 import location from '../Assets/location.png'
 import calendar from '../Assets/calendar.png'
 
@@ -31,7 +31,7 @@ const SearchHomePage = () => {
 
                 <button>
                     <p>Search</p>
-                    <img src={arrowicon} alt='' />
+                    <img src={arrowRicon} alt='' />
                 </button>
             </div>
 

@@ -25,7 +25,7 @@ const Footer = () => {
                     <div className='Resources'>
                         <h2>Resources</h2>
                         <a href="https://www.w3schools.com">Community</a>
-                        <a href="https://www.w3schools.com">Downlod</a>
+                        <a href="https://www.w3schools.com">Download</a>
                     </div>
                     <div className='AboutUs'>
                         <h2>AboutUs</h2>
@@ -35,9 +35,9 @@ const Footer = () => {
                     <div className='GetInTouch'>
                         <h2>Get in touch</h2>
                         <div className='Socialmedia'>
-                            <img src={facebook} style={{ width: "12%" , height:"10%"}} />
-                            <img src={insta} style={{ width: "13.5%" , height:"10%" }} />
-                            <img src={linkedin} style={{ width: "13.5%" , height:"10%"}} />
+                            <img src={facebook} style={{ width: "12%", height: "10%" }} />
+                            <img src={insta} style={{ width: "13.5%", height: "10%" }} />
+                            <img src={linkedin} style={{ width: "13.5%", height: "10%" }} />
                         </div>
                     </div>
                 </div>

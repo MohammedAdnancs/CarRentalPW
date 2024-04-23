@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import './Hero.css'
-import CarHero from '../Assets/CarHero.png'
 import MG from '../Assets/mg.png'
 import SearchHomePage from '../searchHomePage/SearchHomePage'
 
