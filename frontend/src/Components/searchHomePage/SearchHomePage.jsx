@@ -12,7 +12,7 @@ const SearchHomePage = () => {
             <div className="SearchContainer">
 
                 <div className="inputbox" style={{ width: "60%" }}>
-                    <img src={location} style={{ width: "45px" }} />
+                    <img src={location} style={{ width: "50px" }} />
                     <input type="text" id="PickupLocation" name="PickupLocation" required></input>
                     <span>Pickup Location</span>
                 </div>
@@ -26,7 +26,7 @@ const SearchHomePage = () => {
                 <div className="inputbox">
                     <img src={calendar} style={{ width: "45px" }} />
                     <input type="text" id="PickupLocation" name="PickupLocation" required></input>
-                    <span>Return location</span>
+                    <span>Return Date</span>
                 </div>
 
                 <button>
