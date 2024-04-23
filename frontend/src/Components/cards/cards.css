@@ -71,6 +71,7 @@ ul li{
 
 .thumb-gallery{
   height: 150px;
+  background-color: #222831;
 }
 .thumb-gallery img{
   position: absolute; 
