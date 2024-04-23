@@ -1,17 +1,16 @@
+.InformalText {
+  width: 100%;
+}
+
 .greysquare {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    max-width: 80%; /* Set maximum width to prevent overflowing */
-    width: auto; /* Let the width adjust based on content */
-    max-height: 80%; /* Set maximum height to prevent overflowing */
-    height: auto; /* Let the height adjust based on content */
-    background-color: #CCCCCC;
-    border-radius: 10px;
-    text-align: center;
-    padding: 20px; /* Add padding to give some space around the text */
-    box-sizing: border-box; /* Include padding and border in element's total width and height */
-    font-size: 35px;
-  }
-  
+  max-width: 80%;
+  width: auto;
+  max-height: 80%;
+  height: auto;
+  background-color: #CCCCCC;
+  border-radius: 10px;
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+  font-size: 35px;
+}

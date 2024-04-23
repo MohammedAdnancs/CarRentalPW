@@ -10,7 +10,7 @@ const Navbar = () => {
     return (
         <div className='navbar'>
             <div className='navlogo'>
-                
+
                 <p>NileDrive</p>
             </div>
             <ul className='nav-menu'>
@@ -20,8 +20,8 @@ const Navbar = () => {
                 <li className={menu === "AboutUs" ? 'active' : ''} onClick={() => { setMenu("AboutUs") }}><Link style={{ textDecoration: 'none', color: 'inherit' }} to='/AboutUs'>AboutUs</Link>{menu === "AboutUs" ? <hr /> : <></>}</li>
             </ul>
             <div className="nav-login">
-                <button>Login</button>
-                <button>Sign up</button>
+                <button onClick={() => { setMenu("") }}><Link style={{ textDecoration: 'none', color: 'inherit' }} to='/Login'>Login</Link></button>
+                <button onClick={() => { setMenu("") }}><Link style={{ textDecoration: 'none', color: 'inherit' }} to='/Signup'>Sign up</Link></button>
                 <img src="" alt="" />
                 {/*<div className="nav-cart-count">0</div>*/}
             </div>
