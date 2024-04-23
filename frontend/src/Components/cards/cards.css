@@ -1,19 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:700');
-ul{
-  margin: 0;
-  padding: 0;
+.Acontainer {
+  display: flex;
 }
-ul li{
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
+
 .Cwrapper {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Adjust minmax values as needed */
   width: 70%;
   margin-top: 5%;
-  margin-left: 13%;
+  margin-left: 5%;
   margin-bottom: 5%;
   row-gap: 10%; /* Changed to px for consistency */
   column-gap: 5%;
@@ -173,4 +168,18 @@ ul li{
 .grid-item p
 {
   font-size: .70rem;
+}
+
+input[type='radio']:checked:after {
+  width: 15px;
+  height: 15px;
+  border-radius: 15px;
+  top: -2px;
+  left: -1px;
+  position: relative;
+  background-color: #ffa500;
+  content: '';
+  display: inline-block;
+  visibility: visible;
+  border: 2px solid white;
 }
