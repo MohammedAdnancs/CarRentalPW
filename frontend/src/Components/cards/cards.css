@@ -37,8 +37,8 @@ ul li{
   height: fit-content;
   width: 240px;
   overflow: hidden;
-  background-color: #000000;
-  box-shadow: 0 0px 5px rgba(215, 35, 35,0.3);
+  background-color: #222831;
+  box-shadow: 0 0px 5px rgba(255, 211, 105,0.5);
   border-radius: 10px;
   transition: 0.5s;
   justify-content: center;
@@ -53,14 +53,14 @@ ul li{
 
 .vehicle-card .details:hover{
  
-  box-shadow: 0 5px 20px rgba(215, 35, 35,0.3);
+  box-shadow: 0 5px 20px rgba(255, 211, 105,0.5);
  
 }
 .vehicle-card .info{
   width: 100%;
   display: flex;
   flex-direction: row;
-  background: #D72323;
+  background: rgba(255, 211, 105,0.7);
   margin-top: 3%;
   margin-bottom: 3%;
   justify-content: center;
@@ -107,13 +107,13 @@ ul li{
 }
 .vehicle-card .price span{
   font-family: "Helvetica", Arial, sans-serif;
-  color: #F5EDED;
+  color: #222831;
   font-size: 1.0rem;
 }
 .vehicle-card h4{
   margin: 0;
   font-family: "Roboto Condensed", Helvetica, Arial, sans-serif;
-  color: #F5EDED;
+  color: #222831;
   font-size: 1.25rem;
   margin-bottom: 3%;
 }
@@ -137,9 +137,9 @@ ul li{
   height: 30px;
   width: 48%;
   text-align: center;
-  background-color: #000000;
+  background-color: #222831;
   color: #F5EDED;
-  border: 2px solid #272727;  
+  border: 2px solid #393E46;  
   line-height: 30px;
   font-weight: bold;  
   -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
