@@ -1,26 +1,25 @@
 .sidebar {
-  flex: 0 0 250px; /* Fixed width for sidebar */
+  flex: 0 0 250px;
   background-color: rgba(0, 0, 0, 0.3);
   padding: 20px;
   border-radius: 0px 20px 20px 0px;
   width: 1vw;
-  
 }
 
-.sidebar h2{
+.sidebar h2 {
   color: #EEEEEE;
   letter-spacing: 3px;
   text-transform: uppercase;
 }
 
 .main-content {
-  flex: 1; /* Take up remaining space */
+  flex: 1;
   padding: 20px;
 }
 
 .filter {
   margin-bottom: 20px;
-  color: #2192FF ;
+  color: #2192FF;
 }
 
 .radio-group {
@@ -30,15 +29,15 @@
 .radio-group label {
   display: block;
   margin-bottom: 5px;
-  color: #EEEEEE ;
+  color: #EEEEEE;
 }
 
 .radio-group input[type='radio'] {
   margin-right: 5px;
- 
+
 }
 
-input[type='radio']{
+input[type='radio'] {
   width: 10px;
   height: 10px;
   border-radius: 15px;
@@ -51,8 +50,3 @@ input[type='radio']{
   visibility: visible;
   border: 2px solid #B4A5A5;
 }
-
-
-
-
-
