@@ -5,12 +5,11 @@
     margin-bottom: 10%;
     min-width: 90%;
     min-height: 700px;
-    background: linear-gradient(330deg, #FFD369, #393E46 65%, #393E46 70%);
+    background: linear-gradient(330deg, #B4A5A5, #222831 65%, #222831 70%);
     display: flex;
     justify-content: center;
     overflow: hidden;
     z-index: -1;
-    border-radius: 20px;
 }
 
 .Hero-left {

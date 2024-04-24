@@ -22,7 +22,7 @@ const OurReviews = () => {
         {
             text: "NileDrive Car Rentals was fantastic from start to finish. Their online booking process was simple and their rates were competitive. The staff at the rental location was professional and courteous. The car I rented was in great condition and suited my needs perfectly. Returning the car was hassle-free. DEF Car Rentals exceeded my expectations, and I will definitely use them again for my next trip.",
             rating: 4.0,
-            user: "Assem Omar",
+            user: "Andrew Magdy",
             image: MG,
             userimage: Andrew
         },

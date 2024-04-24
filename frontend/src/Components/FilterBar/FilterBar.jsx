@@ -21,19 +21,19 @@ function FilterBar({ setFilters, priceRange, numDoors, carType }) {
   useEffect(() => {
     const handlePriceRadioClick = () => {
       document.querySelectorAll('input[name="price"]').forEach(button => {
-        button.parentElement.style.color = button.checked ? '#FFD369' : '';
+        button.parentElement.style.color = button.checked ? '#B4A5A5' : '';
       });
     };
 
     const handleDoorsRadioClick = () => {
       document.querySelectorAll('input[name="doors"]').forEach(button => {
-        button.parentElement.style.color = button.checked ? '#FFD369' : '';
+        button.parentElement.style.color = button.checked ? '#B4A5A5' : '';
       });
     };
 
     const handleTypeRadioClick = () => {
       document.querySelectorAll('input[name="type"]').forEach(button => {
-        button.parentElement.style.color = button.checked ? '#FFD369' : '';
+        button.parentElement.style.color = button.checked ? '#836FFF' : '';
       });
     };
 
