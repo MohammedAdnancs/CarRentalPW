@@ -1,13 +1,16 @@
 .sidebar {
   flex: 0 0 250px; /* Fixed width for sidebar */
-  background-color: #222831;
+  background-color: rgba(0, 0, 0, 0.3);
   padding: 20px;
   border-radius: 0px 20px 20px 0px;
+  width: 1vw;
   
 }
 
 .sidebar h2{
   color: #EEEEEE;
+  letter-spacing: 3px;
+  text-transform: uppercase;
 }
 
 .main-content {
@@ -17,7 +20,7 @@
 
 .filter {
   margin-bottom: 20px;
-  color: #FFD369 ;
+  color: #2192FF ;
 }
 
 .radio-group {
@@ -46,14 +49,9 @@ input[type='radio']{
   content: '';
   display: inline-block;
   visibility: visible;
-  border: 2px solid #FFD369;
+  border: 2px solid #B4A5A5;
 }
 
-
-/* Style checked radio buttons */
-.radio-group input[type="radio"]:checked + label {
-  color: blue; /* Example color change */
-}
 
 
 

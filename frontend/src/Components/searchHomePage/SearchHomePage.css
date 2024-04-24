@@ -10,7 +10,7 @@
     z-index: 10;
     position: relative;
     border-radius: 20px;
-    border: #FFD369 solid 1px;
+    border: #B4A5A5 solid 1px;
 }
 
 .SearchContainer {
@@ -82,7 +82,7 @@
 
 .inputbox input:focus+span,
 .inputbox input:valid+span {
-    color: #FFD369;
+    color: #B4A5A5;
     transform: translateX(10px) translateY(-7px);
     font-size: 0.75em;
     padding: 0 10px;
