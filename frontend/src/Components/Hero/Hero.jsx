@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './Hero.css'
 import MG from '../Assets/mg.png'
 import SearchHomePage from '../searchHomePage/SearchHomePage'
-
+import Car2 from '../Assets/car2.png'
 
 const Hero = () => {
 
@@ -25,7 +25,7 @@ const Hero = () => {
                     <button>Learn More</button>
                 </div>
                 <div className='Hero-right'>
-                    <img src={MG} alt="" />
+                    <img src={Car2} alt="" />
                 </div>
             </div>
             <div className='Search'>

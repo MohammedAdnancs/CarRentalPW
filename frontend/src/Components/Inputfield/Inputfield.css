@@ -11,11 +11,13 @@
     border-radius: 10px;
     padding: 20px;
     box-sizing: border-box;
-    text-align: center; /* Center align the contents */
+    text-align: center;
+    /* Center align the contents */
 }
 
 .login-header {
-    margin-bottom: 20px; /* Add spacing below the header */
+    margin-bottom: 20px;
+    /* Add spacing below the header */
 }
 
 .input-container {
@@ -32,13 +34,17 @@
 }
 
 .input-field {
-    padding-left: 100px; /* Adjust spacing between label and input */
-    width: calc(100% - 100px); /* Subtract label width from input width */
+    padding-left: 100px;
+    /* Adjust spacing between label and input */
+    width: calc(100% - 100px);
+    /* Subtract label width from input width */
 }
 
 .login-button {
-    background-color: #646464; /* Button color */
-    color: white; /* Text color */
+    background-color: #646464;
+    /* Button color */
+    color: white;
+    /* Text color */
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
@@ -47,5 +53,6 @@
 }
 
 .login-button:hover {
-    background-color: #414141; /* Darker button color on hover */
+    background-color: #414141;
+    /* Darker button color on hover */
 }
