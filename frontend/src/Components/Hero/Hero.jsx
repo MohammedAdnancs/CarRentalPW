@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './Hero.css'
 import SearchHomePage from '../searchHomePage/SearchHomePage'
 import Car2 from '../Assets/car2.png'
+
 import { motion } from 'framer-motion'
 
 const texth2 = "Drive the experience with NileDrive.From compact to\n luxury,our affordable rentals offer quality cars and \nexceptional service.Rent, drive,and make unforgettable \n memories on every journey.With us, every adventure \n always awaits."
