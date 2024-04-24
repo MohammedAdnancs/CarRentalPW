@@ -23,7 +23,7 @@ function App() {
           <Route path='/Signup' element={<Signup/>} />
 
         </Routes>
-        <Footer />
+        <Footer/>
       </BrowserRouter>
     </div>
   );
