@@ -6,8 +6,7 @@ import Share from './Pages/Share';
 import AboutUs from './Pages/AboutUs';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Footer from './Components/Footer/Footer';
-import Login from './Pages/Login';
-import Signup from './Pages/Signup';
+import Login_signup from './Pages/Login_signup';
 
 function App() {
   return (
@@ -19,10 +18,9 @@ function App() {
           <Route path='/Rent' element={<Rentcars />} />
           <Route path='/Share' element={<Share />} />
           <Route path='/AboutUs' element={<AboutUs />} />
-          <Route path='/Login' element={<Login />} />
-          <Route path='/Signup' element={<Signup/>} />
+          <Route path='/Login_signup' element={<Login_signup />} />
         </Routes>
-        <Footer/>
+        <Footer />
       </BrowserRouter>
     </div>
   );

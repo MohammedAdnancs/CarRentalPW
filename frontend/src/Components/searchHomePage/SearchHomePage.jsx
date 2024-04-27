@@ -3,6 +3,8 @@ import './SearchHomePage.css'
 import arrowRicon from '../Assets/arrowR.png'
 import location from '../Assets/location.png'
 import calendar from '../Assets/calendar.png'
+import { FaArrowRightLong } from "react-icons/fa6";
+import Button from '../Button/Button'
 
 const SearchHomePage = () => {
 
@@ -28,11 +30,7 @@ const SearchHomePage = () => {
                     <input type="text" id="PickupLocation" name="PickupLocation" required></input>
                     <span>Return Date</span>
                 </div>
-
-                <button>
-                    <p>Search</p>
-                    <img src={arrowRicon} alt='' />
-                </button>
+                <Button backgroundColor="#C2C8C8" text="Search" width="30dvh" height="6dvh" icon={<FaArrowRightLong color="#212227" fontSize="1.5em" style={{ marginTop: "30%" }} />} />
             </div>
 
         </div>

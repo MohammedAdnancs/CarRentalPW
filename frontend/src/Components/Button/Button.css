@@ -1,0 +1,73 @@
+.CustomButton {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    font-size: 25px;
+    letter-spacing: 1px;
+    justify-content: center;
+    align-items: center;
+    column-gap: 1%;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    gap: 10px;
+    transition: background 0.6s, color 0.6s;
+    cursor: pointer;
+    font-family: "Oswald", sans-serif;
+    transition: 0.3s;
+}
+
+.CustomButton p {
+    color: #212227;
+    font-size: 30px;
+    letter-spacing: 1px;
+    z-index: 10;
+}
+
+.CustomButton span {
+    z-index: 10;
+}
+
+.CustomButton:hover p {
+    color: aliceblue;
+}
+
+.CustomButton:hover {
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+    transform: translateY(-2px);
+    border-radius: 10px;
+}
+
+.CustomButton:active {
+    box-shadow: none;
+    transform: translateY(0);
+    border-radius: 10px;
+}
+
+.CustomButton:before {
+    animation: opacityFallbackOut .5s step-end forwards;
+    backface-visibility: hidden;
+    background-color: #2192FF;
+    clip-path: polygon(-1% 0, 0 0, -25% 100%, -1% 100%);
+    content: "";
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    transform: translateZ(0);
+    transition: clip-path .5s cubic-bezier(.165, 0.84, 0.44, 1), -webkit-clip-path .5s cubic-bezier(.165, 0.84, 0.44, 1);
+    width: 100%;
+    border-radius: 10px;
+    outline: none;
+}
+
+.CustomButton:hover:before {
+    animation: opacityFallbackIn 0s step-start forwards;
+    clip-path: polygon(0 0, 101% 0, 101% 101%, 0 101%);
+    border-radius: 10px;
+}
+
+.CustomButton:after {
+    border-radius: 10px;
+    z-index: 1;
+}

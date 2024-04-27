@@ -7,14 +7,14 @@ import nissan from '../Assets/nissan.png'
 import porsche from '../Assets/porsche.png'
 import renault from '../Assets/renault.png'
 import peugeot from '../Assets/peugeot.png'
-import Toyota from '../Assets/Toyota.png'
+import toyota from '../Assets/Toyota.png'
 import { motion, useInView } from 'framer-motion'
 
 
 const Hero = () => {
 
-    const Partnerslogos = [bmw, ferrari, mercedes, nissan, porsche, renault, peugeot, Toyota]
-    const textP = "Our Partners"
+    const Partnerslogos = [bmw, ferrari, mercedes, nissan, porsche, renault, peugeot, toyota]
+    const textP = "Partnerships"
 
     const defaultAnimations = {
         hidden: {

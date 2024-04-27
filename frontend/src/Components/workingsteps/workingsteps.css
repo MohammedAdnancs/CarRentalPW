@@ -8,13 +8,14 @@
 }
 
 .ContainerWorikingSteps .title {
-    color: whitesmoke;
+    color: #2192FF;
     font-size: 20px;
     letter-spacing: 2px;
     margin: 0;
 }
 
 .ContainerWorikingSteps h2 {
+    filter: drop-shadow(1px 1px 1px #8b8b8b);
     color: white;
     font-size: 40px;
     margin: 0;
