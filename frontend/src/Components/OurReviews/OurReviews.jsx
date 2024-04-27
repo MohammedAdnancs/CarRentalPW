@@ -6,10 +6,13 @@ import arrowLicon from '../Assets/arrowL.png'
 import Andrew from '../Assets/Andrew.png'
 import Assem from '../Assets/Assem.png'
 import Abouelwafa from '../Assets/Abouelwafa.png'
+import { motion, AnimatePresence } from "framer-motion"
+import { FaArrowRightLong } from "react-icons/fa6";
+import { FaArrowLeftLong } from "react-icons/fa6";
 
 import './OurReviews.css'
 
-const OurReviews = () => {
+const OurReviews = ({ isVisible }) => {
 
     const reviewsData = [
         {
@@ -43,7 +46,7 @@ const OurReviews = () => {
     ];
 
     const [currentIndex, setCurrentIndex] = useState(0);
-
+    const [direction, setDirection] = useState("right");
     const currentReview = reviewsData[currentIndex];
 
     const renderStars = (rating) => {
@@ -60,44 +63,54 @@ const OurReviews = () => {
 
     const handleNext = () => {
         setCurrentIndex((prevIndex) => (prevIndex + 1) % reviewsData.length);
+        setDirection("right");
     };
 
     const handlePrev = () => {
         setCurrentIndex((prevIndex) => (prevIndex - 1 + reviewsData.length) % reviewsData.length);
+        setDirection("left");
     };
 
 
     return (
-        <div className='OurReviewsContainer'>
-            <div className='OurReviews'>
-                <div className="ReviewText">
-                    <h1>Our Client's Reviews & Testimonials</h1>
-                    <h2></h2>
-                    <p className='blockquote' style={{ textAlign: "justify" }}>
-                        {currentReview.text}
-                    </p>
-                    <div className='Rating'>
-                        {renderStars(currentReview.rating)}
-                        <span className='Rnumber'>{currentReview.rating}</span>
+        <AnimatePresence>
+            <div className='OurReviewsContainer'>
+                <div className='OurReviews'>
+                    <div className="ReviewText">
+                        <h1>Client's Reviews & Testimonials</h1>
+                        <motion.div
+                            key={currentIndex}
+                            initial={{ x: direction === "right" ? -300 : 300, opacity: 0.2 }}
+                            animate={{ x: 0, y: 0, opacity: 1 }}
+                            exit={{ x: direction === "right" ? -300 : 300, y: 0, opacity: 0.2 }}
+                            transition={{ duration: 0.7, ease: "easeInOut" }}>
+                            <p className='blockquote' style={{ textAlign: "justify" }}>
+                                {currentReview.text}
+                            </p>
+                            <div className='Rating'>
+                                {renderStars(currentReview.rating)}
+                                <span className='Rnumber'>{currentReview.rating}</span>
+                            </div>
+                            <div className="User">
+                                <img src={currentReview.userimage} />
+                                <p className='Username'>{currentReview.user}</p>
+                            </div>
+                        </motion.div>
                     </div>
-                    <div className="User">
-                        <img src={currentReview.userimage} />
-                        <p className='Username'>{currentReview.user}</p>
+                    <div className='ReviewImge'>
+                        <img src={currentReview.image} />
                     </div>
                 </div>
-                <div className='ReviewImge'>
-                    <img src={currentReview.image} />
+                <div className='arrow'>
+                    <button onClick={handlePrev}>
+                        <FaArrowLeftLong className="arrow-icon" size={"5dvh"} />
+                    </button>
+                    <button onClick={handleNext}>
+                        <FaArrowRightLong className="arrow-icon" size={"5dvh"} />
+                    </button>
                 </div>
             </div>
-            <div className='arrow'>
-                <button onClick={handlePrev}>
-                    <img src={arrowLicon} alt='' />
-                </button>
-                <button onClick={handleNext}>
-                    <img src={arrowRicon} alt='' />
-                </button>
-            </div>
-        </div>
+        </AnimatePresence >
     )
 }
 

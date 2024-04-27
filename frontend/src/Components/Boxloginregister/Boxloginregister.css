@@ -1,0 +1,121 @@
+.Containerloginsignup {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10dvh;
+}
+
+.wrapper {
+    position: relative;
+    width: 22dvw;
+    /* Initial width */
+    height: 50dvh;
+    transition: width 2s ease, height 2s ease;
+    /* Added width transition */
+    background: whitesmoke;
+    border: 1px solid black;
+    border-radius: 10px;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.wrapper.wrapper.active {
+    width: 23dvw;
+    height: 65dvh;
+    transition: width 2s ease, height 2s ease;
+}
+
+.wrapper .form-box {
+    width: 15dvw;
+    padding: 10%;
+}
+
+.wrapper .form-box.login {
+    transition: transform 1s ease;
+    transform: translateX(0);
+}
+
+.wrapper.active .form-box.login {
+    transform: translateX(-400px);
+}
+
+.wrapper .form-box.register {
+    position: absolute;
+    transition: transform 1s ease;
+    transform: translateX(400px);
+}
+
+.wrapper.active .form-box.register {
+    transform: translateX(0);
+}
+
+form h1 {
+    font-size: 36px;
+    text-align: center;
+}
+
+.input-box {
+    position: relative;
+    width: 100%;
+    margin-bottom: 2dvh;
+}
+
+.input-box input {
+    width: 85%;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 1px solid black;
+    border-radius: 40px;
+    font-size: 16px;
+    color: black;
+    padding: 20px 20px 20px 40px;
+}
+
+.input-box input::placeholder {
+    color: black;
+}
+
+.input-box .icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: black;
+}
+
+.remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    margin: 50px 0 15px;
+}
+
+.remember-forgot.error {
+    margin-top: 30px;
+}
+
+.remember-forgot label input {
+    accent-color: rgb(0, 0, 0);
+    margin-right: 4px;
+}
+
+
+
+
+form .register-link {
+    font-size: 14px;
+    text-align: center;
+    margin: 20px 0 15px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

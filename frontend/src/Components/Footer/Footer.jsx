@@ -3,6 +3,7 @@ import './Footer.css'
 import insta from '../Assets/insta.png'
 import facebook from '../Assets/facebook.png'
 import linkedin from '../Assets/linkedin.png'
+import TextULH from '../Text_with_under_line_hover/TextULH'
 const Footer = () => {
 
     return (
@@ -18,19 +19,19 @@ const Footer = () => {
                             ut labore et dolore magna aliqua. </p>
                     </div>
                     <div className='OurProducts'>
-                        <h2>OurProducts</h2>
-                        <a href="https://www.w3schools.com">Driver</a>
-                        <a href="https://www.w3schools.com">Car</a>
+                        <h2>Our Products</h2>
+                        <TextULH hoverwidth="70%" link="https://www.w3schools.com" text="Driver" />
+                        <TextULH hoverwidth="70%" link="https://www.w3schools.com" text="Car" />
                     </div>
                     <div className='Resources'>
                         <h2>Resources</h2>
-                        <a href="https://www.w3schools.com">Community</a>
-                        <a href="https://www.w3schools.com">Download</a>
+                        <TextULH hoverwidth="70%" link="https://www.w3schools.com" text="Community" />
+                        <TextULH hoverwidth="70%" link="https://www.w3schools.com" text="Download" />
                     </div>
                     <div className='AboutUs'>
-                        <h2>AboutUs</h2>
-                        <a href="https://www.w3schools.com">Why choose us</a>
-                        <a href="https://www.w3schools.com">Our story</a>
+                        <h2>About Us</h2>
+                        <TextULH hoverwidth="70%" link="https://www.w3schools.com" text="Why choose us" />
+                        <TextULH hoverwidth="70%" link="https://www.w3schools.com" text="Our story" />
                     </div>
                     <div className='GetInTouch'>
                         <h2>Get in touch</h2>

@@ -1,7 +1,7 @@
 .Hero {
     flex: 1;
     margin-top: 50px;
-    margin-left: 160px;
+    margin-left: 8vw;
     margin-bottom: 10%;
     min-width: 90%;
     min-height: 700px;
@@ -10,6 +10,7 @@
     justify-content: center;
     overflow: hidden;
     z-index: -1;
+    transition: 0.5s;
 }
 
 .Hero-left {
@@ -19,15 +20,9 @@
     padding-left: 20px;
     line-height: 1.1;
     overflow: hidden;
-}
-
-.Hero-left button {
-    width: 60%;
-    height: 40px;
-    border: none;
-    margin-top: 20px;
-    margin-left: 80px;
-    border-radius: 10px;
+    justify-items: center;
+    align-items: center;
+    transition: 0.5s;
 }
 
 .Hero-left h2 {
@@ -36,8 +31,9 @@
     font-weight: 600;
 }
 
-.Hero-left p {
-    margin-left: 15px;
+.Hero-left .infohero {
+    margin-left: 5%;
+    margin-bottom: 5%;
     color: aliceblue;
     font-size: 20px;
 }

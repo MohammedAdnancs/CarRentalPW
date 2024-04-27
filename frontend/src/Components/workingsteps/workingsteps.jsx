@@ -37,6 +37,7 @@ const Workingsteps = () => {
                         when an unknown printer took a galley of type and scrambled it to make
                         a type specimen book.</p>
                 </motion.div>
+
                 <motion.div
                     className='Step'
                     ref={ref}

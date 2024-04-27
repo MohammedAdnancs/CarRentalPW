@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import Inputfield from '../Components/Inputfield/Inputfield'
+import Boxloginregister from '../Components/Boxloginregister/Boxloginregister'
 
 const Login = () => {
     return (
         <div className='Login'>
-            <Inputfield/>
+            <Boxloginregister />
         </div>
     )
 }

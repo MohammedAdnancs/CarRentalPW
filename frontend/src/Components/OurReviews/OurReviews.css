@@ -45,23 +45,22 @@
 .blockquote:after {
     display: block;
     padding-left: 10px;
-    content: "\201C";
-    font-size: 80px;
+    font-size: 5.5rem;
     position: absolute;
-
     color: #7a7a7a;
 }
 
 .blockquote:before {
     left: -5%;
     top: -10%;
+    content: "\201C";
 }
 
 .blockquote:after {
     right: 15%;
-    bottom: -35%;
+    bottom: -39%;
+    content: "\0201D";
 }
-
 
 .User {
     display: flex;
@@ -117,4 +116,14 @@
     outline: none;
     border: none;
     cursor: pointer;
+}
+
+.arrow-icon {
+    color: #94898B;
+    transition: 0.3;
+}
+
+.arrow-icon:hover {
+    color: #0A0C0E;
+    transition: 0.3;
 }

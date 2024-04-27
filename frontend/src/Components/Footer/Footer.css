@@ -29,30 +29,13 @@
 }
 
 .Footer a {
-    position: relative;
-    color: #B4A5A5;
     display: block;
     text-decoration: none;
     font-size: 17px;
     margin-left: 7%;
     letter-spacing: 1px;
-    width: 140px;
+    width: 9dvw;
     margin-bottom: 15%;
-}
-
-a::after {
-    content: "";
-    position: absolute;
-    background-color: #2192FF;
-    height: 3px;
-    width: 0%;
-    margin-top: 25px;
-    transition: 0.3s;
-    left: 0;
-}
-
-.Footer a:hover::after {
-    width: 60%;
 }
 
 .rights {
