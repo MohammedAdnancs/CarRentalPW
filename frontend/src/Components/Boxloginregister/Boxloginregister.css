@@ -15,10 +15,10 @@
     height: 50dvh;
     transition: width 2s ease, height 2s ease;
     /* Added width transition */
-    background: whitesmoke;
-    border: 1px solid black;
+    background: #181C22;
+    border: 1px solid #B4A5A5;
     border-radius: 10px;
-    color: black;
+    color: white;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -73,15 +73,16 @@ form h1 {
     background: transparent;
     border: none;
     outline: none;
-    border: 1px solid black;
-    border-radius: 40px;
+    border: 1px solid #B4A5A5;;
+    border-radius: 10px;
     font-size: 16px;
-    color: black;
+    color: white;
     padding: 20px 20px 20px 40px;
+    
 }
 
 .input-box input::placeholder {
-    color: black;
+    color: white;
 }
 
 .input-box .icon {
@@ -90,7 +91,7 @@ form h1 {
     top: 50%;
     transform: translateY(-50%);
     font-size: 16px;
-    color: black;
+    color:white;
 }
 
 .remember-forgot {
