@@ -39,6 +39,7 @@
 .wrapper .form-box.login {
     transition: transform 1s ease;
     transform: translateX(0);
+    zoom: 0.85;
 }
 
 .wrapper.active .form-box.login {
@@ -49,6 +50,7 @@
     position: absolute;
     transition: transform 1s ease;
     transform: translateX(400px);
+    zoom: 0.9;
 }
 
 .wrapper.active .form-box.register {
@@ -62,12 +64,12 @@ form h1 {
 
 .input-box {
     position: relative;
-    width: 100%;
+    width: 10dvw;
     margin-bottom: 2dvh;
 }
 
 .input-box input {
-    width: 85%;
+    width: 120%;
     background: transparent;
     border: none;
     outline: none;
