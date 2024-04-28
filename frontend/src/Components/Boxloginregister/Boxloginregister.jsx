@@ -83,10 +83,10 @@ const LoginRegister = () => {
                         <div className="remember-forgot">
                             <label> <input type="checkbox" />I Agree to the terms & conditions</label>
                         </div>
-                        <Button color="" width="100%" height="5dvh" type="submit" text="Signup" />
+                        <Button color="white" width="100%" height="5dvh" type="submit" text="Signup" />
                         <div className="register-link">
                             <p>Already have an account?</p>
-                            <TextULH  text="Login" registerlink={loginlink} />
+                            <TextULH text="Login" registerlink={loginlink} />
                         </div>
                     </form>
                 </div>
