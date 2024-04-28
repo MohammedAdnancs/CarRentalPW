@@ -96,8 +96,8 @@ form h1 {
 .remember-forgot {
     display: flex;
     justify-content: space-between;
-    font-size: 14px;
-    margin: 5px 0 15px;
+    font-size: 0.9rem;
+    margin: 1dvw 0 1dvh;
 }
 
 .remember-forgot.error {
@@ -106,10 +106,8 @@ form h1 {
 
 .remember-forgot label input {
     accent-color: rgb(0, 0, 0);
-    margin-right: 4px;
+    margin-right: 0.3dvw;
 }
-
-
 
 
 form .register-link {
