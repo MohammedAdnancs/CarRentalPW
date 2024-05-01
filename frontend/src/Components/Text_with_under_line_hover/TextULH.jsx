@@ -3,7 +3,7 @@ import './TextULH.css';
 
 const TextULH = (props) => {
     return (
-        <a className='TextULH' href="#" onClick={props.registerlink}>{props.text}</a>
+        <a style={{ color: props.color , fontWeight:props.fontWeight }} className='TextULH' href="#" onClick={props.registerlink}>{props.text}</a>
     );
 };
 
