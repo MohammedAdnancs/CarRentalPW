@@ -45,7 +45,7 @@ const LoginRegister = () => {
         registerdatasignup.email = registerValues.signup_email
         registerdatasignup.password = registerValues.signup_password
         registerdatasignup.username = registerValues.signup_username
-        console.log(registerdatasignup)
+
         try {
             const { username, email, password } = registerdatasignup;
             await axios.post('/register', { username, email, password });
@@ -78,6 +78,8 @@ const LoginRegister = () => {
         validationSchema: Signupschema,
         onSubmit: registerUser,
     });
+    console.log(registerdatasignup)
+    console.log(registerErrors)
 
     const loginUser = async (values, actions) => {
 
@@ -111,7 +113,6 @@ const LoginRegister = () => {
         onSubmit: loginUser,
     });
 
-    console.log(registerValues)
 
     return (
         <div className='Containerloginsignup'>
@@ -121,21 +122,21 @@ const LoginRegister = () => {
                 <div className="form-box register">
                     <form onSubmit={registerHandleSubmit}>
                         <h1>Signup</h1>
-                        <div className={`input-box ${registerErrors.username && registerTouched.username ? 'error' : ''}`}>
+                        <div className={`input-box ${registerErrors.signup_username && registerTouched.signup_username ? 'error' : ''}`}>
                             <input id="signup_username" type="text" placeholder='username' value={registerValues.signup_username} onChange={registerHandleChange} onBlur={registerHandleBlur} />
                             <FaUserAlt className='icon' />
-                            {registerErrors.username && registerTouched.username ? <span>{registerErrors.username}</span> : <span></span>}
+                            {registerErrors.signup_username && registerTouched.signup_username ? <span>{registerErrors.signup_username}</span> : <span></span>}
                         </div>
-                        <div className={`input-box ${registerErrors.email && registerTouched.email || emailexisterror ? 'error' : ''}`}>
+                        <div className={`input-box ${registerErrors.signup_email && registerTouched.signup_email || emailexisterror ? 'error' : ''}`}>
                             <input id="signup_email" type="email" placeholder='email' value={registerValues.signup_email} onChange={registerHandleChange} onBlur={registerHandleBlur} />
                             <MdEmail className='icon' />
-                            {registerErrors.email && registerTouched.email ? <span>{registerErrors.email}</span> : <span></span>}
+                            {registerErrors.signup_email && registerTouched.signup_email ? <span>{registerErrors.signup_email}</span> : <span></span>}
                             {emailexisterror != "" ? <span>{emailexisterror}</span> : <span></span>}
                         </div>
-                        <div className={`input-box ${registerErrors.password && registerTouched.password ? 'error' : ''}`}>
+                        <div className={`input-box ${registerErrors.signup_password && registerTouched.signup_password ? 'error' : ''}`}>
                             <input id="signup_password" type="password" placeholder='password' value={registerValues.signup_password} onChange={registerHandleChange} onBlur={registerHandleBlur} />
                             <FaLock className='icon' />
-                            {registerErrors.password && registerTouched.password ? <span>{registerErrors.password}</span> : <span></span>}
+                            {registerErrors.signup_password && registerTouched.signup_password ? <span>{registerErrors.signup_password}</span> : <span></span>}
                         </div>
                         <div className="remember-forgot">
                             <label> <input type="checkbox" />I Agree to the terms & conditions</label>
@@ -152,11 +153,11 @@ const LoginRegister = () => {
                     <form onSubmit={loginUser}>
                         <h1>Login</h1>
                         <div className="input-box">
-                            <input id="login_email" type="text" placeholder='Email' value={loginValues.login_email} onChange={loginHandleChange} onBlur={loginHandleBlur} />
+                            <input id="login_email" type="text" placeholder='Email' />
                             <FaUserAlt className='icon' />
                         </div>
                         <div className="input-box">
-                            <input id="login_password" type="password" placeholder='Password' value={loginValues.login_password} onChange={loginHandleChange} onBlur={loginHandleBlur} />
+                            <input id="login_password" type="password" placeholder='Password' />
                             <FaLock className='icon' />
                         </div>
                         <div className="remember-forgot">
