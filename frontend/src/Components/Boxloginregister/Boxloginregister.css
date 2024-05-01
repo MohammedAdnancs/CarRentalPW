@@ -11,10 +11,8 @@
 .wrapper {
     position: relative;
     width: 22dvw;
-    /* Initial width */
     height: 50dvh;
     transition: width 2s ease, height 2s ease;
-    /* Added width transition */
     background: #181C22;
     border: 1px solid #B4A5A5;
     border-radius: 10px;
@@ -39,7 +37,6 @@
 .wrapper .form-box.login {
     transition: transform 1s ease;
     transform: translateX(0);
-    zoom: 0.85;
 }
 
 .wrapper.active .form-box.login {
@@ -73,12 +70,12 @@ form h1 {
     background: transparent;
     border: none;
     outline: none;
-    border: 1px solid #B4A5A5;;
+    border: 1px solid #B4A5A5;
     border-radius: 10px;
     font-size: 16px;
     color: white;
     padding: 20px 20px 20px 40px;
-    
+
 }
 
 .input-box input::placeholder {
@@ -88,10 +85,10 @@ form h1 {
 .input-box .icon {
     position: absolute;
     left: 15px;
-    top: 50%;
+    top: 3.5dvh;
     transform: translateY(-50%);
     font-size: 16px;
-    color:white;
+    color: white;
 }
 
 .remember-forgot {
@@ -99,10 +96,6 @@ form h1 {
     justify-content: space-between;
     font-size: 0.9rem;
     margin: 1dvw 0 1dvh;
-}
-
-.remember-forgot.error {
-    margin-top: 30px;
 }
 
 .remember-forgot label input {
@@ -119,4 +112,12 @@ form .register-link {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.error input {
+    border-color: #800000;
+}
+
+.error span {
+    color: #800000;
 }
