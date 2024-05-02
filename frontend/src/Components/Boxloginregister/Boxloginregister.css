@@ -55,7 +55,7 @@
 }
 
 form h1 {
-    font-size: 36px;
+    font-size: 2dvw;
     text-align: center;
 }
 
@@ -107,7 +107,7 @@ form h1 {
 form .register-link {
     font-size: 14px;
     text-align: center;
-    margin: 20px 0 15px;
+    margin: 2dvh 0 2dvh;
     position: relative;
     display: flex;
     justify-content: center;

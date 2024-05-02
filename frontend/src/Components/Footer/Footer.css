@@ -31,10 +31,9 @@
 .Footer a {
     display: block;
     text-decoration: none;
-    font-size: 17px;
+    font-size: 1.1rem;
     margin-left: 7%;
     letter-spacing: 1px;
-    width: 9dvw;
     margin-bottom: 15%;
 }
 
