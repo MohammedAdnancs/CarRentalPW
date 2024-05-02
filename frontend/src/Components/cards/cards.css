@@ -55,7 +55,7 @@
   width: 100%;
   display: flex;
   flex-direction: row;
-  background: #B4A5A5;
+  background: #2192FF;
   margin-top: 3%;
   margin-bottom: 3%;
   justify-content: center;
@@ -158,16 +158,22 @@
   padding: 5px;
   font-size: 10px;
   color: #F5EDED;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  column-gap: 4%;
 
 }
 
-.Cicon
+.grid-item .Cicon
 {
-  width: 13%;
+  font-size: 1.1rem;
+  color: #2192FF;
 }
 .grid-item p
 {
-  font-size: .70rem;
+  font-size: .8rem;
 }
 
 input[type='radio']:checked:after {

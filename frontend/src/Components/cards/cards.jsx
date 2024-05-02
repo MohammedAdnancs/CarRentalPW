@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import './cards.css';
+import { FaCar } from "react-icons/fa";
+import { GiCarDoor } from "react-icons/gi";
+import { GiCarSeat } from "react-icons/gi";
+import { TbAirConditioning } from "react-icons/tb";
 import FilterBar from '../FilterBar/FilterBar';
 import Mustang1 from '../Assets/mustang1.png';
 import Mustang2 from '../Assets/mustang2.png';
@@ -81,19 +85,19 @@ const Cards = () => {
               </div>
               <div class="grid-container">
                 <div class="grid-item">
-                  <img class="Cicon" src={car} />
+                  <FaCar class="Cicon" />
                   <p>{card.type}</p>
                 </div>
                 <div class="grid-item">
-                  <img class="Cicon" src={door} />
+                <GiCarDoor  class="Cicon" />
                   <p>{card.doors}</p>
                 </div>
                 <div class="grid-item">
-                  <img class="Cicon" src={user} />
+                  <GiCarSeat class="Cicon" />
                   <p>{card.seats}</p>
                 </div>
                 <div class="grid-item">
-                  <img class="Cicon" src={fan} />
+                  <TbAirConditioning class="Cicon" />
                   <p>AC / Heater</p>
                 </div>
               </div>

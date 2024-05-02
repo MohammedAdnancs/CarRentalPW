@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './ListArea.css';
-import Button from '../Button/Button'
+import IButton from '../Button/Button'
+import { FaFileUpload } from "react-icons/fa";
 
 const ListArea = () => {
   const [carDetails, setCarDetails] = useState({
@@ -8,6 +9,7 @@ const ListArea = () => {
     carType: '',
     numDoors: '',
     numSeats: '',
+    price: '',
     location: '',
     description: '',
     carImage1: null,
@@ -31,17 +33,22 @@ const ListArea = () => {
 
   return (
     <div className="AreaContainer">
-      <div className="parent">
+      <form className="parent">
         <div className="div1">
           <h1>List Your Car</h1>
         </div>
+        
         <div className="div2">
+        <button type='button' className='Ubtn' > 
+          <FaFileUpload /> Choose Image
           <input
+            className='Lfile'
             type="file"
             accept="image/*"
             onChange={handleChange}
             name="carImage1"
           />
+        </button>
           {carDetails.carImage1 && (
             <img
               src={carDetails.carImage1}
@@ -50,12 +57,17 @@ const ListArea = () => {
           )}
         </div>
         <div className="div3">
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleChange}
-            name="carImage2"
-          />
+          <button type='button' className='Ubtn'> 
+            <FaFileUpload /> Choose Image
+            <input
+              className='Lfile'
+              type="file"
+              accept="image/*"
+              onChange={handleChange}
+              name="carImage2"
+            />
+          </button>
+          
           {carDetails.carImage2 && (
             <img
               src={carDetails.carImage2}
@@ -85,10 +97,22 @@ const ListArea = () => {
             <option value="Sport">Sport</option>
           </select>
         </div>
+        <div className="divP">
+          <input
+            className="Linput"
+            type="number"
+            min={0}
+            placeholder="Price"
+            value={carDetails.price}
+            onChange={handleChange}
+            name="price"
+          />
+        </div>
         <div className="div6">
           <input
             className="Linput"
             type="number"
+            min={0}
             placeholder="Number of Doors"
             value={carDetails.numDoors}
             onChange={handleChange}
@@ -125,10 +149,10 @@ const ListArea = () => {
           />
         </div>
         <div class="div10"> 
-          <Button  margintop="1dvh" backgroundColor="#C2C8C8" text="List Car" width="24dvh" height="5dvh" id="Lbutton"></Button>
+          <IButton  margintop="1dvh" backgroundColor="#C2C8C8" text="List Car" width="24dvh" height="5dvh" id="Lbutton"></IButton>
         </div>
+        </form>  
       </div>
-    </div>
   );
 };
 
