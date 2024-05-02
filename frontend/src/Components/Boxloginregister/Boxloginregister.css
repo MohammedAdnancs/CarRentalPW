@@ -119,5 +119,10 @@ form .register-link {
 }
 
 .error span {
+    margin-top: 1dvh;
+    color: #800000;
+}
+
+.uerror {
     color: #800000;
 }

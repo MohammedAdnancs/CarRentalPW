@@ -2,7 +2,7 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 
-const Signupschema = yup.object().shape({
+export const Signupschema = yup.object().shape({
     signup_username: yup.string().min(5, 'Username must be at least 5 characters').required('Username is required'),
     signup_email: yup.string().email('Invalid email').required('Email is required'),
     signup_password: yup.string()
@@ -11,4 +11,8 @@ const Signupschema = yup.object().shape({
         .required('Password is required'),
 });
 
-export default Signupschema;
+export const loginschema = yup.object().shape({
+    login_email: yup.string().email('Invalid email').required('Email is required'),
+    login_password: yup.string()
+        .required('Password is required'),
+});
