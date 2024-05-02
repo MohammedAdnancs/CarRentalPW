@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Boxloginregister.css';
-import { FaUserAlt, FaLock } from "react-icons/fa";
+import { FaUserAlt } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import Button from '../Button/Button';
 import TextULH from '../Text_with_under_line_hover/TextULH';
@@ -9,20 +9,28 @@ import { useNavigate } from 'react-router-dom';
 import formik, { useFormik } from 'formik'
 import Popup from '../popup/popup';
 import { Signupschema, loginschema } from '../schemas/signinschema';
+import { FaLock } from "react-icons/fa";
+import { FaLockOpen } from "react-icons/fa";
+import { FaEye } from "react-icons/fa";
+import { FaEyeSlash } from "react-icons/fa";
 
 const LoginRegister = () => {
     const navigate = useNavigate();
 
     //to change between the login and signup boxes when the action = active we are in the signup action='' we are login
     const [action, setAction] = useState('');
+    const [showhidepassword, setshowhidepassword] = useState(false);
+
     const [Popupnotification, setPopup] = useState(false);
 
     const registerlink = () => {
         setAction(' active');
+        setshowhidepassword(false);
     };
 
     const loginlink = () => {
         setAction('');
+        setshowhidepassword(false);
     };
     //end of to change between the login and signup boxes
 
@@ -80,7 +88,6 @@ const LoginRegister = () => {
         onSubmit: registerUser,
     });
 
-
     const loginUser = async (loginValues, actions) => {
         logindata.email = loginValues.login_email
         logindata.password = loginValues.login_password
@@ -119,6 +126,11 @@ const LoginRegister = () => {
         onSubmit: loginUser,
     });
 
+
+    const togglepassword = () => {
+        setshowhidepassword(!showhidepassword)
+    }
+
     return (
         <div className='Containerloginsignup'>
             <Popup setPopup={setPopup} trigger={Popupnotification} text="Congrats account created successfully" />
@@ -139,8 +151,8 @@ const LoginRegister = () => {
                             {emailexisterror != "" ? <span className='uerror'>{emailexisterror}</span> : <span></span>}
                         </div>
                         <div className={`input-box ${registerErrors.signup_password && registerTouched.signup_password ? 'error' : ''}`}>
-                            <input id="signup_password" type="password" placeholder='password' value={registerValues.signup_password} onChange={registerHandleChange} onBlur={registerHandleBlur} />
-                            <FaLock className='icon' />
+                            <input id="signup_password" type={showhidepassword ? 'text' : 'password'} placeholder='password' value={registerValues.signup_password} onChange={registerHandleChange} onBlur={registerHandleBlur} />
+                            {showhidepassword ? <FaEye onClick={() => togglepassword()} className='eyeicon' /> : <FaEyeSlash onClick={() => togglepassword()} className='eyeicon' />}
                             {registerErrors.signup_password && registerTouched.signup_password ? <span>{registerErrors.signup_password}</span> : <span></span>}
                         </div>
                         <div className="remember-forgot">
@@ -165,8 +177,8 @@ const LoginRegister = () => {
                             {loginerrormail != "" && !(loginErrors.hasOwnProperty("login_email")) ? <span className='uerror'>{loginerrormail}</span> : <span></span>}
                         </div>
                         <div className={`input-box ${loginErrors.login_password && loginTouched.login_password || loginerrorpassword ? 'error' : ''}`}>
-                            <input id="login_password" type="password" placeholder='Password' value={loginValues.login_password} onChange={loginHandleChange} onBlur={loginHandleBlur} />
-                            <FaLock className='icon' />
+                            <input id="login_password" type={showhidepassword ? 'text' : 'password'} placeholder="password" value={loginValues.login_password} onChange={loginHandleChange} onBlur={loginHandleBlur} />
+                            {showhidepassword ? <FaEye onClick={() => togglepassword()} className='eyeicon' /> : <FaEyeSlash onClick={() => togglepassword()} className='eyeicon' />}
                             {loginErrors.login_password && loginTouched.login_password ? <span>{loginErrors.login_password}</span> : <span></span>}
                             {loginerrorpassword != "" && !(loginErrors.hasOwnProperty("login_password")) ? <span className='uerror'>{loginerrorpassword}</span> : <span></span>}
                         </div>
