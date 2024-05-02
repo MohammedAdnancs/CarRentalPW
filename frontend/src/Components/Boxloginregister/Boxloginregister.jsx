@@ -7,9 +7,8 @@ import TextULH from '../Text_with_under_line_hover/TextULH';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import formik, { useFormik } from 'formik'
-import Signupschema from '../schemas/signinschema'
 import Popup from '../popup/popup';
-
+import { Signupschema, loginschema } from '../schemas/signinschema';
 
 const LoginRegister = () => {
     const navigate = useNavigate();
@@ -28,6 +27,8 @@ const LoginRegister = () => {
     //end of to change between the login and signup boxes
 
     const [emailexisterror, setemailexisterror] = useState("")
+    const [loginerrormail, setloginerrormail] = useState("")
+    const [loginerrorpassword, setloginerrorpassword] = useState("")
 
     const [registerdatasignup, setRegisterData] = useState({
         username: '',
@@ -78,30 +79,34 @@ const LoginRegister = () => {
         validationSchema: Signupschema,
         onSubmit: registerUser,
     });
-    console.log(registerdatasignup)
-    console.log(registerErrors)
 
-    const loginUser = async (values, actions) => {
 
-        logindata.email = values.email
-        logindata.password = values.password
+    const loginUser = async (loginValues, actions) => {
+        logindata.email = loginValues.login_email
+        logindata.password = loginValues.login_password
 
         try {
             const { email, password } = logindata;
             await axios.post('/login', { email, password });
             setLogindata({
+                username: '',
                 email: '',
-                password: ''
             });
+            setAction('');
+            actions.resetForm();
             navigate('/')
         } catch (error) {
-            if (error.response.status === 400) {
+            if (error.response && error.response.status === 400 && error.response.data.error == "No user found") {
                 console.log(error.response.data.error);
+                setloginerrormail(error.response.data.error);
+            }
+            if (error.response && error.response.status === 400 && error.response.data.error == "wrong password") {
+                console.log(error.response.data.error);
+                setloginerrorpassword(error.response.data.error);
             } else {
                 console.log("An error occurred:", error.message);
             }
         }
-
     };
 
     // Formik hook for login form
@@ -110,9 +115,9 @@ const LoginRegister = () => {
             login_email: "",
             login_password: "",
         },
+        validationSchema: loginschema,
         onSubmit: loginUser,
     });
-
 
     return (
         <div className='Containerloginsignup'>
@@ -131,7 +136,7 @@ const LoginRegister = () => {
                             <input id="signup_email" type="email" placeholder='email' value={registerValues.signup_email} onChange={registerHandleChange} onBlur={registerHandleBlur} />
                             <MdEmail className='icon' />
                             {registerErrors.signup_email && registerTouched.signup_email ? <span>{registerErrors.signup_email}</span> : <span></span>}
-                            {emailexisterror != "" ? <span>{emailexisterror}</span> : <span></span>}
+                            {emailexisterror != "" ? <span className='uerror'>{emailexisterror}</span> : <span></span>}
                         </div>
                         <div className={`input-box ${registerErrors.signup_password && registerTouched.signup_password ? 'error' : ''}`}>
                             <input id="signup_password" type="password" placeholder='password' value={registerValues.signup_password} onChange={registerHandleChange} onBlur={registerHandleBlur} />
@@ -150,15 +155,20 @@ const LoginRegister = () => {
                 </div>
 
                 <div className="form-box login">
-                    <form onSubmit={loginUser}>
+
+                    <form onSubmit={loginHandleSubmit}>
                         <h1>Login</h1>
-                        <div className="input-box">
-                            <input id="login_email" type="text" placeholder='Email' />
+                        <div className={`input-box ${loginErrors.login_email && loginTouched.login_email || loginerrormail ? 'error' : ''}`}>
+                            <input id="login_email" type="text" placeholder='Email' value={loginValues.login_email} onChange={loginHandleChange} onBlur={loginHandleBlur} />
                             <FaUserAlt className='icon' />
+                            {loginErrors.login_email && loginTouched.login_email ? <span>{loginErrors.login_email}</span> : <span></span>}
+                            {loginerrormail != "" && !(loginErrors.hasOwnProperty("login_email")) ? <span className='uerror'>{loginerrormail}</span> : <span></span>}
                         </div>
-                        <div className="input-box">
-                            <input id="login_password" type="password" placeholder='Password' />
+                        <div className={`input-box ${loginErrors.login_password && loginTouched.login_password || loginerrorpassword ? 'error' : ''}`}>
+                            <input id="login_password" type="password" placeholder='Password' value={loginValues.login_password} onChange={loginHandleChange} onBlur={loginHandleBlur} />
                             <FaLock className='icon' />
+                            {loginErrors.login_password && loginTouched.login_password ? <span>{loginErrors.login_password}</span> : <span></span>}
+                            {loginerrorpassword != "" && !(loginErrors.hasOwnProperty("login_password")) ? <span className='uerror'>{loginerrorpassword}</span> : <span></span>}
                         </div>
                         <div className="remember-forgot">
                             <label> <input type="checkbox" />Remember me</label>
@@ -170,6 +180,7 @@ const LoginRegister = () => {
                             <TextULH text="Register" registerlink={registerlink} />
                         </div>
                     </form>
+
                 </div>
             </div>
         </div>
