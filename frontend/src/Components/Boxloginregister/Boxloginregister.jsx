@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import './Boxloginregister.css';
 import { FaUserAlt } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
@@ -13,6 +13,7 @@ import { FaLock } from "react-icons/fa";
 import { FaLockOpen } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
+import { UserContext } from "../../Context/userContext";
 
 const LoginRegister = () => {
     const navigate = useNavigate();
@@ -86,6 +87,9 @@ const LoginRegister = () => {
         onSubmit: registerUser,
     });
 
+
+    const { user, setUser, forceupdate } = useContext(UserContext);
+
     const loginUser = async (loginValues, actions) => {
         logindata.email = loginValues.login_email
         logindata.password = loginValues.login_password
@@ -93,6 +97,7 @@ const LoginRegister = () => {
         try {
             const { email, password } = logindata;
             await axios.post('/login', { email, password });
+            forceupdate();
             setLogindata({
                 username: '',
                 email: '',

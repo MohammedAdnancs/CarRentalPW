@@ -18,9 +18,10 @@ axios.defaults.withCredentials = true
 
 function App() {
   return (
-    <UserContextProvider>
-      <div className="App">
-        <BrowserRouter>
+
+    <div className="App">
+      <BrowserRouter>
+        <UserContextProvider>
           <Navbar />
           <Toaster position='bottom-right' toastOptions={{ duration: 2000 }} />
           <Routes>
@@ -32,9 +33,9 @@ function App() {
             <Route path='/Userprofile' element={<Userprofile />} />
           </Routes>
           <Footer />
-        </BrowserRouter>
-      </div>
-    </UserContextProvider>
+        </UserContextProvider>
+      </BrowserRouter>
+    </div>
 
   );
 }

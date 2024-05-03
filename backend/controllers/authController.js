@@ -4,7 +4,6 @@ const jwt = require('jsonwebtoken');
 const dotenv = require("dotenv").config();
 const { useNavigate } = require('react-router-dom')
 
-
 const test = (req, res) => {
     res.json('test is working')
 }
