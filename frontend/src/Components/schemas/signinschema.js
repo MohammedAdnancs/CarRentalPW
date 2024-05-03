@@ -1,6 +1,4 @@
 import * as yup from 'yup';
-import { yupResolver } from '@hookform/resolvers/yup';
-
 
 export const Signupschema = yup.object().shape({
     signup_username: yup.string().min(5, 'Username must be at least 5 characters').required('Username is required'),

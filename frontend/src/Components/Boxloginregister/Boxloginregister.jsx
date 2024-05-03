@@ -6,7 +6,7 @@ import Button from '../Button/Button';
 import TextULH from '../Text_with_under_line_hover/TextULH';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import formik, { useFormik } from 'formik'
+import formik, { useFormik } from 'formik';
 import Popup from '../popup/popup';
 import { Signupschema, loginschema } from '../schemas/signinschema';
 import { FaLock } from "react-icons/fa";
@@ -20,7 +20,6 @@ const LoginRegister = () => {
     //to change between the login and signup boxes when the action = active we are in the signup action='' we are login
     const [action, setAction] = useState('');
     const [showhidepassword, setshowhidepassword] = useState(false);
-
     const [Popupnotification, setPopup] = useState(false);
 
     const registerlink = () => {
@@ -48,7 +47,6 @@ const LoginRegister = () => {
         email: '',
         password: ''
     });
-
 
     const registerUser = async (registerValues, actions) => {
         registerdatasignup.email = registerValues.signup_email
@@ -103,13 +101,15 @@ const LoginRegister = () => {
             actions.resetForm();
             navigate('/')
         } catch (error) {
-            if (error.response && error.response.status === 400 && error.response.data.error == "No user found") {
-                console.log(error.response.data.error);
-                setloginerrormail(error.response.data.error);
-            }
-            if (error.response && error.response.status === 400 && error.response.data.error == "wrong password") {
-                console.log(error.response.data.error);
-                setloginerrorpassword(error.response.data.error);
+            if (error.response && error.response.status === 400) {
+                if (error.response.data.error == "No user found") {
+                    console.log(error.response.data.error);
+                    setloginerrormail(error.response.data.error);
+                }
+                if (error.response.data.error == "wrong password") {
+                    console.log(error.response.data.error);
+                    setloginerrorpassword(error.response.data.error);
+                }
             } else {
                 console.log("An error occurred:", error.message);
             }
@@ -125,7 +125,6 @@ const LoginRegister = () => {
         validationSchema: loginschema,
         onSubmit: loginUser,
     });
-
 
     const togglepassword = () => {
         setshowhidepassword(!showhidepassword)
@@ -176,11 +175,11 @@ const LoginRegister = () => {
                             {loginErrors.login_email && loginTouched.login_email ? <span>{loginErrors.login_email}</span> : <span></span>}
                             {loginerrormail != "" && !(loginErrors.hasOwnProperty("login_email")) ? <span className='uerror'>{loginerrormail}</span> : <span></span>}
                         </div>
-                        <div className={`input-box ${loginErrors.login_password && loginTouched.login_password || loginerrorpassword ? 'error' : ''}`}>
+                        <div className={`input-box ${(loginErrors.login_password && loginTouched.login_password) || loginerrorpassword ? 'error' : ''}`}>
                             <input id="login_password" type={showhidepassword ? 'text' : 'password'} placeholder="password" value={loginValues.login_password} onChange={loginHandleChange} onBlur={loginHandleBlur} />
                             {showhidepassword ? <FaEye onClick={() => togglepassword()} className='eyeicon' /> : <FaEyeSlash onClick={() => togglepassword()} className='eyeicon' />}
                             {loginErrors.login_password && loginTouched.login_password ? <span>{loginErrors.login_password}</span> : <span></span>}
-                            {loginerrorpassword != "" && !(loginErrors.hasOwnProperty("login_password")) ? <span className='uerror'>{loginerrorpassword}</span> : <span></span>}
+                            {loginerrorpassword !== "" && !(loginErrors.hasOwnProperty("login_password")) ? <span className='uerror'>{loginerrorpassword}</span> : <span></span>}
                         </div>
                         <div className="remember-forgot">
                             <label> <input type="checkbox" />Remember me</label>
