@@ -21,6 +21,7 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    transition: width 2s ease, height 2s ease;
 }
 
 .wrapper.wrapper.active {

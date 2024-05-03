@@ -1,5 +1,10 @@
-const User = require('../models/User')
-const { hashPassowrd, comparePassword } = require('../helpers/auth')
+const User = require('../models/User');
+const { hashPassowrd, comparePassword } = require('../helpers/auth');
+const jwt = require('jsonwebtoken');
+const dotenv = require("dotenv").config();
+const { useNavigate } = require('react-router-dom')
+
+
 const test = (req, res) => {
     res.json('test is working')
 }
@@ -53,7 +58,8 @@ const loginUser = async (req, res) => {
         }
 
         if (match) {
-            res.json('password match')
+            const token = jwt.sign({ id: user._id, email: user.email, username: user.username }, process.env.JWT_Secret, { expiresIn: "1h" })
+            res.cookie("token", token).json(user);
         }
 
     } catch (error) {
@@ -61,8 +67,26 @@ const loginUser = async (req, res) => {
     }
 }
 
+const getProfileUser = (req, res) => {
+    const { token } = req.cookies
+    if (token) {
+        jwt.verify(token, process.env.JWT_Secret, {}, (err, user) => {
+            if (err) throw err;
+            res.json(user)
+        })
+    } else {
+        res.json(null)
+    }
+}
+
+const logoutUser = (req, res) => {
+    res.clearCookie('token').json({ message: "Logout successful" });
+}
+
 module.exports = {
     registerUser,
     loginUser,
+    getProfileUser,
+    logoutUser,
     test
 }
