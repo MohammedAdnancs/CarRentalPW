@@ -4,8 +4,8 @@ import './UserDashboard.css'
 
 const UserDashboard = () => {
 
-    const { user } = useContext(UserContext)
-    
+    const { user, setUser } = useContext(UserContext);
+
     return (
         <div className='Container'>
             <h1>Dashboard</h1>
