@@ -9,11 +9,7 @@ import axios from 'axios';
 
 
 const ListArea = () => {
-
-
-
-
-  const SumbitListing  = async (values,actions) => {
+  const SubmitListing  = async (values,actions) => {
     ListingData.carName = values.carName
     ListingData.carType = values.carType
     ListingData.numDoors = values.numDoors
@@ -65,7 +61,7 @@ const ListArea = () => {
       carImage2: null
     },
     validationSchema: ListingsSchemas,
-    onSubmit: SumbitListing,
+    onSubmit: SubmitListing,
 });
   
   const [ListingData,setListingData] = useState({

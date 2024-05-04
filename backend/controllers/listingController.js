@@ -27,6 +27,13 @@ const AddListing = async (req, res) => {
   }
 }
 
+const ViewAllListing = async (req, res) => {
+    Listing.find()
+    .then(listings => res.json(listings))
+    .catch(err => res.json(err))
+}
+
 module.exports = {
+  ViewAllListing,
   AddListing,
 }

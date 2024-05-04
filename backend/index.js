@@ -9,7 +9,7 @@ const cookieParser = require('cookie-parser')
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(express.urlencoded({extended:false}))
+app.use(express.urlencoded({extended:false}));
 
 let port = process.env.port;
 let connection_string = process.env.connection_string;
