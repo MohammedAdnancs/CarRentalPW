@@ -7,7 +7,8 @@ function FilterBar({ setFilters, priceRange, numDoors, carType }) {
   };
 
   const handleNumDoorsChange = (event) => {
-    setFilters(prevFilters => ({ ...prevFilters, numDoors: event.target.value }));
+    const value = parseInt(event.target.value); // Convert value to integer
+    setFilters(prevFilters => ({ ...prevFilters, numDoors: value }));
   };
 
   const handleCarTypeChange = (event) => {
