@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './FilterBar.css';
+import IButton from '../Button/Button'
 
 function FilterBar({ setFilters, priceRange, numDoors, carType }) {
   const handlePriceRangeChange = (event) => {
@@ -195,7 +196,7 @@ function FilterBar({ setFilters, priceRange, numDoors, carType }) {
             </label>
           </div>
         </div>
-        <button onClick={clearFilters}>Clear Filters</button>
+        <IButton  margintop="dvh" backgroundColor="#C2C8C8" text="Clear Filters" width="20dvh" height="3dvh" id="Lbutton" onClick={clearFilters} ></IButton>
       </form>
     </div>
   );

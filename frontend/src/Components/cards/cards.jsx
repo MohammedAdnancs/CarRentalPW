@@ -40,8 +40,8 @@ const Cards = () => {
   // Update cardData mapping to include price range
   const cardData = listings.map(listing => ({
     name: listing.carName,
-    thumbnail1: listing.carImage1,
-    thumbnail2: listing.carImage2,
+    thumbnail1: listing.image1,
+    thumbnail2: listing.image2,
     type: listing.carType,
     doors: listing.numDoors,
     Dprice: listing.price,

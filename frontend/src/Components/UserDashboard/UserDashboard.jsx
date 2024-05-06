@@ -101,7 +101,7 @@ const UserDashboard = () => {
     return (
         <div>
             <form onSubmit={handleSubmit} encType="multipart/form-data">
-                <div className='Container'>
+                <div className='DashContainer'>
                     <h1>Dashboard</h1>
                     <div className="Dashboard">
                         <div className="Dashboardleft">

@@ -4,13 +4,13 @@ const { Schema } = mongoose;
 const listingSchema = new Schema({
     carName: String,
     carType: String,
-    numDoors: Number, // Corrected data type
-    numSeats: Number, // Corrected data type
-    price: Number, // Corrected data type
+    numDoors: Number,
+    numSeats: Number, 
+    price: Number, 
     location: String,
     description: String,
-    carImage1: Buffer,
-    carImage2: Buffer
+    image1: String,
+    image2: String
 });
 
 const ListingModel = mongoose.model('Listing', listingSchema);
