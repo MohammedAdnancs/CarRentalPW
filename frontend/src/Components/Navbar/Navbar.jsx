@@ -28,7 +28,7 @@ const Navbar = () => {
             <ul className='nav-menu'>
                 <li className={menu === "Home" ? 'active' : ''} onClick={() => { setMenu("Home") }}><Link style={{ textDecoration: 'none', color: 'inherit' }} to='/'>Home</Link>{menu === "Home" ? <hr /> : <></>}</li>
                 <li className={menu === "Rent" ? 'active' : ''} onClick={() => { setMenu("Rent") }}><Link style={{ textDecoration: 'none', color: 'inherit' }} to='/Rent'>Rent</Link>{menu === "Rent" ? <hr /> : <></>}</li>
-                {user ? <li className={menu === "List" ? 'active' : ''} onClick={() => { setMenu("List") }}><Link style={{ textDecoration: 'none', color: 'inherit' }}>List</Link>{menu === "List" ? <hr /> : <></>}</li> : ""}
+                {user ? (<li className={menu === "List" ? 'active' : ''} onClick={() => { setMenu("List") }}><Link style={{ textDecoration: 'none', color: 'inherit' }} to='/List'>List</Link>{menu === "List" ? <hr /> : <></>}</li>) : null}
                 <li className={menu === "AboutUs" ? 'active' : ''} onClick={() => { setMenu("AboutUs") }}><Link style={{ textDecoration: 'none', color: 'inherit' }} to='/AboutUs'>About Us</Link>{menu === "AboutUs" ? <hr /> : <></>}</li>
                 <li className={menu === "Userprofile" ? 'active' : ''} onClick={() => { setMenu("Userprofile") }}><Link style={{ textDecoration: 'none', color: 'inherit' }} to='/Userprofile'>User profile</Link>{menu === "Userprofile" ? <hr /> : <></>}</li>
                 {user ? <li className={menu === "Logout" ? 'active' : ''} onClick={logout}><Link style={{ textDecoration: 'none', color: 'inherit' }}>Logout</Link>{menu === "Logout" ? <hr /> : <></>}</li> : ""}

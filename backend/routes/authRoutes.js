@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router();
 const cors = require('cors');
 const { test, loginUser, registerUser, getProfileUser, logoutUser, Useruploadimage } = require('../controllers/authController')
-const { AddListing, ViewAllListing } = require('../controllers/listingController')
+const { AddListing, ViewAllListing} = require('../controllers/listingController')
 const multer = require('multer')
 
 router.use(express.json({ limit: '50mb' }));

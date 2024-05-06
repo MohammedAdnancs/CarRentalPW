@@ -5,10 +5,14 @@ import { FaFileUpload } from "react-icons/fa";
 import  { useFormik } from 'formik';
 import {ListingsSchemas} from '../schemas/ListingsSchemas';
 import axios from 'axios';
+import Popup from '../popup/popup';
+import { ColorRing } from 'react-loader-spinner'
 
 
 
 const ListArea = () => {
+  const [Popupnotification, setPopup] = useState(false);
+  const [loading, setloading] = useState(false);
   const SubmitListing  = async (values,actions) => {
     ListingData.carName = values.carName
     ListingData.carType = values.carType
@@ -17,13 +21,13 @@ const ListArea = () => {
     ListingData.price = values.price
     ListingData.location = values.location
     ListingData.description = values.description
-    ListingData.carImage1 = values.carImage1
-    ListingData.carImage2 = values.carImage2
   
     try {
-        const { carName, carType, numDoors,numSeats, price, location, description, carImage1,  carImage2 } = ListingData;
-        console.log(carName)
-        await axios.post('/AddListing', { carName, carType, numDoors,numSeats, price, location, description, carImage1,  carImage2 });
+        const { carName, carType, numDoors,numSeats, price, location, description} = ListingData;
+        //console.log(ImageUrl1)
+        //console.log(ImageUrl2)
+        setloading(true);
+        await axios.post('/AddListing', { carName, carType, numDoors,numSeats, price, location, description, ImageUrl1, ImageUrl2 });
         setListingData({
           carName: '',
           carType: '',
@@ -32,11 +36,11 @@ const ListArea = () => {
           price: '',
           location: '',
           description: '',
-          carImage1: null,
-          carImage2: null
+          ImageUrl1: '',
+          ImageUrl2: ''
         });
-  
-        
+        setPopup(true);
+        setloading(false);
     } catch (error) {
         if (error.response && error.response.status === 400) {
             console.log(error.response.data.error);
@@ -56,11 +60,9 @@ const ListArea = () => {
       price: '',
       location: '',
       description: '',
-      carImage1: null,
-      carImage2: null
     },
     validationSchema: ListingsSchemas,
-    onSubmit: SubmitListing,
+    onSubmit: SubmitListing, 
 });
   
   const [ListingData,setListingData] = useState({
@@ -71,63 +73,105 @@ const ListArea = () => {
       price: '',
       location: '',
       description: '',
-      carImage1: null,
-      carImage2: null
+      ImageUrl1: '',
+      ImageUrl2: ''
   })
 
+  const [selectedImage1, setSelectedImage1] = useState('');
+  const [fileinputstate, setfileinputstate] = useState(null);
+  const [selectedImage2, setSelectedImage2] = useState(null);
+  const [ImageUrl1, setImageUrl1] = useState('');
+  const [ImageUrl2, setImageUrl2] = useState('');
 
+  const handelfielinput1 = (e) => {
+    const file1 = e.target.files[0];
+    setSelectedImage1(URL.createObjectURL(file1)); // Set URL for preview
+    const reader = new FileReader();
+    reader.readAsDataURL(file1);
+    reader.onload = () => {
+      setImageUrl1(reader.result)
+      //console.log(reader.result)
+    }
+}
 
+const handelfielinput2 = (e) => {
+  const file2 = e.target.files[0];
+  setSelectedImage2(URL.createObjectURL(file2)); // Set URL for preview
+  const reader = new FileReader();
+  reader.readAsDataURL(file2);
+  reader.onload = () => {
+    setImageUrl2(reader.result)
+    //console.log(reader.result)
+  }
+}
 
   return (
+    <div className='bigContainer'>
+      {loading && (
+      <div className="loader-container">
+        <ColorRing
+          visible={loading}
+          height="80"
+          width="80"
+          ariaLabel="color-ring-loading"
+          wrapperStyle={{}}
+          wrapperClass="color-ring-wrapper"
+          colors={['#2192FF', '#F5EDED', '#2192FF', '#F5EDED', '#2192FF']}
+          className="loader"
+        />
+      </div>
+    )}
     <div className="AreaContainer">
+      <Popup setPopup={setPopup} trigger={Popupnotification} text="Congrats Listing Uploaded Successfully" />
+      
       <form className="parent" onSubmit={handleSubmit}>
         <div className="div1">
           <h1>List Your Car</h1>
         </div>
         
         <div className="div2">
-        <button type='button' className='Ubtn' > 
-          <FaFileUpload /> Choose Image
-          <input
-            id = "carImage1"
-            className='Lfile'
-            type="file"
-            accept="image/*"
-            value={values.carImage1}
-            onBlur={handleBlur}
-            onChange={handleChange}
-            name="carImage1"
-          />
-        </button>
-          {values.carImage1 && (
-            <img
-              src={values.carImage1}
-              alt="Car"
-            />
-          )}
-        </div>
-        <div className="div3">
-          <button type='button' className='Ubtn'> 
-            <FaFileUpload /> Choose Image
-            <input
-              id = "carImage2"
-              className='Lfile'
-              type="file"
-              accept="image/*"
-              value={values.carImage2}
-              onBlur={handleBlur}
-              onChange={handleChange}
-              name="carImage2"
-            />
-          </button>
-          {values.carImage2 && (
-            <img
-              src={values.carImage2}
-              alt="Car"
-            />
-          )}
-          
-        </div>
+  <button type='button' className='Ubtn' > 
+    <FaFileUpload /> Choose Image
+    <input
+      id="carImage1"
+      className='Lfile'
+      type="file"
+      accept="image/*"
+      value={fileinputstate}
+      onBlur={handleBlur}
+      onChange={handelfielinput1}
+      name="carImage1"
+    />
+  </button>
+  {selectedImage1 && (
+    <img
+      src={selectedImage1}
+      alt="Car"
+    />
+  )}
+</div>
+
+<div className="div3">
+  <button type='button' className='Ubtn'> 
+    <FaFileUpload /> Choose Image
+    <input
+      id="carImage2"
+      className='Lfile'
+      type="file"
+      accept="image/*"
+      value={fileinputstate}
+      onBlur={handleBlur}
+      onChange={handelfielinput2}
+      name="carImage2"
+    />
+  </button>
+  {selectedImage2 && (
+    <img
+      src={selectedImage2}
+      alt="Car"
+    />
+  )}
+</div>
         <div className="div4">
           <input
             id = "carName"
@@ -226,6 +270,7 @@ const ListArea = () => {
           <IButton  margintop="1dvh" backgroundColor="#C2C8C8" text="List Car" width="24dvh" height="5dvh" id="Lbutton" type="submit"></IButton>
         </div>
         </form>  
+      </div>
       </div>
   );
 };

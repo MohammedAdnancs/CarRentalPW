@@ -1,4 +1,4 @@
-.Container {
+.DashContainer {
     width: 100%;
     height: 100%;
     display: flex;
@@ -8,7 +8,7 @@
     transition: 0.3s;
 }
 
-.Container h1 {
+.DashContainer h1 {
     font-size: 2.5rem;
     color: #2192FF;
 }
