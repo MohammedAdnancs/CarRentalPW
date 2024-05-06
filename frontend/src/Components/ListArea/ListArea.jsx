@@ -40,7 +40,6 @@ const ListArea = () => {
     } catch (error) {
         if (error.response && error.response.status === 400) {
             console.log(error.response.data.error);
-            setemailexisterror(error.response.data.error);
         } else {
             console.log("An error occurred:", error.message);
         }
