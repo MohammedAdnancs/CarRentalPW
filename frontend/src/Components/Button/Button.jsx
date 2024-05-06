@@ -16,7 +16,7 @@ const Button = (props) => {
         );
     } else {
         return (
-            <button type={props.type} onClick={props.onClick} className='CustomButton' style={{ marginTop: props.margintop, width: props.width, height: props.height, backgroundColor: props.backgroundColor }}>
+            <button type={props.type} onClick={props.onClick} className='CustomButton' style={{ color: props.color, marginTop: props.margintop, width: props.width, height: props.height, backgroundColor: props.backgroundColor }}>
                 <p>{props.text}</p>
                 <span>
                     {props.icon}

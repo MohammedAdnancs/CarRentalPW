@@ -3,16 +3,19 @@ const { hashPassowrd, comparePassword } = require('../helpers/auth');
 const jwt = require('jsonwebtoken');
 const dotenv = require("dotenv").config();
 const { useNavigate } = require('react-router-dom')
-
+const axios = require('axios')
+const multer = require('multer')
 const test = (req, res) => {
     res.json('test is working')
 }
+
+const { cloudinary } = require('../helpers/cloudinary')
 
 const registerUser = async (req, res) => {
     try {
 
         const { username, email, password } = req.body;
-
+        const image = "";
         const exist = await User.findOne({ email }) //if true same eamil was fond in db
         if (exist) {
             return res.status(400).json({
@@ -25,7 +28,8 @@ const registerUser = async (req, res) => {
         const user = await User.create({
             username,
             email,
-            password: hashedPassword
+            password: hashedPassword,
+            image,
         })
 
         return res.json(user)
@@ -57,7 +61,7 @@ const loginUser = async (req, res) => {
         }
 
         if (match) {
-            const token = jwt.sign({ id: user._id, email: user.email, username: user.username }, process.env.JWT_Secret, { expiresIn: "1h" })
+            const token = jwt.sign({ id: user._id, email: user.email, username: user.username, image: user.image }, process.env.JWT_Secret, { expiresIn: "6h" })
             res.cookie("token", token).json(user);
         }
 
@@ -78,8 +82,59 @@ const getProfileUser = (req, res) => {
     }
 }
 
+
 const logoutUser = (req, res) => {
     res.clearCookie('token').json({ message: "Logout successful" });
+}
+
+
+const Useruploadimage = async (req, res) => {
+    try {
+        const { imageurl, newusername, newemail, userid, oldimage, oldname, oldemail } = req.body.data;
+
+        console.log(imageurl)
+        console.log(newusername)
+        console.log(newemail)
+        console.log(userid)
+        console.log(oldimage)
+        console.log(oldname)
+        console.log(oldemail)
+        let image;
+        let username;
+        let email;
+
+        if (imageurl) {
+            const User_upload_image_response = await cloudinary.uploader.upload(imageurl, {
+                upload_preset: "Userimages_preset"
+            })
+            const response = User_upload_image_response.secure_url
+            image = response;
+        } else {
+            image = oldimage;
+        }
+        if (newusername) {
+            username = newusername;
+        } else {
+            username = oldname;
+        }
+        if (newemail) {
+            email = newemail;
+        } else {
+            email = oldemail;
+        }
+
+        await User.updateOne({ _id: userid }, {
+            $set: {
+                username: username,
+                email: email,
+                image: image
+            }
+        })
+
+    } catch (error) {
+        // console.log(error);
+        // res.json({ msg: "something went wrong" })
+    }
 }
 
 module.exports = {
@@ -87,5 +142,6 @@ module.exports = {
     loginUser,
     getProfileUser,
     logoutUser,
+    Useruploadimage,
     test
 }
