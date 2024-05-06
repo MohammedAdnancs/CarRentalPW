@@ -92,13 +92,6 @@ const Useruploadimage = async (req, res) => {
     try {
         const { imageurl, newusername, newemail, userid, oldimage, oldname, oldemail } = req.body.data;
 
-        console.log(imageurl)
-        console.log(newusername)
-        console.log(newemail)
-        console.log(userid)
-        console.log(oldimage)
-        console.log(oldname)
-        console.log(oldemail)
         let image;
         let username;
         let email;
@@ -131,9 +124,26 @@ const Useruploadimage = async (req, res) => {
             }
         })
 
+        const updatedUser = await User.findById(userid);
+
+        console.log(updatedUser._id)
+        console.log(updatedUser.email)
+        console.log(updatedUser.username)
+        console.log(updatedUser.image)
+
+        //Generate a new token with updated user information
+        const token = jwt.sign({
+            id: updatedUser._id,
+            email: updatedUser.email,
+            username: updatedUser.username,
+            image: updatedUser.image
+        }, process.env.JWT_Secret, { expiresIn: "6h" });
+
+        // Send the new token back to the client
+        res.cookie("token", token).json({ user: updatedUser, token });
     } catch (error) {
-        // console.log(error);
-        // res.json({ msg: "something went wrong" })
+        console.log(error);
+        res.json({ msg: "something went wrong" })
     }
 }
 

@@ -1,4 +1,4 @@
-import React, { useState, useContext, useRef ,useEffect} from 'react';
+import React, { useState, useContext, useRef, useEffect } from 'react';
 import { UserContext } from "../../Context/userContext";
 import './UserDashboard.css';
 import Medo from '../Assets/Medo.png';
@@ -19,7 +19,7 @@ const UserDashboard = () => {
 
     const switch_to_edit_mode = (e) => {
         e.preventDefault();
-       
+
         console.log(user.username)
         console.log(user.email)
         setEditprofile(true)
@@ -56,7 +56,7 @@ const UserDashboard = () => {
         console.log(values.email)
         setloading(true)
         try {
-            const imageurl = axios.post('/Useruploadimage', {
+            await axios.post('/Useruploadimage', {
                 data: {
                     imageurl: selectedImage,
                     newusername: values.username,
@@ -70,19 +70,18 @@ const UserDashboard = () => {
                 headers: {
                     'Content-Type': 'application/json'
                 }
-            }).then(Response => {
-                setsetimage(user.image)
-                console.log(user.image)
-                setEditprofile(false)
             })
+            forceupdate();
+            setloading(false)
+            setEditprofile(false)
         } catch (error) {
             console.log(error)
         }
         setloading(false)
-        forceupdate();
+
     };
 
-    const { values, errors, touched, handleChange, handleSubmit, handleBlur ,setValues} = useFormik({
+    const { values, errors, touched, handleChange, handleSubmit, handleBlur, setValues } = useFormik({
         initialValues: {
             username: user ? user.username : "",
             email: user ? user.email : "",
@@ -150,15 +149,18 @@ const UserDashboard = () => {
                     </div>
                 </div>
             </form>
-            <ColorRing
-                visible={loading}
-                height="80"
-                width="80"
-                ariaLabel="color-ring-loading"
-                wrapperStyle={{}}
-                wrapperClass="color-ring-wrapper"
-                colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
-            />
+            <div className="loader-container">
+                <ColorRing
+                    visible={loading}
+                    height="80"
+                    width="80"
+                    ariaLabel="color-ring-loading"
+                    wrapperStyle={{}}
+                    wrapperClass="color-ring-wrapper"
+                    colors={['#2192FF', '#F5EDED', '#2192FF', '#F5EDED', '#2192FF']}
+                    className="loader"
+                />
+            </div>
         </div>
     );
 };

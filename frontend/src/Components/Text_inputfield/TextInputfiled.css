@@ -1,0 +1,50 @@
+.custominputbox {
+    position: relative;
+    display: flex;
+    gap: 10px;
+    width: 25dvw;
+}
+
+.custominputbox .custominput {
+    background-color: transparent;
+    padding: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 5px;
+    outline: none;
+    font-size: 1em;
+    color: white;
+}
+
+.custominputbox .customspan {
+    position: absolute;
+    left: 0;
+    pointer-events: none;
+    font-size: 1em;
+    color: rgba(255, 255, 255, 0.25);
+    text-transform: uppercase;
+    padding: 10px;
+    transition: 0.4s;
+    margin-left: 55px;
+}
+
+.custominputbox .custominput:focus+.customspan {
+    color: #B4A5A5;
+    transform: translateX(1dvw) translateY(-1dvh);
+    font-size: 0.75em;
+    padding: 0 10px;
+    background: transparent;
+    border-left: 1px solid rgba(255, 255, 255, 0.25);
+    letter-spacing: 0.2em;
+    background: #212227;
+}
+
+.custominputbox .custominput:valid+.customspan {
+    color: #B4A5A5;
+    transform: translateX(1dvw) translateY(-1dvh);
+    font-size: 0.75em;
+    padding: 0 10px;
+    background: transparent;
+    border-left: 1px solid rgba(255, 255, 255, 0.25);
+    letter-spacing: 0.2em;
+    background: #212227;
+}

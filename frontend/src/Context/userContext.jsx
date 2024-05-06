@@ -4,11 +4,17 @@ import { createContext, useState, useEffect, useDeferredValue, useReducer } from
 export const UserContext = createContext({});
 
 export function UserContextProvider({ children }) {
+
     const [user, setUser] = useState(null);
-    const [valuechange, forceupdate] = useReducer(x => x + 1, 0)
+    const [valuechange, forceupdate] = useReducer(prevState => !prevState, false);
 
     useEffect(() => {
         if (!user) {
+            axios.get('/profile').then(({ data }) => {
+                setUser(data);
+            });
+        }
+        if (user) {
             axios.get('/profile').then(({ data }) => {
                 setUser(data);
             });
@@ -20,4 +26,5 @@ export function UserContextProvider({ children }) {
             {children}
         </UserContext.Provider>
     );
+
 }
