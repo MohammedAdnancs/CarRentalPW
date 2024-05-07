@@ -107,7 +107,7 @@
 }
 
 .div5 select {
-  width: 22.7dvw;
+  width: 23dvw;
   padding: 15px;
   border-radius: 5px;
   border: 1px solid rgba(255, 255, 255, 0.25);
@@ -126,7 +126,7 @@
 
 .div9 textarea {
   width: 25dvw;
-  height: 10dvh;
+  height: 6dvh;
   font-size: 1.2em;
 }
 

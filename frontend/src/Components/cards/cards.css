@@ -9,7 +9,6 @@
   width: 70%;
   margin-top: 5%;
   margin-left: 5%;
-  margin-bottom: 5%;
   row-gap: 10%; /* Changed to px for consistency */
   column-gap: 5%;
   height: fit-content;
@@ -92,6 +91,13 @@
   transition: 0.5s;
 }
 /*styling*/
+.carName
+{
+  margin-top: 3%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
 
 .vehicle-card h3{
   color:#F5EDED ;
