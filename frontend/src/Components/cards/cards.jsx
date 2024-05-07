@@ -68,7 +68,7 @@ const Cards = () => {
                 <img className="first" src={card.thumbnail1} alt="Thumbnail 1" />
                 <img className="second" src={card.thumbnail2} alt="Thumbnail 2" />
               </div>
-              <h3 className="carName">-{card.name}-</h3>
+              <div className="carName"><h3 >-{card.name}-</h3></div>
               <div className="info">
                 <div className="price">
                   <span>Starting at</span>

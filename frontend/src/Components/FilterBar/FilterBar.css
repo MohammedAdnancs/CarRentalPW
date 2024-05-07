@@ -15,11 +15,13 @@
 .main-content {
   flex: 1;
   padding: 20px;
+  
 }
 
 .filter {
   margin-bottom: 20px;
   color: #2192FF;
+  font-size: 1.5rem;
 }
 
 .radio-group {
@@ -38,15 +40,5 @@
 }
 
 input[type='radio'] {
-  width: 10px;
-  height: 10px;
-  border-radius: 15px;
-  top: -2px;
-  left: -1px;
-  position: relative;
-  background-color: #EEEEEE;
-  content: '';
-  display: inline-block;
-  visibility: visible;
-  border: 2px solid #B4A5A5;
+  display: none;
 }
