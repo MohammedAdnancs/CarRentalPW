@@ -8,7 +8,14 @@ import axios from 'axios';
 import Popup from '../popup/popup';
 import { ColorRing } from 'react-loader-spinner'
 import TextInputfield from '../Text_inputfield/TextInputfiled';
-
+import { FaCar } from "react-icons/fa";
+import { MdOutlineAttachMoney } from "react-icons/md";
+import { GiCarDoor } from "react-icons/gi";
+import { GiCarSeat } from "react-icons/gi";
+import { FaMapLocationDot } from "react-icons/fa6";
+import { MdDescription } from "react-icons/md";
+import { IoCarSport } from "react-icons/io5";
+import { FaCarSide } from "react-icons/fa6";
 
 
 const ListArea = () => {
@@ -174,10 +181,11 @@ const ListArea = () => {
             )}
           </div>
           <div className="div4">
-            <TextInputfield width="25dvw" placeholder="Car Name" name="carName" type="text" id="carName" onChange={handleChange} onBlur={handleBlur} value={values.carName} />
+            <TextInputfield icon={<IoCarSport style={{ fontSize: "3dvw", color: "#C2C8C8" }} />} width="25dvw" placeholder="Car Name" name="carName" type="text" id="carName" onChange={handleChange} onBlur={handleBlur} value={values.carName} />
             {errors.carName && touched.carName ? <span className='error'>{errors.carName}</span> : <span></span>}
           </div>
           <div className="div5">
+            <IoCarSport style={{ fontSize: "2.6dvw", color: "#C2C8C8" }} />
             <select
               id="carType"
               value={values.carType}
@@ -193,51 +201,24 @@ const ListArea = () => {
             {errors.carType && touched.carType ? <span className='error'>{errors.carType}</span> : <span></span>}
           </div>
           <div className="divP">
-            <TextInputfield width="25dvw" placeholder="Price" name="price" type="number" id="price" onChange={handleChange} onBlur={handleBlur} value={values.price} />
-
+            <TextInputfield icon={<MdOutlineAttachMoney style={{ fontSize: "3dvw", color: "#C2C8C8" }} />} width="25dvw" placeholder="Price" name="price" type="number" id="price" onChange={handleChange} onBlur={handleBlur} value={values.price} />
             {errors.price && touched.price ? <span className='error'>{errors.price}</span> : <span></span>}
           </div>
           <div className="div6">
-            <input
-              id="numDoors"
-              className="Linput"
-              type="number"
-              min={0}
-              placeholder="Number of Doors"
-              value={values.numDoors}
-              onBlur={handleBlur}
-              onChange={handleChange}
-              name="numDoors"
-            />
+            <TextInputfield icon={<GiCarDoor style={{ fontSize: "3dvw", color: "#C2C8C8" }} />} width="25dvw" placeholder="Number of Doors" name="numDoors" type="number" id="numDoors" onChange={handleChange} onBlur={handleBlur} value={values.numDoors} />
             {errors.numDoors && touched.numDoors ? <span className='error'>{errors.numDoors}</span> : <span></span>}
           </div>
           <div className="div7">
-            <input
-              id="numSeats"
-              className="Linput"
-              type="number"
-              placeholder="Number of Seats"
-              value={values.numSeats}
-              onBlur={handleBlur}
-              onChange={handleChange}
-              name="numSeats"
-            />
+            <TextInputfield icon={<GiCarSeat style={{ fontSize: "3dvw", color: "#C2C8C8" }} />} width="25dvw" placeholder="Number of Seats" name="numSeats" type="number" id="numSeats" onChange={handleChange} onBlur={handleBlur} value={values.numSeats} />
             {errors.numSeats && touched.numSeats ? <span className='error'>{errors.numSeats}</span> : <span></span>}
           </div>
           <div className="div8">
-            <input
-              id="location"
-              className="Linput"
-              type="text"
-              placeholder="Location"
-              value={values.location}
-              onBlur={handleBlur}
-              onChange={handleChange}
-              name="location"
-            />
+            <TextInputfield icon={<FaMapLocationDot style={{ fontSize: "3dvw", color: "#C2C8C8" }} />} width="25dvw" placeholder="Location" name="location" type="text" id="location" onChange={handleChange} onBlur={handleBlur} value={values.location} />
             {errors.location && touched.location ? <span className='error'>{errors.location}</span> : <span></span>}
           </div>
           <div className="div9">
+
+            <MdDescription style={{ fontSize: "3dvw", color: "#C2C8C8" }} />
             <textarea
               id="description"
               className="Linput"

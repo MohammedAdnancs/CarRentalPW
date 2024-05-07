@@ -2,7 +2,7 @@
     position: relative;
     display: flex;
     gap: 10px;
-    width: 25dvw;
+    width: 26.3dvw;
 }
 
 .custominputbox .custominput {
@@ -30,7 +30,7 @@
 .custominputbox .custominput:focus+.customspan {
     color: #B4A5A5;
     transform: translateX(1dvw) translateY(-1dvh);
-    font-size: 0.75em;
+    font-size: 0.85em;
     padding: 0 10px;
     background: transparent;
     border-left: 1px solid rgba(255, 255, 255, 0.25);
@@ -41,7 +41,7 @@
 .custominputbox .custominput:valid+.customspan {
     color: #B4A5A5;
     transform: translateX(1dvw) translateY(-1dvh);
-    font-size: 0.75em;
+    font-size: 0.85em;
     padding: 0 10px;
     background: transparent;
     border-left: 1px solid rgba(255, 255, 255, 0.25);
