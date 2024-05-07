@@ -9,11 +9,10 @@ const test = (req, res) => {
 
 const AddListing = async (req, res) => {
   try {
-      const { carName, carType, numDoors ,numSeats, price, location, description, ImageUrl1, ImageUrl2} = req.body;
+      const { carName, carType, numDoors ,numSeats, price, location, description, ImageUrl1, ImageUrl2, email} = req.body;
 
       let image1;
       let image2;
-
 
       if(ImageUrl1)
         {
@@ -32,10 +31,6 @@ const AddListing = async (req, res) => {
           const response = List_upload_image_response.secure_url
           image2 = response;
           }
-
-          console.log(image1)
-          console.log(image2)
-
       const listing = await Listing.create({
         carName,
         carType,
@@ -45,7 +40,8 @@ const AddListing = async (req, res) => {
         location,
         description,
         image1,
-        image2
+        image2,
+        email
       })
       return res.json(listing)
   } catch (error) {
