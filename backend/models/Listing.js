@@ -11,7 +11,10 @@ const listingSchema = new Schema({
     description: String,
     image1: String,
     image2: String,
-    ownerId: String
+    email: {
+        type: String,
+        unique: true,
+    },
 });
 
 const ListingModel = mongoose.model('Listing', listingSchema);
