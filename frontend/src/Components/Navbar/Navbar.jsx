@@ -1,6 +1,5 @@
 import React, { useState, useContext, useEffect, useReducer } from 'react'
 import './Navbar.css'
-import LogoNav from '../Assets/LogoNav.png'
 import { Link, useLocation } from 'react-router-dom';
 import Button from '../Button/Button';
 import { UserContext } from "../../Context/userContext";
