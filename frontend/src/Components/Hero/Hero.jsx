@@ -42,9 +42,13 @@ const Hero = () => {
                     <Button backgroundColor="#C2C8C8" width="50dvh" height="6dvh" text="Learn More" />
 
                 </div>
-                <div className='Hero-right'>
+                <motion.div
+                    initial={{ x: -300, opacity: 0.2 }}
+                    animate={{ x: 0, y: 0, opacity: 1 }}
+                    transition={{ duration: 0.7, ease: "easeInOut" }}
+                    className='Hero-right'>
                     <img src={Car2} alt="" />
-                </div>
+                </motion.div>
             </div>
             <div className='Search'>
                 <SearchHomePage />

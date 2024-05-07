@@ -107,14 +107,15 @@
 }
 
 .div5 select {
-  width: 76%;
+  width: 22.7dvw;
   padding: 15px;
   border-radius: 5px;
   border: 1px solid rgba(255, 255, 255, 0.25);
-  font-size: 16px;
+  font-size: 1em;
   outline: none;
   background-color: transparent;
-  color: white;
+  color: #525559;
+  font-weight: 600;
 }
 
 .div5 select:focus {
@@ -124,10 +125,10 @@
 }
 
 .div9 textarea {
+  width: 25dvw;
+  height: 10dvh;
   font-size: 1.2em;
 }
-
-
 
 .custom-file-upload {
   border: 1px solid #ccc;
@@ -177,8 +178,8 @@
 .div9,
 .divP {
   display: flex;
-  flex-direction: column;
-  row-gap: 2%;
+  flex-direction: row;
+  column-gap: 0.6dvw;
 }
 
 .loader-container {
