@@ -14,10 +14,9 @@ import { FaLockOpen } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
 import { UserContext } from "../../Context/userContext";
-
+import { useDispatch, useSelector } from 'react-redux'
 const LoginRegister = () => {
     const navigate = useNavigate();
-
     //to change between the login and signup boxes when the action = active we are in the signup action='' we are login
     const [action, setAction] = useState('');
     const [showhidepassword, setshowhidepassword] = useState(false);

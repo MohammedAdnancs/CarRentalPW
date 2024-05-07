@@ -6,6 +6,8 @@
     justify-content: center;
     align-items: center;
     transition: 0.3s;
+    margin-bottom: 40dvh;
+    margin-top: 10dvh;
 }
 
 .DashContainer h1 {
@@ -13,32 +15,11 @@
     color: #2192FF;
 }
 
-.Dashboard {
-    width: 70%;
-    background-color: #171a20;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-    justify-content: center;
-    grid-column-gap: 12dvw;
-    border-radius: 10px;
-    margin-bottom: 5dvh;
-    padding: 50px;
-}
-
-.Dashboardleft {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    transition: 0.3s;
-}
 
 .Dashboardleft img {
     width: 11dvw;
     clip-path: circle();
     transition: 0.3s;
-    position: relative;
-    margin-bottom: 2dvh;
 }
 
 .Dashboardleft img:hover {
@@ -129,4 +110,31 @@
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 9999;
+}
+
+.Dashboard {
+    width: 70%;
+    background-color: #171a20;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    justify-content: center;
+    grid-column-gap: 12dvw;
+    border-radius: 10px;
+    padding: 50px;
+}
+
+.Dashboardleft {
+    transform: translateY(-35%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+    row-gap: 0.5dvh;
+}
+
+.background {
+    width: 75%;
+    height: 70dvh;
+    border-radius: 10px;
 }

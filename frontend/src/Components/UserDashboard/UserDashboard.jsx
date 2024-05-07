@@ -8,7 +8,7 @@ import formik, { useFormik } from 'formik';
 import { ColorRing } from 'react-loader-spinner'
 import Button from '../Button/Button';
 import { editingschema, } from '../schemas/editingschema';
-
+import background from '../Assets/background.png';
 const UserDashboard = () => {
 
     const { user, forceupdate } = useContext(UserContext);
@@ -101,7 +101,7 @@ const UserDashboard = () => {
         <div>
             <form onSubmit={handleSubmit} encType="multipart/form-data">
                 <div className='DashContainer'>
-                    <h1>Dashboard</h1>
+                    <img className='background' src={background} />
                     <div className="Dashboard">
                         <div className="Dashboardleft">
                             <div className='userimage'>
@@ -142,7 +142,7 @@ const UserDashboard = () => {
                             </div>
                         </div>
                         <div className="Dashboardright">
-                            <h1>Your info</h1>
+                            <h1>Your Listings</h1>
                             {/* Add additional user info here */}
                         </div>
 
