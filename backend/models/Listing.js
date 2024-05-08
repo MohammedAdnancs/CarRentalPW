@@ -11,7 +11,7 @@ const listingSchema = new Schema({
     description: String,
     image1: String,
     image2: String,
-    ownerId: String
+    userId: String
 });
 
 const ListingModel = mongoose.model('Listing', listingSchema);

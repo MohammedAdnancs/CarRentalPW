@@ -1,7 +1,7 @@
 import React, { useState, useContext, useRef, useEffect } from 'react';
 import { UserContext } from "../../Context/userContext";
 import './UserDashboard.css';
-import Medo from '../Assets/Medo.png';
+import Medo from '../Assets/Medo.jpg';
 import { FaPlusCircle } from "react-icons/fa";
 import axios from 'axios';
 import formik, { useFormik } from 'formik';
@@ -9,6 +9,7 @@ import { ColorRing } from 'react-loader-spinner'
 import Button from '../Button/Button';
 import { editingschema, } from '../schemas/editingschema';
 import background from '../Assets/background.png';
+import Assem from '../Assets/Assem.png';
 const UserDashboard = () => {
 
     const { user, forceupdate } = useContext(UserContext);
@@ -27,13 +28,23 @@ const UserDashboard = () => {
 
     const return_from_edit_mode = (e) => {
         e.preventDefault();
+        setpreivewimage(user.image);
         setEditprofile(false)
     }
 
     const [selectedImage, setSelectedImage] = useState(null);
     const fileInputRef = useRef(null);
     const [loading, setloading] = useState(false);
-    const [setimage, setsetimage] = useState(Medo);
+    const [preivewimage, setpreivewimage] = useState(user ? user.image : Medo);
+
+    useEffect(() => {
+        if (user) {
+            setpreivewimage(user.image);
+        } else {
+            setpreivewimage(Medo);
+        }
+    }, [user]);
+
     const handleImageClick = () => {
         fileInputRef.current.click();
     };
@@ -42,11 +53,14 @@ const UserDashboard = () => {
 
     const handelfielinput = (e) => {
         const file = e.target.files[0];
-        setSelectedImage(file);
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = () => {
-            setSelectedImage(reader.result)
+        if (file) {
+            setpreivewimage(URL.createObjectURL(file));
+            setSelectedImage(file);
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => {
+                setSelectedImage(reader.result)
+            }
         }
     }
 
@@ -105,7 +119,7 @@ const UserDashboard = () => {
                     <div className="Dashboard">
                         <div className="Dashboardleft">
                             <div className='userimage'>
-                                <img src={user && user.image ? user.image : Medo} alt="User"></img>
+                                <img src={preivewimage} alt="User"></img>
                             </div>
                             {Editprofile ?
                                 <input
@@ -122,6 +136,7 @@ const UserDashboard = () => {
                             }
                             {user ? (
                                 <>
+                                
                                     <div className='username'>
                                         <h2>Username:</h2>
                                         {Editprofile ? <input id="username" value={values.username} onChange={handleChange} onBlur={handleBlur} /> : <h2><span>{user.username}</span></h2>}
@@ -132,20 +147,26 @@ const UserDashboard = () => {
                                         {Editprofile ? <input id="email" value={values.email} onChange={handleChange} /> : <h2><span>{user.email}</span></h2>}
                                         {errors.email && touched.email ? <span>{errors.email}</span> : <span></span>}
                                     </div>
+                                    <div className='buttons'>
+                                        {Editprofile ? <Button width="12dvw" height="5dvh" type='submit' text="Save changes" /> : <Button onClick={switch_to_edit_mode} width="12dvw" height="5dvh" text="Edit profile" type="button" />}
+                                        {Editprofile ? <Button color="white" backgroundColor="#780000" onClick={return_from_edit_mode} width="12dvw" height="5dvh" text="Cancel" type="button" /> : ""}
+                                    </div>
                                 </>
-                            ) : (
-                                <h2>Please log in</h2>
-                            )}
-                            <div className='buttons'>
-                                {Editprofile ? <Button width="12dvw" height="5dvh" type='submit' text="Save changes" /> : <Button onClick={switch_to_edit_mode} width="12dvw" height="5dvh" text="Edit profile" type="button" />}
-                                {Editprofile ? <Button color="white" backgroundColor="#780000" onClick={return_from_edit_mode} width="12dvw" height="5dvh" text="Cancel" type="button" /> : ""}
-                            </div>
-                        </div>
-                        <div className="Dashboardright">
-                            <h1>Your Listings</h1>
-                            {/* Add additional user info here */}
-                        </div>
 
+                            ) : (
+                                <h2>Please log in first to show profile</h2>
+                            )}
+
+                        </div>
+                        {user ? (
+                            <div className="Dashboardright">
+                                <h1>Your Listings</h1>
+                                {/* Add additional user info here */}
+                            </div>
+
+                        ) : (
+                            ""
+                        )}
                     </div>
                 </div>
             </form>
