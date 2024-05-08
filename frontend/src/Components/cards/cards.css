@@ -1,23 +1,26 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:700');
+
 .Acontainer {
   display: flex;
+  width: 100%;
+  height: 100%;
 }
 
 .Cwrapper {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Adjust minmax values as needed */
-  width: 70%;
-  margin-top: 5%;
-  margin-left: 5%;
-  row-gap: 10%; /* Changed to px for consistency */
+  width: 100%;
+  height: 100%;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  row-gap: 10%;
   column-gap: 5%;
-  height: fit-content;
+  margin-bottom: 10dvh;
+  padding: 5%;
 }
 
-.vehicle-card{
+.vehicle-card {
   position: relative;
   display: inline-block;
-  width: 240px;  
+  width: 240px;
   height: 335px;
   overflow: visible;
   z-index: 1;
@@ -26,13 +29,13 @@
   transition: 0.5s;
 }
 
-.vehicle-card .details{
+.vehicle-card .details {
   position: absolute;
   height: fit-content;
   width: 240px;
   overflow: hidden;
   background-color: rgba(0, 0, 0, 0.3);
-  
+
   border-radius: 10px;
   transition: 0.5s;
   justify-content: center;
@@ -45,12 +48,13 @@
   transition: 0.5s;
 }
 
-.vehicle-card .details:hover{
- 
+.vehicle-card .details:hover {
+
   box-shadow: 0 5px 20px #B4A5A5;
- 
+
 }
-.vehicle-card .info{
+
+.vehicle-card .info {
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -59,68 +63,75 @@
   margin-bottom: 3%;
   justify-content: center;
   gap: 4%;
- padding-top: 2%;
+  padding-top: 2%;
 }
 
 
-.thumb-gallery{
+.thumb-gallery {
   height: 150px;
   background-color: rgba(0, 0, 0, 0);
 }
-.thumb-gallery img{
-  position: absolute; 
+
+.thumb-gallery img {
+  position: absolute;
   left: 0;
   width: 240px;
   transition: 0.5s;
   max-height: 150px;
 }
-.thumb-gallery img.first{
+
+.thumb-gallery img.first {
   opacity: 1;
   transition: 0.5s;
 }
-.thumb-gallery img.second{
+
+.thumb-gallery img.second {
   opacity: 0;
   transition: 0.5s;
 }
-.vehicle-card:hover .thumb-gallery img.second{
+
+.vehicle-card:hover .thumb-gallery img.second {
   opacity: 1;
   transition: 0.5s;
 }
-.vehicle-card:hover .thumb-gallery img.first{
+
+.vehicle-card:hover .thumb-gallery img.first {
   opacity: 0;
   transition: 0.5s;
 }
+
 /*styling*/
-.carName
-{
+.carName {
   margin-top: 3%;
   width: 100%;
   display: flex;
   justify-content: center;
 }
 
-.vehicle-card h3{
-  color:#F5EDED ;
+.vehicle-card h3 {
+  color: #F5EDED;
   margin: 0;
   font-family: "Roboto Condensed", Helvetica, Arial, sans-serif;
   font-size: 1.2rem;
   letter-spacing: -.5px;
   justify-self: center;
 }
-.vehicle-card .price span{
+
+.vehicle-card .price span {
   font-family: "Helvetica", Arial, sans-serif;
   color: #222831;
   font-size: 1.0rem;
 }
-.vehicle-card h4{
+
+.vehicle-card h4 {
   margin: 0;
   font-family: "Roboto Condensed", Helvetica, Arial, sans-serif;
   color: #222831;
   font-size: 1.25rem;
   margin-bottom: 3%;
 }
-.ctas
-{
+
+.ctas {
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -129,7 +140,8 @@
   margin-left: 1%;
   margin-right: 5%;
 }
-.btn{
+
+.btn {
   display: block;
   padding: 0 0px;
   float: left;
@@ -139,19 +151,23 @@
   height: 30px;
   width: 48%;
   text-align: center;
-  background-color: rgba(0, 0, 0,);
+  background-color: rgba(0, 0, 0, );
   color: #F5EDED;
-  border: 2px solid #B4A5A5;  
+  border: 2px solid #B4A5A5;
   line-height: 30px;
-  font-weight: bold;  
-  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
-  box-sizing: border-box;        
+  font-weight: bold;
+  -webkit-box-sizing: border-box;
+  /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;
+  /* Firefox, other Gecko */
+  box-sizing: border-box;
 }
-.primary{
+
+.primary {
   border-radius: 2px 2px 2px 10px;
 }
-.secondary{ 
+
+.secondary {
   border-radius: 2px 2px 10px 2px;
 }
 
@@ -160,6 +176,7 @@
   grid-template-columns: auto auto;
   padding: 10px;
 }
+
 .grid-item {
   padding: 5px;
   font-size: 10px;
@@ -172,13 +189,12 @@
 
 }
 
-.grid-item .Cicon
-{
+.grid-item .Cicon {
   font-size: 1.1rem;
   color: #2192FF;
 }
-.grid-item p
-{
+
+.grid-item p {
   font-size: .8rem;
 }
 

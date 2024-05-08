@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect} from 'react';
+import React, { useState, useContext } from 'react';
 import './ListArea.css';
 import IButton from '../Button/Button'
 import { FaFileUpload } from "react-icons/fa";
@@ -17,13 +18,13 @@ import { FaMapLocationDot } from "react-icons/fa6";
 import { MdDescription } from "react-icons/md";
 import { IoCarSport } from "react-icons/io5";
 import { FaCarSide } from "react-icons/fa6";
-
+import { UserContext } from "../../Context/userContext";
 
 const ListArea = () => {
+  const { user, forceupdate } = useContext(UserContext);
   const [Popupnotification, setPopup] = useState(false);
   const [loading, setloading] = useState(false);
   const [email, setemail] = useState('');
-  const { user } = useContext(UserContext);
 
   useEffect(() => {
     if (user) {
@@ -48,7 +49,8 @@ const ListArea = () => {
       const { carName, carType, numDoors, numSeats, price, location, description, email } = ListingData;
 
       setloading(true);
-      await axios.post('/AddListing', { carName, carType, numDoors, numSeats, price, location, description, ImageUrl1, ImageUrl2, email });
+      let userId = user.id;
+      await axios.post('/AddListing', { carName, carType, numDoors, numSeats, price, location, description, ImageUrl1, ImageUrl2 , userId});
       setListingData({
         carName: '',
         carType: '',

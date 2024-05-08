@@ -12,24 +12,12 @@
 
 .DashContainer h1 {
     font-size: 2.5rem;
+    letter-spacing: 0.1rem;
     color: #2192FF;
 }
 
-
-.Dashboardleft img {
-    width: 11dvw;
-    clip-path: circle();
-    transition: 0.3s;
-}
-
-.Dashboardleft img:hover {
-    transform: scale(1.1);
-    transition: 0.3s;
-    filter: blur(1px);
-    cursor: pointer;
-}
-
 .Dashboardleft h2 {
+    letter-spacing: 0.1rem;
     color: #2192FF;
 }
 
@@ -114,6 +102,7 @@
 
 .Dashboard {
     width: 70%;
+    height: 40dvh;
     background-color: #171a20;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
@@ -121,10 +110,11 @@
     grid-column-gap: 12dvw;
     border-radius: 10px;
     padding: 50px;
+    transform: translateY(-15%);
 }
 
 .Dashboardleft {
-    transform: translateY(-35%);
+    transform: translateY(-20dvh);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -137,4 +127,26 @@
     width: 75%;
     height: 70dvh;
     border-radius: 10px;
+}
+
+.userimage {
+    width: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.userimage img {
+    min-width: 200px;
+    min-height: 220px;
+    object-fit: fill;
+    clip-path: circle();
+    transition: 0.3s;
+}
+
+.Dashboardleft img:hover {
+    transform: scale(1.1);
+    transition: 0.3s;
+    filter: blur(1px);
+    cursor: pointer;
 }
