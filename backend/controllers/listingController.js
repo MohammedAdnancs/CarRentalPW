@@ -9,10 +9,12 @@ const test = (req, res) => {
 
 const AddListing = async (req, res) => {
   try {
+
     const { carName, carType, numDoors, numSeats, price, location, description, ImageUrl1, ImageUrl2, userId } = req.body;
 
     let image1;
     let image2;
+
 
 
     if (ImageUrl1) {

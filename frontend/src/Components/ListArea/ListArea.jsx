@@ -1,9 +1,11 @@
+import React, { useState, useContext, useEffect} from 'react';
 import React, { useState, useContext } from 'react';
 import './ListArea.css';
 import IButton from '../Button/Button'
 import { FaFileUpload } from "react-icons/fa";
 import { useFormik } from 'formik';
 import { ListingsSchemas } from '../schemas/ListingsSchemas';
+import { UserContext } from "../../Context/userContext";
 import axios from 'axios';
 import Popup from '../popup/popup';
 import { ColorRing } from 'react-loader-spinner'
@@ -22,19 +24,30 @@ const ListArea = () => {
   const { user, forceupdate } = useContext(UserContext);
   const [Popupnotification, setPopup] = useState(false);
   const [loading, setloading] = useState(false);
+  const [email, setemail] = useState('');
+
+  useEffect(() => {
+    if (user) {
+      setemail(user.email);
+    }
+  }, [user]);
+
   const SubmitListing = async (values, actions) => {
-    ListingData.carName = values.carName
-    ListingData.carType = values.carType
-    ListingData.numDoors = values.numDoors
-    ListingData.numSeats = values.numSeats
-    ListingData.price = values.price
-    ListingData.location = values.location
-    ListingData.description = values.description
+    // Ensure email is set before using it
+    if (!email) return;
+
+    ListingData.carName = values.carName;
+    ListingData.carType = values.carType;
+    ListingData.numDoors = values.numDoors;
+    ListingData.numSeats = values.numSeats;
+    ListingData.price = values.price;
+    ListingData.location = values.location;
+    ListingData.description = values.description;
+    ListingData.email = email;
 
     try {
-      const { carName, carType, numDoors, numSeats, price, location, description } = ListingData;
-      //console.log(ImageUrl1)
-      //console.log(ImageUrl2)
+      const { carName, carType, numDoors, numSeats, price, location, description, email } = ListingData;
+
       setloading(true);
       let userId = user.id;
       await axios.post('/AddListing', { carName, carType, numDoors, numSeats, price, location, description, ImageUrl1, ImageUrl2 , userId});
@@ -47,7 +60,8 @@ const ListArea = () => {
         location: '',
         description: '',
         ImageUrl1: '',
-        ImageUrl2: ''
+        ImageUrl2: '',
+        email: '',
       });
       setPopup(true);
       setloading(false);
@@ -84,7 +98,8 @@ const ListArea = () => {
     location: '',
     description: '',
     ImageUrl1: '',
-    ImageUrl2: ''
+    ImageUrl2: '',
+    email: '',
   })
 
   const [selectedImage1, setSelectedImage1] = useState('');
@@ -92,6 +107,8 @@ const ListArea = () => {
   const [selectedImage2, setSelectedImage2] = useState(null);
   const [ImageUrl1, setImageUrl1] = useState('');
   const [ImageUrl2, setImageUrl2] = useState('');
+
+
 
   const handelfielinput1 = (e) => {
     const file1 = e.target.files[0];
