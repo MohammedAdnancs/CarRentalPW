@@ -12,7 +12,7 @@ const listingSchema = new Schema({
     image1: String,
     image2: String,
     userId: String
-});
+},{ timestamps: true });
 
 const ListingModel = mongoose.model('Listing', listingSchema);
 

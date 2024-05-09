@@ -2,6 +2,7 @@ import './App.css';
 import Navbar from './Components/Navbar/Navbar';
 import Home from './Pages/HomePage';
 import Userprofile from './Pages/Userprofile';
+import Chatting from './Pages/Chatting';
 import Rentcars from './Pages/Rentcars';
 import List from './Pages/List';
 import AboutUs from './Pages/AboutUs';
@@ -31,6 +32,7 @@ function App() {
             <Route path='/AboutUs' element={<AboutUs />} />
             <Route path='/Login_signup' element={<Login_signup />} />
             <Route path='/Userprofile' element={<Userprofile />} />
+            <Route path='/Chatting' element={<Chatting />} />
           </Routes>
           <Footer />
         </UserContextProvider>

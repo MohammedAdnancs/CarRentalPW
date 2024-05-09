@@ -9,8 +9,8 @@ const userSchema = new Schema({
     },
     password: String,
     image: String
-})
+}, { timestamps: true })
 
-const UserModel = mongoose.model('User', userSchema)
+const UserModel = mongoose.model('Users', userSchema)
 
 module.exports = UserModel;

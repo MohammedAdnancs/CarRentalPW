@@ -18,7 +18,6 @@ import { MdDescription } from "react-icons/md";
 import { IoCarSport } from "react-icons/io5";
 import { FaCarSide } from "react-icons/fa6";
 
-
 const ListArea = () => {
   const { user, forceupdate } = useContext(UserContext);
   const [Popupnotification, setPopup] = useState(false);
