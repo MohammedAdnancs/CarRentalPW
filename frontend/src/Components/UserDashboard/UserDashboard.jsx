@@ -12,7 +12,7 @@ import background from '../Assets/background.png';
 import Assem from '../Assets/Assem.png';
 const UserDashboard = () => {
 
-    const { user, forceupdate } = useContext(UserContext);
+    const { user, forceupdateuser } = useContext(UserContext);
 
     console.log(user);
 
@@ -85,7 +85,7 @@ const UserDashboard = () => {
                     'Content-Type': 'application/json'
                 }
             })
-            forceupdate();
+            forceupdateuser();
             setloading(false)
             setEditprofile(false)
         } catch (error) {
@@ -136,7 +136,7 @@ const UserDashboard = () => {
                             }
                             {user ? (
                                 <>
-                                
+
                                     <div className='username'>
                                         <h2>Username:</h2>
                                         {Editprofile ? <input id="username" value={values.username} onChange={handleChange} onBlur={handleBlur} /> : <h2><span>{user.username}</span></h2>}

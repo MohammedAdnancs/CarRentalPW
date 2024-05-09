@@ -1,8 +1,9 @@
 const express = require('express')
 const router = express.Router();
 const cors = require('cors');
-const { test, loginUser, registerUser, getProfileUser, logoutUser, Useruploadimage } = require('../controllers/authController')
-const { AddListing, ViewAllListing} = require('../controllers/listingController')
+const { test, loginUser, registerUser, getProfileUser, logoutUser, Useruploadimage, Gettheusersinconversations } = require('../controllers/authController')
+const { AddListing, ViewAllListing } = require('../controllers/listingController')
+const { SendMessage, getMessages } = require('../controllers/MessagingController')
 const multer = require('multer')
 
 router.use(express.json({ limit: '50mb' }));
@@ -21,5 +22,7 @@ router.post('/AddListing', AddListing)
 router.get('/profile', getProfileUser)
 router.get('/ViewAllListing', ViewAllListing)
 router.post('/Useruploadimage', Useruploadimage)
-
+router.post('/Send/:id', SendMessage)
+router.get('/Getmessages/:id', getMessages)
+router.get('/Gettheusersinconversations', Gettheusersinconversations)
 module.exports = router;

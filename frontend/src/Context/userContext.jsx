@@ -6,7 +6,8 @@ export const UserContext = createContext({});
 export function UserContextProvider({ children }) {
 
     const [user, setUser] = useState(null);
-    const [valuechange, forceupdate] = useReducer(prevState => !prevState, false);
+    const [valuechangeuser, forceupdateuser] = useReducer(prevState => !prevState, false);
+   
 
     useEffect(() => {
         if (!user) {
@@ -19,10 +20,12 @@ export function UserContextProvider({ children }) {
                 setUser(data);
             });
         }
-    }, [valuechange]);
+    }, [valuechangeuser]);
+
+
 
     return (
-        <UserContext.Provider value={{ user, setUser, forceupdate }}>
+        <UserContext.Provider value={{ user, setUser, forceupdateuser }}>
             {children}
         </UserContext.Provider>
     );

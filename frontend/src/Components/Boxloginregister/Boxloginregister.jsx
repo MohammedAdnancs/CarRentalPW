@@ -87,7 +87,7 @@ const LoginRegister = () => {
     });
 
 
-    const { user, setUser, forceupdate } = useContext(UserContext);
+    const { user, setUser, forceupdateuser } = useContext(UserContext);
 
     const loginUser = async (loginValues, actions) => {
         logindata.email = loginValues.login_email
@@ -96,7 +96,7 @@ const LoginRegister = () => {
         try {
             const { email, password } = logindata;
             await axios.post('/login', { email, password });
-            forceupdate();
+            forceupdateuser();
             setLogindata({
                 username: '',
                 email: '',

@@ -1,10 +1,13 @@
 const User = require('../models/User');
+const Conversation = require('../models/conversation');
+const Message = require('../models/message');
 const { hashPassowrd, comparePassword } = require('../helpers/auth');
 const jwt = require('jsonwebtoken');
 const dotenv = require("dotenv").config();
 const { useNavigate } = require('react-router-dom')
 const axios = require('axios')
 const multer = require('multer')
+
 const test = (req, res) => {
     res.json('test is working')
 }
@@ -38,7 +41,6 @@ const registerUser = async (req, res) => {
         console.log(error)
     }
 }
-
 
 const loginUser = async (req, res) => {
     try {
@@ -82,11 +84,9 @@ const getProfileUser = (req, res) => {
     }
 }
 
-
 const logoutUser = (req, res) => {
     res.clearCookie('token').json({ message: "Logout successful" });
 }
-
 
 const Useruploadimage = async (req, res) => {
     try {
@@ -147,11 +147,41 @@ const Useruploadimage = async (req, res) => {
     }
 }
 
+const Gettheusersinconversations = async (req, res) => {
+
+    try {
+        const senderId = req.query.senderId;
+        console.log(senderId)
+
+        const conversations = await Conversation.find({
+            participants: { $in: [senderId] }
+        }).populate("participants")
+
+        let Users = [];
+
+        conversations.forEach(conversation => {
+            if (conversation.participants) {
+                const participants = conversation.participants.filter(participant => participant._id != senderId);
+                participants[0].password = "";
+                Users.push(participants[0]);
+            }
+        });
+
+        return res.status(200).json(Users)
+
+    } catch (error) {
+        console.log("send message controller error: ", error.message)
+        res.status(500).json({ error: "server error" })
+    }
+
+}
+
 module.exports = {
     registerUser,
     loginUser,
     getProfileUser,
     logoutUser,
     Useruploadimage,
+    Gettheusersinconversations,
     test
 }
