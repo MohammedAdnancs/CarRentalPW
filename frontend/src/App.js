@@ -22,20 +22,20 @@ function App() {
 
     <div className="App">
       <BrowserRouter>
-        <UserContextProvider>
-          <Navbar />
-          <Toaster position='bottom-right' toastOptions={{ duration: 2000 }} />
-          <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='/Rent' element={<Rentcars />} />
-            <Route path='/List' element={<List />} />
-            <Route path='/AboutUs' element={<AboutUs />} />
-            <Route path='/Login_signup' element={<Login_signup />} />
-            <Route path='/Userprofile' element={<Userprofile />} />
-            <Route path='/Chatting' element={<Chatting />} />
-          </Routes>
-          <Footer />
-        </UserContextProvider>
+
+        <Navbar />
+        <Toaster position='bottom-right' toastOptions={{ duration: 2000 }} />
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/Rent' element={<Rentcars />} />
+          <Route path='/List' element={<List />} />
+          <Route path='/AboutUs' element={<AboutUs />} />
+          <Route path='/Login_signup' element={<Login_signup />} />
+          <Route path='/Userprofile' element={<Userprofile />} />
+          <Route path='/Chatting' element={<Chatting />} />
+        </Routes>
+        <Footer />
+
       </BrowserRouter>
     </div>
 

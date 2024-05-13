@@ -24,6 +24,7 @@ const registerUser = async (req, res) => {
             return res.status(400).json({
                 error: "Email is taken already"
             });
+
         }
 
         const hashedPassword = await hashPassowrd(password)
@@ -64,7 +65,8 @@ const loginUser = async (req, res) => {
 
         if (match) {
             const token = jwt.sign({ id: user._id, email: user.email, username: user.username, image: user.image }, process.env.JWT_Secret, { expiresIn: "6h" })
-            res.cookie("token", token).json(user);
+            const profile = { id: user._id, email: user.email, username: user.username, image: user.image, token: token }
+            res.cookie("token", token).json(profile);
         }
 
     } catch (error) {
@@ -86,11 +88,12 @@ const getProfileUser = (req, res) => {
 
 const logoutUser = (req, res) => {
     res.clearCookie('token').json({ message: "Logout successful" });
+    return res.json("Logout successful")
 }
 
-const Useruploadimage = async (req, res) => {
+const EditUser = async (req, res) => {
     try {
-        const { imageurl, newusername, newemail, userid, oldimage, oldname, oldemail } = req.body.data;
+        const { imageurl, newusername, newemail, userid, oldimage, oldname, oldemail } = req.body;
 
         let image;
         let username;
@@ -126,11 +129,6 @@ const Useruploadimage = async (req, res) => {
 
         const updatedUser = await User.findById(userid);
 
-        console.log(updatedUser._id)
-        console.log(updatedUser.email)
-        console.log(updatedUser.username)
-        console.log(updatedUser.image)
-
         //Generate a new token with updated user information
         const token = jwt.sign({
             id: updatedUser._id,
@@ -139,8 +137,9 @@ const Useruploadimage = async (req, res) => {
             image: updatedUser.image
         }, process.env.JWT_Secret, { expiresIn: "6h" });
 
+        const profile = { id: updatedUser._id, email: updatedUser.email, username: updatedUser.username, image: updatedUser.image, token: token }
         // Send the new token back to the client
-        res.cookie("token", token).json({ user: updatedUser, token });
+        res.cookie("token", token).json(profile);
     } catch (error) {
         console.log(error);
         res.json({ msg: "something went wrong" })
@@ -148,10 +147,9 @@ const Useruploadimage = async (req, res) => {
 }
 
 const Gettheusersinconversations = async (req, res) => {
-
     try {
         const senderId = req.query.senderId;
-        console.log(senderId)
+        console.log("Sender ID:", senderId);
 
         const conversations = await Conversation.find({
             participants: { $in: [senderId] }
@@ -181,7 +179,7 @@ module.exports = {
     loginUser,
     getProfileUser,
     logoutUser,
-    Useruploadimage,
+    EditUser,
     Gettheusersinconversations,
     test
 }

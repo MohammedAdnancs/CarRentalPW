@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import './Boxloginregister.css';
 import { FaUserAlt } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
@@ -9,12 +9,12 @@ import { useNavigate } from 'react-router-dom';
 import formik, { useFormik } from 'formik';
 import Popup from '../popup/popup';
 import { Signupschema, loginschema } from '../schemas/signinschema';
-import { FaLock } from "react-icons/fa";
-import { FaLockOpen } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
-import { UserContext } from "../../Context/userContext";
-import { useDispatch, useSelector } from 'react-redux'
+import { UserContext, UserContextProvider } from "../../Context/userContext";
+import { useDispatch, useSelector } from 'react-redux';
+import { register, resetUser, login } from '../../redux/slices/authslice/authslice';
+
 const LoginRegister = () => {
     const navigate = useNavigate();
     //to change between the login and signup boxes when the action = active we are in the signup action='' we are login
@@ -48,31 +48,51 @@ const LoginRegister = () => {
         password: ''
     });
 
+    const dispatch = useDispatch();
+    const { userInfo, isLodingsignup, isErrorsignup, isSuccessignup, messagesignup,
+        isLodinglogin, isErrorlogin, isSucceslogin, messagelogin } = useSelector((state) => state.auth)
+    //for redux if any values changes
+    useEffect(() => {
+        if (isErrorsignup) {
+            if (messagesignup === "Email is taken already") {
+                setemailexisterror("Email Taken");
+            } else {
+                console.log(messagesignup);
+            }
+        }
+        if (isSuccessignup) {
+            dispatch(resetUser())
+            setAction('');
+            setPopup(true);
+        }
+    }, [userInfo, isErrorsignup, isSuccessignup, messagesignup])
+
+    //register user with redux
     const registerUser = async (registerValues, actions) => {
         registerdatasignup.email = registerValues.signup_email
         registerdatasignup.password = registerValues.signup_password
         registerdatasignup.username = registerValues.signup_username
+        const { username, email, password } = registerdatasignup;
+        const userData = {
+            username,
+            email,
+            password
+        }
 
-        try {
-            const { username, email, password } = registerdatasignup;
-            await axios.post('/register', { username, email, password });
-            setRegisterData({
-                username: '',
-                email: '',
-                password: ''
-            });
-            setAction('');
-            actions.resetForm();
-            setemailexisterror("");
-            setPopup(true);
-        } catch (error) {
-            if (error.response && error.response.status === 400) {
-                console.log(error.response.data.error);
-                setemailexisterror(error.response.data.error);
-            } else {
-                console.log("An error occurred:", error.message);
+        await dispatch(register(userData))
+
+        if (isErrorsignup) {
+            if (messagesignup === "Email is taken already") {
+                setemailexisterror("Email Taken Already");
             }
         }
+
+        if (isSuccessignup) {
+            dispatch(resetUser())
+            setAction('');
+            setPopup(true);
+        }
+
     };
 
     // Formik hook for signup form
@@ -86,39 +106,85 @@ const LoginRegister = () => {
         onSubmit: registerUser,
     });
 
+    useEffect(() => {
 
-    const { user, setUser, forceupdateuser } = useContext(UserContext);
+        if (isErrorlogin) {
+            if (messagelogin === "No user found") {
+                setloginerrormail(messagelogin);
+            }
+            if (messagelogin === "wrong password") {
+                setloginerrorpassword(messagelogin);
+            }
+        }
+        if (isSucceslogin) {
+            dispatch(resetUser())
+            navigate('/')
+            setAction('');
+        }
+    }, [userInfo, isErrorlogin, isSucceslogin, messagelogin, navigate])
 
     const loginUser = async (loginValues, actions) => {
         logindata.email = loginValues.login_email
         logindata.password = loginValues.login_password
 
-        try {
-            const { email, password } = logindata;
-            await axios.post('/login', { email, password });
-            forceupdateuser();
-            setLogindata({
-                username: '',
-                email: '',
-            });
-            setAction('');
-            actions.resetForm();
-            navigate('/')
-        } catch (error) {
-            if (error.response && error.response.status === 400) {
-                if (error.response.data.error == "No user found") {
-                    console.log(error.response.data.error);
-                    setloginerrormail(error.response.data.error);
-                }
-                if (error.response.data.error == "wrong password") {
-                    console.log(error.response.data.error);
-                    setloginerrorpassword(error.response.data.error);
-                }
+        const { email, password } = logindata;
+        const userData = {
+            email,
+            password
+        }
+
+        await dispatch(login(userData))
+
+        if (isErrorlogin) {
+            if (messagelogin === "No user found") {
+                setloginerrormail(messagelogin);
             } else {
-                console.log("An error occurred:", error.message);
+                setloginerrormail("");
+            }
+            if (messagelogin === "wrong password") {
+                setloginerrorpassword(messagelogin);
+            } else {
+                setloginerrorpassword("");
             }
         }
+
+        if (isSucceslogin) {
+            dispatch(resetUser())
+            actions.resetForm();
+            navigate('/')
+            setAction('');
+        }
+
     };
+
+    useEffect(() => {
+
+        if (loginerrormail !== "") {
+
+            const timeoutId = setTimeout(() => {
+                setloginerrormail("");
+            }, 5000);
+
+            return () => clearTimeout(timeoutId);
+        }
+        if (loginerrorpassword !== "") {
+
+            const timeoutId = setTimeout(() => {
+                setloginerrorpassword("");
+            }, 5000);
+
+            return () => clearTimeout(timeoutId);
+        }
+        if (emailexisterror !== "") {
+
+            const timeoutId = setTimeout(() => {
+                setemailexisterror("");
+            }, 5000);
+
+            return () => clearTimeout(timeoutId);
+        }
+
+    }, [loginerrormail, loginerrorpassword, emailexisterror]);
 
     // Formik hook for login form
     const { values: loginValues, errors: loginErrors, touched: loginTouched, handleChange: loginHandleChange, handleSubmit: loginHandleSubmit, handleBlur: loginHandleBlur } = useFormik({
@@ -151,7 +217,7 @@ const LoginRegister = () => {
                             <input id="signup_email" type="email" placeholder='email' value={registerValues.signup_email} onChange={registerHandleChange} onBlur={registerHandleBlur} />
                             <MdEmail className='icon' />
                             {registerErrors.signup_email && registerTouched.signup_email ? <span>{registerErrors.signup_email}</span> : <span></span>}
-                            {emailexisterror != "" ? <span className='uerror'>{emailexisterror}</span> : <span></span>}
+                            {emailexisterror != "" && registerErrors.signup_email == null ? <span className='uerror'>{emailexisterror}</span> : <span></span>}
                         </div>
                         <div className={`input-box ${registerErrors.signup_password && registerTouched.signup_password ? 'error' : ''}`}>
                             <input id="signup_password" type={showhidepassword ? 'text' : 'password'} placeholder='password' value={registerValues.signup_password} onChange={registerHandleChange} onBlur={registerHandleBlur} />

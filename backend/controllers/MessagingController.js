@@ -36,28 +36,31 @@ const SendMessage = async (req, res) => {
         res.status(500).json({ error: "server error" })
     }
 }
+
 const getMessages = async (req, res) => {
     try {
-        const { senderId } = req.body;
-        const { id: receiverId } = req.params;
+
+        const { senderId, reciverId } = req.body;
+        console.log("senderId", senderId)
+        console.log("reciverId", reciverId)
 
         const conversation = await Conversation.findOne({
-            participants: { $all: [senderId, receiverId] }
+            participants: { $all: [senderId, reciverId] }
         }).populate("messages");
-
-        res.status(200).json(conversation.messages)
-
+        console.log(conversation)
         if (!conversation) {
-            return res.status(200).json([])
+            res.status(200).json([])
         }
 
         const messages = conversation.messages;
-        return res.status(200).json(messages);
+        res.status(200).json(messages);
+
     } catch (error) {
         console.log("send message controller error: ", error.message)
         res.status(500).json({ error: "server error" })
     }
 }
+
 module.exports = {
     SendMessage,
     getMessages
