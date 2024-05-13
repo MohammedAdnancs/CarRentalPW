@@ -10,40 +10,39 @@ import Button from '../Button/Button';
 import { editingschema, } from '../schemas/editingschema';
 import background from '../Assets/background.png';
 import Assem from '../Assets/Assem.png';
+import { useDispatch, useSelector } from 'react-redux';
+import { register, resetUser, login, Logoutuser, editUser } from '../../redux/slices/authslice/authslice';
 const UserDashboard = () => {
 
-    const { user, forceupdateuser } = useContext(UserContext);
+    const dispatch = useDispatch();
+    const { userInfo, isLodinglogin, isErrorlogin, isSucceslogin, messagelogin } = useSelector((state) => state.auth)
 
-    console.log(user);
-
+    const [selectedImage, setSelectedImage] = useState(null);
+    const fileInputRef = useRef(null);
+    const [loading, setloading] = useState(false);
+    const [preivewimage, setpreivewimage] = useState(userInfo ? userInfo.image : Medo);
     const [Editprofile, setEditprofile] = useState(false);
 
     const switch_to_edit_mode = (e) => {
         e.preventDefault();
 
-        console.log(user.username)
-        console.log(user.email)
+        console.log(userInfo.username)
+        console.log(userInfo.email)
         setEditprofile(true)
     }
-
     const return_from_edit_mode = (e) => {
         e.preventDefault();
-        setpreivewimage(user.image);
+        setpreivewimage(userInfo.image);
         setEditprofile(false)
     }
 
-    const [selectedImage, setSelectedImage] = useState(null);
-    const fileInputRef = useRef(null);
-    const [loading, setloading] = useState(false);
-    const [preivewimage, setpreivewimage] = useState(user ? user.image : Medo);
-
     useEffect(() => {
-        if (user) {
-            setpreivewimage(user.image);
+        if (userInfo) {
+            setpreivewimage(userInfo.image);
         } else {
             setpreivewimage(Medo);
         }
-    }, [user]);
+    }, [userInfo]);
 
     const handleImageClick = () => {
         fileInputRef.current.click();
@@ -64,52 +63,65 @@ const UserDashboard = () => {
         }
     }
 
-    const handleImageUpload = async (values) => {
+    useEffect(() => {
+        if (isErrorlogin) {
+
+            console.log(messagelogin);
+
+        }
+        if (isSucceslogin) {
+            setloading(false)
+            setEditprofile(false)
+            dispatch(resetUser())
+        }
+    }, [userInfo, isErrorlogin, isSucceslogin, messagelogin])
+
+    const handleEditUser = async (values) => {
+
         console.log(selectedImage)
         console.log(values.username)
         console.log(values.email)
         setloading(true)
+
+        const userData = {
+            imageurl: selectedImage,
+            newusername: values.username,
+            newemail: values.email,
+            userid: userInfo.id,
+            oldimage: userInfo.image,
+            oldname: userInfo.username,
+            oldemail: userInfo.email
+        }
+
         try {
-            await axios.post('/Useruploadimage', {
-                data: {
-                    imageurl: selectedImage,
-                    newusername: values.username,
-                    newemail: values.email,
-                    userid: user.id,
-                    oldimage: user.image,
-                    oldname: user.username,
-                    oldemail: user.email
-                }
-            }, {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-            forceupdateuser();
+            await dispatch(editUser(userData))
+        } catch (error) {
+            console.error("Error editing user:", error);
+            // Handle the error appropriately, e.g., show an error message to the user
+        }
+
+        if (isSucceslogin) {
             setloading(false)
             setEditprofile(false)
-        } catch (error) {
-            console.log(error)
+            dispatch(resetUser())
         }
-        setloading(false)
-
     };
 
     const { values, errors, touched, handleChange, handleSubmit, handleBlur, setValues } = useFormik({
         initialValues: {
-            username: user ? user.username : "",
-            email: user ? user.email : "",
+            username: userInfo ? userInfo.username : "",
+            email: userInfo ? userInfo.email : "",
         },
         validationSchema: editingschema,
-        onSubmit: handleImageUpload,
+        onSubmit: handleEditUser,
     });
 
     useEffect(() => {
         setValues({
-            username: user ? user.username : "",
-            email: user ? user.email : "",
+            username: userInfo ? userInfo.username : "",
+            email: userInfo ? userInfo.email : "",
         });
-    }, [user, setValues]);
+    }, [userInfo, setValues]);
 
     return (
         <div>
@@ -134,17 +146,17 @@ const UserDashboard = () => {
                                 :
                                 ""
                             }
-                            {user ? (
+                            {userInfo ? (
                                 <>
 
                                     <div className='username'>
                                         <h2>Username:</h2>
-                                        {Editprofile ? <input id="username" value={values.username} onChange={handleChange} onBlur={handleBlur} /> : <h2><span>{user.username}</span></h2>}
+                                        {Editprofile ? <input id="username" value={values.username} onChange={handleChange} onBlur={handleBlur} /> : <h2><span>{userInfo.username}</span></h2>}
                                         {errors.username && touched.username ? <span>{errors.username}</span> : <span></span>}
                                     </div>
                                     <div className='useremail'>
                                         <h2>Email:</h2>
-                                        {Editprofile ? <input id="email" value={values.email} onChange={handleChange} /> : <h2><span>{user.email}</span></h2>}
+                                        {Editprofile ? <input id="email" value={values.email} onChange={handleChange} /> : <h2><span>{userInfo.email}</span></h2>}
                                         {errors.email && touched.email ? <span>{errors.email}</span> : <span></span>}
                                     </div>
                                     <div className='buttons'>
@@ -158,7 +170,7 @@ const UserDashboard = () => {
                             )}
 
                         </div>
-                        {user ? (
+                        {userInfo ? (
                             <div className="Dashboardright">
                                 <h1>Your Listings</h1>
                                 {/* Add additional user info here */}
