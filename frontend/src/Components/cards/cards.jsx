@@ -60,7 +60,7 @@ const Cards = () => {
 
   return (
     <div className="Acontainer">
-      <FilterBar setFilters={setFilters} />
+      <FilterBar setFilters={setFilters} className="ffc" />
 
       <div className="Cwrapper">
         {filteredCards.map((card, index) => (

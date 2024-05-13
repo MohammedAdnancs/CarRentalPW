@@ -196,7 +196,7 @@ function FilterBar({ setFilters, priceRange, numDoors, carType }) {
             </label>
           </div>
         </div>
-        <IButton  margintop="dvh" backgroundColor="#C2C8C8" text="Clear Filters" width="22dvh" height="4dvh" id="Lbutton" onClick={clearFilters} ></IButton>
+        <IButton backgroundColor="#C2C8C8" text="Clear Filters" width="22dvh" height="4dvh" id="Lbutton" onClick={clearFilters} ></IButton>
       </form>
     </div>
   );

@@ -174,12 +174,19 @@ const Gettheusersinconversations = async (req, res) => {
 
 }
 
+const ViewAllUsers = async (req, res) => {
+    User.find()
+      .then(users => res.json(users))
+      .catch(err => res.json(err))
+  }
+
 module.exports = {
     registerUser,
     loginUser,
     getProfileUser,
     logoutUser,
     EditUser,
+    ViewAllUsers,
     Gettheusersinconversations,
     test
 }
