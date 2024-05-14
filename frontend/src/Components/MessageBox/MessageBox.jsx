@@ -4,15 +4,17 @@ import './MessageBox.css'
 import axios from 'axios';
 import { UserContext } from "../../Context/userContext";
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserContacts, getUserMessages, resetmessage, resetUserContacts } from '../../redux/slices/Messagesslice/Messagesslice';
+import { getUserContacts, getUserMessages, resetmessage, resetUserContacts, SendUserMessages } from '../../redux/slices/Messagesslice/Messagesslice';
 import { IoIosSend } from "react-icons/io";
-
+import { motion } from 'framer-motion'
+import messageSentSound from '../Assets/messageSentSound.mp3';
 
 const MessageBox = () => {
 
     const dispatch = useDispatch();
     const { UserContacts, UserMessages, isLoding, isError, isSucces, message } = useSelector((state) => state.message)
     const { userInfo } = useSelector((state) => state.auth)
+    const audioRef = useRef(null); // Define audioRef here
 
     useEffect(() => {
 
@@ -43,14 +45,20 @@ const MessageBox = () => {
 
     if (UserContacts) { }
 
+    const [receiverId, setreciverId] = useState("");
+
     const getuserid = async (userId) => {
-        console.log("sender:", userId);
-        console.log("reciver:", userInfo.id)
+
+        setreciverId(userId)
+
         const senderId = userInfo.id
-        const reciverId = userId
+        const receiverId = userId
+        console.log("sender:", senderId);
+        console.log("reciver:", receiverId)
+
         const Data = {
             senderId,
-            reciverId
+            receiverId
         }
         console.log(Data)
         dispatch(getUserMessages(Data))
@@ -72,10 +80,45 @@ const MessageBox = () => {
 
     const [messagetosend, setmessgaetosend] = useState("");
 
-    const handleSendMessage = () => {
-        // Log a message when the button is clicked
+    const handleSendMessage = async () => {
+
         console.log(messagetosend);
+        console.log(userInfo.id);
+        console.log(receiverId);
+
+        const senderId = userInfo.id;
+        if (messagetosend != "") {
+
+            const message = messagetosend
+            try {
+
+                const Data = {
+                    message,
+                    senderId,
+                    receiverId
+                }
+                const newmessage = await dispatch(SendUserMessages(Data))
+                audioRef.current.play();
+                console.log(newmessage)
+            } catch (error) {
+                console.log(error)
+            }
+
+
+
+        }
+
     };
+
+    const messageContainerRef = useRef(null);
+
+    useEffect(() => {
+
+        if (messageContainerRef.current) {
+            messageContainerRef.current.scrollTop = messageContainerRef.current.scrollHeight;
+        }
+
+    }, [UserMessages]);
 
     return (
         <div className="BigMessageContainer">
@@ -93,38 +136,50 @@ const MessageBox = () => {
                                 <div className='Usercontactsboxnameeamil'>
                                     <p className='Contactsboxusername'>{contact.username}</p>
                                     <p className='Contactsboxuseremail'>{contact.email}</p>
+
                                 </div>
                             </div>
                         ))}
                     </div>
                 </div>
 
-                {UserMessages ?
+                {userInfo ?
                     <div className='MessageCright'>
                         <div className='SenderInfo'>
                             <img className='senderimagetopbar' src={userInfo.image} />
                             <h2 className='topusername'>{userInfo.username + " Chat"}</h2>
                         </div>
-                        {UserMessages && UserMessages.map(message => (
-                            <div className='chat' key={message._id}>
-                                <div className={message.senderId === userInfo.id ? 'bubble me' : 'bubble you'}>
-                                    <h2>{message.message}</h2>
-                                    <span className='messageTime'>{formatTime(message.createdAt)}</span>
+                        {UserMessages && receiverId ?
+                            <div ref={messageContainerRef} className='textboxesandsend'>
+                                {UserMessages && UserMessages.map(message => (
+                                    <div>
+                                        <motion.div
+                                            initial={{
+                                                x: message.senderId === userInfo.id ? 300 : -300,
+                                                opacity: 0.2
+                                            }}
+                                            animate={{ x: 0, y: 0, opacity: 1 }}
+                                            transition={{ duration: 0.7, ease: "easeInOut" }}
+                                            className='chat' key={message._id}>
+                                            <div className={message.senderId === userInfo.id ? 'bubble me' : 'bubble you'}>
+                                                <h2>{message.message}</h2>
+                                                <span className='messageTime'>{formatTime(message.createdAt)}</span>
+                                            </div>
+                                        </motion.div>
+                                        <audio ref={audioRef} src={messageSentSound} />
+                                    </div>
+                                ))}
+                                <div className='sendmessageinput'>
+                                    <input className='inputsendmessage' value={messagetosend} onChange={(e) => setmessgaetosend(e.target.value)} placeholder='Send Message....'></input>
+                                    <button className='buttonsendmessage' onClick={() => handleSendMessage()} ><IoIosSend size={32} /></button>
                                 </div>
                             </div>
-                        ))}
-
-                        <div className='sendmessageinput'>
-                            <input className='inputsendmessage' value={messagetosend} onChange={(e) => setmessgaetosend(e.target.value)} placeholder='Send Message....'></input>
-                            <button className='buttonsendmessage' onClick={handleSendMessage}><IoIosSend size={32} /></button>
-                        </div>
-
-                    </div> : <div className='SenderInfo'>
-                        <h2>{userInfo.username}</h2>
-                    </div>
+                            : ""}
+                    </div> :
+                    ""
                 }
             </div>
-        </div>
+        </div >
     )
 }
 

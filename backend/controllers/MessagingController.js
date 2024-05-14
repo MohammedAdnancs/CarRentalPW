@@ -3,8 +3,11 @@ const Message = require('../models/message');
 
 const SendMessage = async (req, res) => {
     try {
-        const { message, senderId } = req.body;
-        const { id: receiverId } = req.params;
+        const { message, senderId, receiverId } = req.body;
+        console.log(message)
+        console.log(receiverId)
+        console.log(senderId)
+
         console.log(message);
         let conversation = await Conversation.findOne({
             participants: { $all: [senderId, receiverId] }
@@ -30,7 +33,6 @@ const SendMessage = async (req, res) => {
         //socket.io here 
 
         res.status(200).json(newMessage);
-
     } catch (error) {
         console.log("send message controller error: ", error.message)
         res.status(500).json({ error: "server error" })
@@ -40,12 +42,12 @@ const SendMessage = async (req, res) => {
 const getMessages = async (req, res) => {
     try {
 
-        const { senderId, reciverId } = req.body;
+        const { senderId, receiverId } = req.body;
         console.log("senderId", senderId)
-        console.log("reciverId", reciverId)
+        console.log("reciverId", receiverId)
 
         const conversation = await Conversation.findOne({
-            participants: { $all: [senderId, reciverId] }
+            participants: { $all: [senderId, receiverId] }
         }).populate("messages");
         console.log(conversation)
         if (!conversation) {
