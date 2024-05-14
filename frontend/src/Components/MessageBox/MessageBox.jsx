@@ -159,7 +159,7 @@ const MessageBox = () => {
                                                 opacity: 0.2
                                             }}
                                             animate={{ x: 0, y: 0, opacity: 1 }}
-                                            transition={{ duration: 0.7, ease: "easeInOut" }}
+                                            transition={{ duration: 0.4, ease: "easeInOut" }}
                                             className='chat' key={message._id}>
                                             <div className={message.senderId === userInfo.id ? 'bubble me' : 'bubble you'}>
                                                 <h2>{message.message}</h2>
