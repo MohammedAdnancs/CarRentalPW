@@ -261,3 +261,20 @@
 .buttonsendmessage {
     flex: 1;
 }
+
+.ChooseUserToStartMessaging {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    color: #B4A5A5;
+}
+
+.hellohandwave {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 1dvw;
+}
