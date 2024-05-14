@@ -8,6 +8,8 @@ import { getUserContacts, getUserMessages, resetmessage, resetUserContacts, Send
 import { IoIosSend } from "react-icons/io";
 import { motion } from 'framer-motion'
 import messageSentSound from '../Assets/messageSentSound.mp3';
+import { MdWavingHand } from "react-icons/md";
+import { IoMdChatboxes } from "react-icons/io";
 
 const MessageBox = () => {
 
@@ -174,7 +176,14 @@ const MessageBox = () => {
                                     <button className='buttonsendmessage' onClick={() => handleSendMessage()} ><IoIosSend size={32} /></button>
                                 </div>
                             </div>
-                            : ""}
+                            : <div className='ChooseUserToStartMessaging'>
+                                <div className='hellohandwave'>
+                                    <h1>{"Hello  " + userInfo.username}</h1>
+                                    <MdWavingHand size={50} color='#2192FF' />
+                                </div>
+                                <IoMdChatboxes size={70} color='#2192FF' />
+                                <h2>Choose user to start messaging</h2>
+                            </div>}
                     </div> :
                     ""
                 }
