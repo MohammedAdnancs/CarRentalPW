@@ -29,6 +29,15 @@ export const getUserMessages = createAsyncThunk('auth/getUserMessages', async (u
     }
 })
 
+export const SendUserMessages = createAsyncThunk('auth/SendUserMessages', async (user, thunkAPI) => {
+    try {
+        return await authServices.SendUserMessages(user)
+    } catch (error) {
+        const message = error
+        return thunkAPI.rejectWithValue(message.response.data.error)
+    }
+})
+
 const messageSlice = createSlice({
     name: 'message',
     initialState,
@@ -70,6 +79,20 @@ const messageSlice = createSlice({
                 state.isError = false
             })
             .addCase(getUserMessages.rejected, (state, action) => {
+                state.isLoding = false
+                state.isError = true
+                state.message = action.payload
+            })
+            .addCase(SendUserMessages.pending, (state) => {
+                state.isLoding = true
+            })
+            .addCase(SendUserMessages.fulfilled, (state, action) => {
+                state.UserMessages.push(action.payload);
+                state.isLoding = false
+                state.isSucces = true
+                state.isError = false
+            })
+            .addCase(SendUserMessages.rejected, (state, action) => {
                 state.isLoding = false
                 state.isError = true
                 state.message = action.payload

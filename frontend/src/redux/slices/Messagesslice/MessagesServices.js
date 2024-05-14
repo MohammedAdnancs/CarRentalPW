@@ -14,9 +14,17 @@ const getUserMessages = async (userData) => {
     return response.data
 }
 
+const SendUserMessages = async (userData) => {
+
+    const response = await axios.post('/Send', userData)
+
+    return response.data
+}
+
 const messageServices = {
     getUserContacts,
-    getUserMessages
+    getUserMessages,
+    SendUserMessages
 }
 
 export default messageServices
