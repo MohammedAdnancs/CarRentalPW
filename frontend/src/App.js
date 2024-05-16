@@ -2,6 +2,7 @@ import './App.css';
 import Navbar from './Components/Navbar/Navbar';
 import Home from './Pages/HomePage';
 import Admin from './Pages/AdminPage';
+import ListingInfo from './Pages/ListingInfo';
 import Userprofile from './Pages/Userprofile';
 import Chatting from './Pages/Chatting';
 import Rentcars from './Pages/Rentcars';
