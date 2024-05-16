@@ -1,27 +1,29 @@
+// Cards.js
 import React, { useEffect, useState } from 'react';
 import './cards.css';
 import axios from 'axios';
 import { FaCar } from "react-icons/fa";
-import { GiCarDoor } from "react-icons/gi";
-import { GiCarSeat } from "react-icons/gi";
+import { GiCarDoor, GiCarSeat } from "react-icons/gi";
 import { TbAirConditioning } from "react-icons/tb";
+import { useNavigate } from 'react-router-dom';
 import FilterBar from '../FilterBar/FilterBar';
-import { motion } from 'framer-motion'
+import { motion } from 'framer-motion';
 
 const Cards = () => {
-
-  const [listings, setListings] = useState([])
-  useEffect(() => {
-    axios.get('/ViewAllListing')
-      .then(listings => setListings(listings.data))
-      .catch(err => console.log(err))
-  }, [])
-
+  const [listings, setListings] = useState([]);
   const [filters, setFilters] = useState({
     priceRange: '',
     numDoors: '',
     carType: ''
   });
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    axios.get('/ViewAllListing')
+      .then(response => setListings(response.data))
+      .catch(err => console.log(err));
+  }, []);
+
   const getPriceRange = (price) => {
     if (price >= 0 && price <= 29) {
       return '0-29';
@@ -38,8 +40,8 @@ const Cards = () => {
     }
   };
 
-  // Update cardData mapping to include price range
   const cardData = listings.map(listing => ({
+    id: listing._id, // Ensure you have an ID field in your listing
     name: listing.carName,
     thumbnail1: listing.image1,
     thumbnail2: listing.image2,
@@ -47,16 +49,19 @@ const Cards = () => {
     doors: listing.numDoors,
     Dprice: listing.price,
     seats: listing.numSeats,
-    priceRange: getPriceRange(listing.price) // Determine price range
+    priceRange: getPriceRange(listing.price)
   }));
 
   const filteredCards = cardData.filter(card => {
     if (filters.priceRange && card.priceRange !== filters.priceRange) return false;
-    if (filters.numDoors && card.doors !== filters.numDoors) return false; // Compare integer value directly
+    if (filters.numDoors && card.doors !== filters.numDoors) return false;
     if (filters.carType && card.type !== filters.carType) return false;
     return true;
   });
 
+  const handleDetailsClick = (id) => {
+    navigate(`/ListingInfo/${id}`);
+  };
 
   return (
     <div className="Acontainer">
@@ -65,17 +70,18 @@ const Cards = () => {
       <div className="Cwrapper">
         {filteredCards.map((card, index) => (
           <motion.div
+            key={index}
             initial={{ x: 0, y: 100, opacity: 0.2 }}
             animate={{ x: 0, y: 0, opacity: 1 }}
             transition={{ duration: 0.5, ease: "easeInOut" }}
           >
-            <div className="vehicle-card" key={index}>
+            <div className="vehicle-card">
               <div className="details">
                 <div className="thumb-gallery">
                   <img className="first" src={card.thumbnail1} alt="Thumbnail 1" />
                   <img className="second" src={card.thumbnail2} alt="Thumbnail 2" />
                 </div>
-                <div className="carName"><h3 >-{card.name}-</h3></div>
+                <div className="carName"><h3>-{card.name}-</h3></div>
                 <div className="info">
                   <div className="price">
                     <span>Starting at</span>
@@ -101,21 +107,17 @@ const Cards = () => {
                   </div>
                 </div>
                 <div className="ctas">
-                  <a href="#" className="btn primary">
+                  <button onClick={() => handleDetailsClick(card.id)} className="btn">
                     Details
-                  </a>
-                  <a href="#" className="btn secondary">
-                    Book
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>
           </motion.div>
         ))}
       </div>
-
     </div>
   );
 };
 
-export default Cards
+export default Cards;
