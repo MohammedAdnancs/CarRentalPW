@@ -2,7 +2,6 @@ import React, { useState, useContext, useEffect, useReducer } from 'react'
 import './Navbar.css'
 import { Link, useLocation } from 'react-router-dom';
 import Button from '../Button/Button';
-import { UserContext } from "../../Context/userContext";
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { register, resetUser, login, Logoutuser } from '../../redux/slices/authslice/authslice';

@@ -9,6 +9,7 @@ import Abouelwafa from '../Assets/Abouelwafa.png'
 import { motion, AnimatePresence } from "framer-motion"
 import { FaArrowRightLong } from "react-icons/fa6";
 import { FaArrowLeftLong } from "react-icons/fa6";
+import Button from '../Button/Button'
 
 import './OurReviews.css'
 
@@ -71,6 +72,7 @@ const OurReviews = ({ isVisible }) => {
         setDirection("left");
     };
 
+    const [showpopreview, setshowpopreview] = useState(false);
 
     return (
         <AnimatePresence>
@@ -109,6 +111,37 @@ const OurReviews = ({ isVisible }) => {
                         <FaArrowRightLong className="arrow-icon" size={"5dvh"} />
                     </button>
                 </div>
+
+                <Button onClick={() => { setshowpopreview(true) }} text="Add your review" height="5dvh" marginbottom="3dvh" color="#FFFFFF" backgroundColor="#07080A" />
+
+                {showpopreview ?
+                    <motion.div
+                        className="popupContainerreview"
+                        initial={{ x: -1300, opacity: 0.2 }}
+                        animate={{ x: 0, y: 0, opacity: 1 }}
+
+                        transition={{ duration: 0.7, ease: "easeInOut" }}>
+
+                        <div className="popup-inner">
+                            <button className="close-btn" onClick={() => { setshowpopreview(false) }} >X</button>
+                            <h2>Add Your Review</h2>
+                            <form >
+
+                                <label htmlFor="rating">Rating:</label>
+                                <input type="number" id="rating" name="rating" min="1" max="5" />
+
+                                <label htmlFor="review">Review:</label>
+                                <textarea id="review" name="review" />
+
+                                <button type="submit" >Submit</button>
+                            </form>
+                        </div>
+                    </motion.div>
+                    :
+                    ""
+                }
+
+
             </div>
         </AnimatePresence >
     )

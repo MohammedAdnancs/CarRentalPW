@@ -1,11 +1,11 @@
 const express = require("express");
-const app = express();
 const mongoose = require("mongoose");
 const multer = require("multer");
 const path = require("path");
 const cors = require("cors");
 const dotenv = require("dotenv").config();
 const cookieParser = require('cookie-parser')
+const { app, server } = require('./socket/socket');
 
 app.use(express.json({ limit: '50mb' }));
 app.use(cookieParser());
@@ -28,7 +28,7 @@ mongoose
         useUnifiedTopology: true,
     })
     .then(() =>
-        app.listen(port, () =>
+        server.listen(port, () =>
             console.log(`Server is running at : http://localhost:${port}`)
         )
     )
