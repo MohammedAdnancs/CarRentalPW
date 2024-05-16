@@ -11,7 +11,6 @@ import Popup from '../popup/popup';
 import { Signupschema, loginschema } from '../schemas/signinschema';
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
-import { UserContext, UserContextProvider } from "../../Context/userContext";
 import { useDispatch, useSelector } from 'react-redux';
 import { register, resetUser, login } from '../../redux/slices/authslice/authslice';
 

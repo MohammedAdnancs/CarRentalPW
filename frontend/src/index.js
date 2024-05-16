@@ -3,10 +3,11 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { Provider } from 'react-redux';
+import { Provider, useSelector } from 'react-redux';
 import store from './redux/store';
 import { persistGate } from "redux-persist/integration/react"
 import { persistStore } from "redux-persist"
+import { SocketContextProvider } from './Context/SocketContext';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 let persiststore = persistStore(store)
@@ -15,7 +16,9 @@ root.render(
   <Provider store={store}>
     <React.StrictMode>
       <persistGate persiststore={persiststore}>
-        <App />
+        <SocketContextProvider>
+          <App />
+        </SocketContextProvider>
       </persistGate>
     </React.StrictMode>
   </Provider>

@@ -1,5 +1,4 @@
 import React, { useState, useContext, useRef, useEffect } from 'react';
-import { UserContext } from "../../Context/userContext";
 import './UserDashboard.css';
 import Medo from '../Assets/Medo.jpg';
 import { FaPlusCircle } from "react-icons/fa";

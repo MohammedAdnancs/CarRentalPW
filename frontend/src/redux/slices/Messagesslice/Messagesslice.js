@@ -51,6 +51,9 @@ const messageSlice = createSlice({
         resetUserContacts: (state) => {
             state.UserContacts = null
             state.UserMessages = null
+        },
+        addNewMessage: (state, action) => {
+            state.UserMessages.push(action.payload);
         }
     },
     extraReducers: (builder) => {
@@ -100,5 +103,5 @@ const messageSlice = createSlice({
     },
 })
 
-export const { resetmessage, resetUserContacts } = messageSlice.actions
+export const { resetmessage, resetUserContacts, addNewMessage } = messageSlice.actions
 export default messageSlice.reducer

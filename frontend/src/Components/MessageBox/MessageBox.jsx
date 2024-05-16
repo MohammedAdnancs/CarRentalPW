@@ -2,7 +2,6 @@ import React, { useState, useContext, useRef, useEffect } from 'react'
 import Medo from '../Assets/Medo.jpg';
 import './MessageBox.css'
 import axios from 'axios';
-import { UserContext } from "../../Context/userContext";
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserContacts, getUserMessages, resetmessage, resetUserContacts, SendUserMessages } from '../../redux/slices/Messagesslice/Messagesslice';
 import { IoIosSend } from "react-icons/io";
@@ -10,14 +9,22 @@ import { motion } from 'framer-motion'
 import messageSentSound from '../Assets/messageSentSound.mp3';
 import { MdWavingHand } from "react-icons/md";
 import { IoMdChatboxes } from "react-icons/io";
+import { useSocketContext } from '../../Context/SocketContext';
+import useListenMessages from '../../hooks/useListenMessages';
 
 const MessageBox = () => {
 
     const dispatch = useDispatch();
     const { UserContacts, UserMessages, isLoding, isError, isSucces, message } = useSelector((state) => state.message)
     const { userInfo } = useSelector((state) => state.auth)
-    const audioRef = useRef(null); // Define audioRef here
+    const audioRef = useRef(null);
+    const { onlineUsers } = useSocketContext();
+    useListenMessages();
+    const isUserOnline = (userId) => {
+        return onlineUsers.includes(userId);
+    };
 
+    console.log(onlineUsers);
     useEffect(() => {
 
         if (isError) {
@@ -135,10 +142,10 @@ const MessageBox = () => {
                         {UserContacts && UserContacts.map(contact => (
                             <div className='Usercontactsbox' key={contact.id} onClick={() => getuserid(contact._id)}>
                                 <img src={contact.image} alt={contact.username} />
+                                {isUserOnline(contact._id) ? <div className='UserOnlineIndicator'></div> : ""}
                                 <div className='Usercontactsboxnameeamil'>
                                     <p className='Contactsboxusername'>{contact.username}</p>
                                     <p className='Contactsboxuseremail'>{contact.email}</p>
-
                                 </div>
                             </div>
                         ))}

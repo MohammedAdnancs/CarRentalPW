@@ -4,7 +4,6 @@ import IButton from '../Button/Button'
 import { FaFileUpload } from "react-icons/fa";
 import { useFormik } from 'formik';
 import { ListingsSchemas } from '../schemas/ListingsSchemas';
-import { UserContext } from "../../Context/userContext";
 import axios from 'axios';
 import Popup from '../popup/popup';
 import { ColorRing } from 'react-loader-spinner'
@@ -17,18 +16,20 @@ import { FaMapLocationDot } from "react-icons/fa6";
 import { MdDescription } from "react-icons/md";
 import { IoCarSport } from "react-icons/io5";
 import { FaCarSide } from "react-icons/fa6";
+import { useDispatch, useSelector } from 'react-redux';
+
 
 const ListArea = () => {
-  const { user, forceupdate } = useContext(UserContext);
+  const { userInfo } = useSelector((state) => state.auth)
   const [Popupnotification, setPopup] = useState(false);
   const [loading, setloading] = useState(false);
   const [email, setemail] = useState('');
 
   useEffect(() => {
-    if (user) {
-      setemail(user.email);
+    if (userInfo) {
+      setemail(userInfo.email);
     }
-  }, [user]);
+  }, [userInfo]);
 
   const SubmitListing = async (values, actions) => {
     // Ensure email is set before using it
@@ -47,7 +48,7 @@ const ListArea = () => {
       const { carName, carType, numDoors, numSeats, price, location, description, email } = ListingData;
 
       setloading(true);
-      let userId = user.id;
+      let userId = userInfo.id;
       await axios.post('/AddListing', { carName, carType, numDoors, numSeats, price, location, description, ImageUrl1, ImageUrl2, userId });
       setListingData({
         carName: '',
