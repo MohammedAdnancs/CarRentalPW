@@ -1,25 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 import './ListingDetails.css';
-import p1 from "../Assets/p3.jpg"
-import p2 from "../Assets/p4.jpg"
+import IButton from '../Button/Button'
 
 const ListingDetails = () => {
+  const { _id } = useParams();
+  const [listing, setListing] = useState(null);
   const [imgId, setImgId] = useState(1);
 
   useEffect(() => {
-    const slideImage = () => {
-      const displayWidth = document.querySelector('.img-showcase img:first-child').clientWidth;
-      document.querySelector('.img-showcase').style.transform = `translateX(${- (imgId - 1) * displayWidth}px)`;
-    };
+    axios.get(`/ViewListing/${_id}`)
+      .then(response => setListing(response.data))
+      .catch(err => console.log(err));
+  }, [_id]);
 
-    slideImage();
-    window.addEventListener('resize', slideImage);
+  if (!listing) {
+    return <div>Loading...</div>;
+  }
 
-    return () => window.removeEventListener('resize', slideImage);
-  }, [imgId]);
-
-  const handleImageClick = (id, event) => {
-    event.preventDefault();
+  const handleImageClick = (id) => {
     setImgId(id);
   };
 
@@ -29,27 +29,27 @@ const ListingDetails = () => {
         {/* card left */}
         <div className="Car-imgs">
           <div className="img-display">
-            <div className="img-showcase">
-              <img src={p1} alt="car image" />
-              <img src={p2} alt="car image" />
+            <div className="img-showcase" style={{ transform: `translateX(${- (imgId - 1) * 100}%)` }}>
+              <img src={listing.image1} alt="car image" />
+              <img src={listing.image2} alt="car image" />
             </div>
           </div>
           <div className="img-select">
             <div className="img-item">
-              <a href="#" data-id="1" onClick={(e) => handleImageClick(1, e)}>
-                <img src={p1} alt="car image" />
+              <a href="#" onClick={() => handleImageClick(1)}>
+                <img src={listing.image1} alt="car image" />
               </a>
             </div>
             <div className="img-item">
-              <a href="#" data-id="2" onClick={(e) => handleImageClick(2, e)}>
-                <img src={p2} alt="car image" />
+              <a href="#" onClick={() => handleImageClick(2)}>
+                <img src={listing.image2} alt="car image" />
               </a>
             </div>
           </div>
         </div>
         {/* card right */}
         <div className="Listing-content">
-          <h2 className="Listing-title">CarName</h2>
+          <h2 className="Listing-title">{listing.carName}</h2>
           <a href="#" className="User-link">User Name</a>
           <div className="Listing-rating">
             <i className="fas fa-star"></i>
@@ -61,28 +61,27 @@ const ListingDetails = () => {
           </div>
 
           <div className="Listing-info">
-            <p className="Listing-price">Price per day: <span>$257.00</span></p>
-            <p className="Listing-Location">Location: <span>Ghamra/ Cairo</span></p>
+            <p className="Listing-price">Price per day: <span>${listing.price}</span></p>
+            <p className="Listing-Location">Location: <span>{listing.location}</span></p>
           </div>
 
           <div className="Listing-detail">
             <h2>About this Car: </h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo eveniet veniam tempora fuga tenetur placeat sapiente architecto illum soluta consequuntur, aspernatur quidem at sequi ipsa!</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, perferendis eius. Dignissimos, labore suscipit. Unde.</p>
+            <p>{listing.description}</p>
             <ul>
-              <li>Car Type: <span>SUV</span></li>
-              <li>Number of Doors: <span>4 Doors</span></li>
-              <li>Number of seats: <span>5 Seats</span></li>
+              <li>Car Type: <span>{listing.carType}</span></li>
+              <li>Number of Doors: <span>{listing.numDoors} Doors</span></li>
+              <li>Number of seats: <span>{listing.numSeats} Seats</span></li>
             </ul>
           </div>
 
           <div className="purchase-info">
-            <button type="button" className="btn">Rent Car</button>
+          <IButton margintop="1dvh" backgroundColor="#C2C8C8" text="Rent" width="24dvh" height="5dvh" id="Lbutton" type="submit"></IButton>
           </div>
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default ListingDetails;

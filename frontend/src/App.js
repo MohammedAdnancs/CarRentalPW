@@ -35,7 +35,7 @@ function App() {
             <Route path='/Login_signup' element={<Login_signup />} />
             <Route path='/Userprofile' element={<Userprofile />} />
             <Route path='/Chatting' element={<Chatting />} />
-            <Route path='/ListingInfo' element={<ListingInfo />} />
+            <Route path='/ListingInfo/:_id' element={<ListingInfo />} />
           </Routes>
           <Footer />
         </UserContextProvider>
