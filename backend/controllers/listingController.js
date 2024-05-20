@@ -1,5 +1,6 @@
 const Listing = require('../models/Listing');
 const { cloudinary } = require('../helpers/cloudinary');
+const User = require('../models/User');
 
 const test = (req, res) => {
   res.json('test is working');
@@ -56,10 +57,12 @@ const ViewListing = async (req, res) => {
   const { _id } = req.params;
   try {
     const listing = await Listing.findById(_id);
+    const Lister = await User.findById(listing.userId)
     if (!listing) {
       return res.status(404).json({ error: 'Listing not found' });
     }
-    return res.json(listing);
+    const Data = { listing, Lister }
+    return res.json(Data);
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: 'An error occurred while fetching the listing' });
