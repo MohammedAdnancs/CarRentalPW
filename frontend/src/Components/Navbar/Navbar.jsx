@@ -6,6 +6,7 @@ import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { register, resetUser, login, Logoutuser } from '../../redux/slices/authslice/authslice';
 import { resetmessage, resetUserContacts } from '../../redux/slices/Messagesslice/Messagesslice';
+import Usericonnav from '../Usericonnav/Usericonnav';
 const Navbar = () => {
 
     const dispatch = useDispatch();
@@ -48,10 +49,10 @@ const Navbar = () => {
                 <li className={menu === "AboutUs" ? 'active' : ''} onClick={() => { setMenu("AboutUs") }}><Link style={{ textDecoration: 'none', color: 'inherit' }} to='/AboutUs'>About Us</Link>{menu === "AboutUs" ? <hr /> : <></>}</li>
                 <li className={menu === "Admin" ? 'active' : ''} onClick={() => { setMenu("Admin") }}><Link style={{ textDecoration: 'none', color: 'inherit' }} to='/Admin'>Admin</Link>{menu === "Admin" ? <hr /> : <></>}</li>
                 <li className={menu === "Chatting" ? 'active' : ''} onClick={() => { setMenu("Chatting") }}><Link style={{ textDecoration: 'none', color: 'inherit' }} to='/Chatting'>Messages</Link>{menu === "Chatting" ? <hr /> : <></>}</li>
-                <li className={menu === "Userprofile" ? 'active' : ''} onClick={() => { setMenu("Userprofile") }}><Link style={{ textDecoration: 'none', color: 'inherit' }} to='/Userprofile'>User profile</Link>{menu === "Userprofile" ? <hr /> : <></>}</li>
-                {userInfo ? <li className={menu === "Logout" ? 'active' : ''} onClick={logout}><Link style={{ textDecoration: 'none', color: 'inherit' }}>Logout</Link>{menu === "Logout" ? <hr /> : <></>}</li> : ""}
             </ul>
-            <Button onClick={() => { setMenu("") }} link="/Login_signup" margintop="3dvh" backgroundColor="#C2C8C8" text="Login&Signup" width="22dvh" height="5dvh"></Button>
+            {userInfo ? <Usericonnav /> :
+                <Button onClick={() => { setMenu("") }} link="/Login_signup" margintop="3dvh" backgroundColor="#C2C8C8" text="Login&Signup" width="22dvh" height="5dvh"></Button>
+            }
         </div>
     )
 

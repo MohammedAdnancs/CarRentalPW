@@ -3,8 +3,11 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import './ListingDetails.css';
 import IButton from '../Button/Button'
+import { useDispatch, useSelector } from 'react-redux';
 
 const ListingDetails = () => {
+
+  const { userInfo, isLodinglogin, isErrorlogin, isSucceslogin, messagelogin } = useSelector((state) => state.auth)
   const { _id } = useParams();
   const [listing, setListing] = useState(null);
   const [imgId, setImgId] = useState(1);
@@ -30,19 +33,19 @@ const ListingDetails = () => {
         <div className="Car-imgs">
           <div className="img-display">
             <div className="img-showcase" style={{ transform: `translateX(${- (imgId - 1) * 100}%)` }}>
-              <img src={listing.image1} alt="car image" />
-              <img src={listing.image2} alt="car image" />
+              <img src={listing.listing.image1} alt="car image" />
+              <img src={listing.listing.image2} alt="car image" />
             </div>
           </div>
           <div className="img-select">
             <div className="img-item">
               <a href="#" onClick={() => handleImageClick(1)}>
-                <img src={listing.image1} alt="car image" />
+                <img src={listing.listing.image1} alt="car image" />
               </a>
             </div>
             <div className="img-item">
               <a href="#" onClick={() => handleImageClick(2)}>
-                <img src={listing.image2} alt="car image" />
+                <img src={listing.listing.image2} alt="car image" />
               </a>
             </div>
           </div>
@@ -50,7 +53,11 @@ const ListingDetails = () => {
         {/* card right */}
         <div className="Listing-content">
           <h2 className="Listing-title">{listing.carName}</h2>
-          <a href="#" className="User-link">User Name</a>
+          <div className='ListerInfo'>
+            <img src={listing.Lister.image}></img>
+            <p>{listing.Lister.username}</p>
+            <p>{listing.Lister.email}</p>
+          </div>
           <div className="Listing-rating">
             <i className="fas fa-star"></i>
             <i className="fas fa-star"></i>
@@ -76,7 +83,7 @@ const ListingDetails = () => {
           </div>
 
           <div className="purchase-info">
-          <IButton margintop="1dvh" backgroundColor="#C2C8C8" text="Rent" width="24dvh" height="5dvh" id="Lbutton" type="submit"></IButton>
+            <IButton margintop="1dvh" backgroundColor="#C2C8C8" text="Rent" width="24dvh" height="5dvh" id="Lbutton" type="submit"></IButton>
           </div>
         </div>
       </div>

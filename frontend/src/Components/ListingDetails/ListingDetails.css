@@ -1,11 +1,10 @@
-.all-wrapper
-{
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.all-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.Details-wrapper{
+.Details-wrapper {
     max-width: 1100px;
     background-color: rgba(0, 0, 0, 0.3);
     border-radius: 20px;
@@ -14,45 +13,49 @@
     margin-bottom: 5%;
 }
 
-img{
+img {
     width: 100%;
     display: block;
 }
 
-.img-display{
+.img-display {
     overflow: hidden;
 }
 
-.img-showcase{
+.img-showcase {
     display: flex;
     width: 100%;
     transition: all 0.5s ease;
 }
 
-.img-showcase img{
+.img-showcase img {
     min-width: 100%;
 }
 
-.img-select{
+.img-select {
     display: flex;
 }
 
-.img-item{
+.img-item {
     margin: 0.3rem;
     width: 5rem;
 }
+
 .img-item:nth-child(1),
 .img-item:nth-child(2),
-.img-item:nth-child(3){
+.img-item:nth-child(3) {
     margin-right: 0;
 }
-.img-item:hover{
+
+.img-item:hover {
     opacity: 0.8;
 }
-.Listing-content{
+
+.Listing-content {
     padding: 2rem 1rem;
 }
-.Listing-title{
+
+.Listing-title {
     font-size: 3rem;
     text-transform: capitalize;
     font-weight: 700;
@@ -60,7 +63,8 @@ img{
     color: #ffffff;
     margin: 1rem 0;
 }
-.Listing-title::after{
+
+.Listing-title::after {
     content: "";
     position: absolute;
     left: 0;
@@ -69,7 +73,8 @@ img{
     width: 8rem;
     background: #256eff;
 }
-.User-link{
+
+.User-link {
     text-decoration: none;
     text-transform: uppercase;
     font-weight: 400;
@@ -81,46 +86,56 @@ img{
     padding: 0 0.3rem;
     transition: all 0.5s ease;
 }
-.User-link:hover{
+
+.User-link:hover {
     opacity: 0.9;
 }
-.Listing-rating{
+
+.Listing-rating {
     color: #ffc107;
 }
-.Listing-rating span{
+
+.Listing-rating span {
     font-weight: 600;
     color: #fff;
 }
-.Listing-info{
+
+.Listing-info {
     margin: 1rem 0;
     font-size: 1rem;
     font-weight: 700;
     color: #B4A5A5;
-   
+
 }
-.Listing-info span{
+
+.Listing-info span {
     font-weight: 400;
 }
 
-.Listing-price span, .Listing-Location span{
+.Listing-price span,
+.Listing-Location span {
     color: #fff;
 }
-.Listing-detail h2{
+
+.Listing-detail h2 {
     text-transform: capitalize;
     color: #256eff;
     padding-bottom: 0.6rem;
 }
-.Listing-detail p{
+
+.Listing-detail p {
     font-size: 0.9rem;
     padding: 0.3rem;
     opacity: 0.8;
     color: #ffffff;
 }
-.Listing-detail ul{
+
+.Listing-detail ul {
     margin: 1rem 0;
     font-size: 0.9rem;
 }
-.Listing-detail ul li{
+
+.Listing-detail ul li {
     margin: 0;
     list-style: none;
     padding-left: 1.7rem;
@@ -128,15 +143,18 @@ img{
     font-weight: 600;
     color: #B4A5A5;
 }
-.Listing-detail ul li span{
+
+.Listing-detail ul li span {
     font-weight: 400;
     color: #fff;
 }
-.purchase-info{
+
+.purchase-info {
     margin: 1.5rem 0;
 }
+
 .purchase-info input,
-.purchase-info .btn{
+.purchase-info .btn {
     border: 1.5px solid #ddd;
     border-radius: 25px;
     text-align: center;
@@ -145,40 +163,58 @@ img{
     margin-right: 0.2rem;
     margin-bottom: 1rem;
 }
-.purchase-info input{
+
+.purchase-info input {
     width: 60px;
 }
-.purchase-info .btn{
+
+.purchase-info .btn {
     cursor: pointer;
     color: #fff;
 }
-.purchase-info .btn:first-of-type{
+
+.purchase-info .btn:first-of-type {
     background: #256eff;
 }
 
-.purchase-info .btn:hover{
+.purchase-info .btn:hover {
     opacity: 0.9;
 }
 
 
-@media screen and (min-width: 992px){
-    .Details-Container{
+@media screen and (min-width: 992px) {
+    .Details-Container {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         grid-gap: 1.5rem;
     }
-    .Details-wrapper{
+
+    .Details-wrapper {
         height: 100vh;
         display: flex;
         justify-content: center;
         align-items: center;
     }
-    .Car-imgs{
+
+    .Car-imgs {
         display: flex;
         flex-direction: column;
         justify-content: center;
     }
-    .Listing-content{
+
+    .Listing-content {
         padding-top: 0;
     }
+}
+
+.ListerInfo img {
+    margin-left: 0.3dvw;
+    width: 70px;
+    height: 80px;
+    object-fit: cover;
+    clip-path: circle();
+    transition: 0.3s;
+    position: relative;
+    cursor: pointer;
+    transition: 0.3s;
 }
