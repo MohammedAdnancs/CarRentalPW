@@ -102,15 +102,19 @@
 
 .Dashboard {
     width: 70%;
-    height: 40dvh;
+    height: 50dvh;
     background-color: #171a20;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
     justify-content: center;
-    grid-column-gap: 12dvw;
+    grid-column-gap: 3dvw;
     border-radius: 10px;
     padding: 50px;
     transform: translateY(-15%);
+}
+
+.Dashboard .Dashboardright {
+    grid-column: span 2;
 }
 
 .Dashboardleft {
@@ -149,4 +153,11 @@
     transition: 0.3s;
     filter: blur(1px);
     cursor: pointer;
+}
+
+
+.UserListing {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }

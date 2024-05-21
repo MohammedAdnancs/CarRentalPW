@@ -2,17 +2,20 @@
     width: 100%;
     height: 100%;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-bottom: 20dvh;
 }
 
 .MessageContainer {
-    margin-bottom: 20dvh;
     margin-top: 20dvh;
     width: 60dvw;
-    height: 100dvh;
+    height: 90dvh;
     background-color: #f8f8f8;
-    border-radius: 15px;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
     display: flex;
 }
 
@@ -40,6 +43,7 @@
 
 .MessageCleft {
     width: 20dvw;
+    height: 94.3dvh;
     background-color: #464f5b;
     overflow-y: hidden;
     overflow-x: hidden;
@@ -120,6 +124,7 @@
 .textboxesandsend {
     overflow-x: hidden;
     overflow-y: scroll;
+    margin-bottom: 1dvh;
 }
 
 .bubble {
@@ -204,10 +209,12 @@
 }
 
 .sendmessageinput {
-    width: 100%;
+    width: 40dvw;
     height: 2dvw;
     bottom: 0;
     display: flex;
+    margin-left: 20.1%;
+
 }
 
 .inputsendmessage {
@@ -225,8 +232,14 @@
     /* Change this to whatever color you want */
 }
 
-.buttonsendmessage {
+.sendmessageinput .buttonsendmessage {
+    outline: none;
+    border: none;
     flex: 1;
+    height: 4.5dvh;
+    margin-top: 0;
+    border-bottom-right-radius: 10px;
+    background-color: #00B0FF;
 }
 
 .ChooseUserToStartMessaging {
@@ -291,4 +304,8 @@
     background-color: green;
     border-radius: 50%;
     top: 15%;
+}
+
+.loginfirst {
+    color: #B4A5A5;
 }

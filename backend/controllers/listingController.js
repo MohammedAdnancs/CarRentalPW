@@ -73,6 +73,7 @@ const DeleteListing = async (req, res) => {
   console.log(_id)
   try {
     const listing = await Listing.findById(_id);
+    
     if (!listing) {
       return res.status(404).json({ error: 'Listing not found' });
     }

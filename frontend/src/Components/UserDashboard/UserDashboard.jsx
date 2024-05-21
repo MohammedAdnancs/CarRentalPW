@@ -11,9 +11,16 @@ import background from '../Assets/background.png';
 import Assem from '../Assets/Assem.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { register, resetUser, login, Logoutuser, editUser } from '../../redux/slices/authslice/authslice';
+import { ViewAllListing, resetlist } from '../../redux/slices/listslice/listslice';
+import { FaCar } from "react-icons/fa";
+import { GiCarDoor, GiCarSeat } from "react-icons/gi";
+import { TbAirConditioning } from "react-icons/tb";
+import IButton from '../Button/Button'
+
 const UserDashboard = () => {
 
     const dispatch = useDispatch();
+    const { ListInfo, isLoding, isError, isSucces, message } = useSelector((state) => state.list)
     const { userInfo, isLodinglogin, isErrorlogin, isSucceslogin, messagelogin } = useSelector((state) => state.auth)
 
     const [selectedImage, setSelectedImage] = useState(null);
@@ -171,10 +178,24 @@ const UserDashboard = () => {
                         </div>
                         {userInfo ? (
                             <div className="Dashboardright">
-                                <h1>Your Listings</h1>
-                                {/* Add additional user info here */}
+                                <h1 className='h1youlistings'>Your Listings</h1>
+                                <div className='UserListing'>
+                                    {ListInfo && ListInfo.filter(list => list.userId === userInfo.id).map(filteredItem => (
+                                        <div className='Listing'>
+                                            <div className="ListingPictures">
+                                                <img className="firstPic" src={filteredItem.image1} alt="Thumbnail 1" />
+                                            </div>
+                                            <div className='ListingName'>
+                                                <h3>{filteredItem.carName}</h3>
+                                            </div>
+                                            <div className='ListingButtons'>
+                                                <IButton margintop="2.5dvh" backgroundColor="#9f0606" text="Delete" width="15dvh" height="5dvh" id="Lbutton"></IButton>
+                                                <IButton margintop="2.5dvh" backgroundColor="#C2C8C8" text="Edit" width="15dvh" height="5dvh" id="Lbutton"></IButton>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
-
                         ) : (
                             ""
                         )}
