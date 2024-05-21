@@ -51,13 +51,13 @@ const ListingDetails = () => {
           </div>
         </div>
         {/* card right */}
-        <div className="Listing-content">
-          <h2 className="Listing-title">{listing.listing.carName}</h2>
+        <div className='ListingRight'>
+        <div className='TopPart'>
           <div className='ListerInfo'>
+            <h4>LISTER:</h4>
             <img src={listing.Lister.image}></img>
             <p>{listing.Lister.username}</p>
-            <p>{listing.Lister.email}</p>
-          </div>
+       
           <div className="Listing-rating">
             <i className="fas fa-star"></i>
             <i className="fas fa-star"></i>
@@ -66,8 +66,11 @@ const ListingDetails = () => {
             <i className="fas fa-star"></i>
             <span>5.0</span>
           </div>
-
+          </div>
+          </div>
+        <div className="Listing-content">
           <div className="Listing-info">
+          <h2 className="Listing-title">{listing.listing.carName}</h2>
             <p className="Listing-price">Price per day: <span>${listing.listing.price}</span></p>
             <p className="Listing-Location">Location: <span>{listing.listing.location}</span></p>
           </div>
@@ -86,6 +89,7 @@ const ListingDetails = () => {
             <IButton margintop="1dvh" backgroundColor="#C2C8C8" text="Rent" width="24dvh" height="5dvh" id="Lbutton" type="submit"></IButton>
           </div>
         </div>
+          </div>
       </div>
     </div>
   );
