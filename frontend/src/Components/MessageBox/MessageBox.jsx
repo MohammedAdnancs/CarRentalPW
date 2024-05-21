@@ -178,10 +178,6 @@ const MessageBox = () => {
                                         <audio ref={audioRef} src={messageSentSound} />
                                     </div>
                                 ))}
-                                <div className='sendmessageinput'>
-                                    <input className='inputsendmessage' value={messagetosend} onChange={(e) => setmessgaetosend(e.target.value)} placeholder='Send Message....'></input>
-                                    <button className='buttonsendmessage' onClick={() => handleSendMessage()} ><IoIosSend size={32} /></button>
-                                </div>
                             </div>
                             : <div className='ChooseUserToStartMessaging'>
                                 <div className='hellohandwave'>
@@ -192,8 +188,15 @@ const MessageBox = () => {
                                 <h2>Choose user to start messaging</h2>
                             </div>}
                     </div> :
-                    ""
+                    <div className='ChooseUserToStartMessaging'>
+                        <h1 className='loginfirst' >Login first to see messages</h1>
+                    </div>
                 }
+
+            </div>
+            <div className='sendmessageinput'>
+                <input className='inputsendmessage' value={messagetosend} onChange={(e) => setmessgaetosend(e.target.value)} placeholder='Send Message....'></input>
+                <button className='buttonsendmessage' onClick={() => handleSendMessage()} ><IoIosSend color='#F5F5F5' size={32} /></button>
             </div>
         </div >
     )

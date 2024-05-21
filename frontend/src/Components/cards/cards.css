@@ -39,7 +39,6 @@
   width: 240px;
   overflow: hidden;
   background-color: rgba(0, 0, 0, 0.3);
-
   border-radius: 10px;
   transition: 0.5s;
   justify-content: center;
@@ -53,9 +52,7 @@
 }
 
 .vehicle-card .details:hover {
-
   box-shadow: 0 5px 20px #B4A5A5;
-
 }
 
 .vehicle-card .info {
@@ -69,7 +66,6 @@
   gap: 4%;
   padding-top: 2%;
 }
-
 
 .thumb-gallery {
   height: 150px;
