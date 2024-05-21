@@ -5,7 +5,7 @@ import { FaLongArrowAltRight } from "react-icons/fa";
 import './Listings.css';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { ViewAllListing, resetlist } from '../../redux/slices/listslice/listslice';
+import { ViewAllListing, resetlist, DeleteListing } from '../../redux/slices/listslice/listslice';
 
 const Listings = () => {
 
@@ -43,7 +43,7 @@ const Listings = () => {
   }
 
   const showNextListings = () => {
-    if (currentIndex + numListingsPerPage < listings.length) {
+    if (currentIndex + numListingsPerPage < ListInfo.length) {
       setCurrentIndex(currentIndex + numListingsPerPage);
     }
   };
@@ -55,7 +55,16 @@ const Listings = () => {
   };
 
   if (isLoding) {
-    return <div>Loading...</div>; // Show loading indicator while data is being fetched
+    return <div>Loading...</div>;
+  }
+
+  const Delete = async (_id) => {
+    console.log(_id)
+    try {
+      dispatch(DeleteListing(_id))
+    } catch (error) {
+      console.error('Delete failed medo is a loser :(', error);
+    }
   }
 
   return (
@@ -71,7 +80,7 @@ const Listings = () => {
               <h3>{listing.carName}</h3>
             </div>
             <div className='ListingButtons'>
-              <IButton margintop="2.5dvh" backgroundColor="#9f0606" text="Delete" width="15dvh" height="5dvh" id="Lbutton"></IButton>
+              <IButton margintop="2.5dvh" backgroundColor="#9f0606" text="Delete" width="15dvh" height="5dvh" id="Lbutton" onClick={() => Delete(listing._id)}></IButton>
               <IButton margintop="2.5dvh" backgroundColor="#C2C8C8" text="Details" width="15dvh" height="5dvh" id="Lbutton"></IButton>
             </div>
           </div>

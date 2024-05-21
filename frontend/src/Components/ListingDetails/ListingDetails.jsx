@@ -52,7 +52,7 @@ const ListingDetails = () => {
         </div>
         {/* card right */}
         <div className="Listing-content">
-          <h2 className="Listing-title">{listing.carName}</h2>
+          <h2 className="Listing-title">{listing.listing.carName}</h2>
           <div className='ListerInfo'>
             <img src={listing.Lister.image}></img>
             <p>{listing.Lister.username}</p>
@@ -68,17 +68,17 @@ const ListingDetails = () => {
           </div>
 
           <div className="Listing-info">
-            <p className="Listing-price">Price per day: <span>${listing.price}</span></p>
-            <p className="Listing-Location">Location: <span>{listing.location}</span></p>
+            <p className="Listing-price">Price per day: <span>${listing.listing.price}</span></p>
+            <p className="Listing-Location">Location: <span>{listing.listing.location}</span></p>
           </div>
 
           <div className="Listing-detail">
             <h2>About this Car: </h2>
-            <p>{listing.description}</p>
+            <p>{listing.listing.description}</p>
             <ul>
               <li>Car Type: <span>{listing.carType}</span></li>
-              <li>Number of Doors: <span>{listing.numDoors} Doors</span></li>
-              <li>Number of seats: <span>{listing.numSeats} Seats</span></li>
+              <li>Number of Doors: <span>{listing.listing.numDoors} Doors</span></li>
+              <li>Number of seats: <span>{listing.listing.numSeats} Seats</span></li>
             </ul>
           </div>
 
