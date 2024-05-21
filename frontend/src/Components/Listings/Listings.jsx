@@ -43,7 +43,7 @@ const Listings = () => {
   }
 
   const showNextListings = () => {
-    if (currentIndex + numListingsPerPage < listings.length) {
+    if (currentIndex + numListingsPerPage < ListInfo.length) {
       setCurrentIndex(currentIndex + numListingsPerPage);
     }
   };

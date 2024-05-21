@@ -61,7 +61,7 @@ const Users = () => {
 */
 
   const showNextUsers = () => {
-    if (currentIndex + numUsersPerPage < users.length) {
+    if (currentIndex + numUsersPerPage < Allusers.length) {
       setCurrentIndex(currentIndex + numUsersPerPage);
     }
   };
@@ -71,8 +71,6 @@ const Users = () => {
       setCurrentIndex(currentIndex - numUsersPerPage);
     }
   };
-
-
 
   return (
     <div className='ListingsContainer'>

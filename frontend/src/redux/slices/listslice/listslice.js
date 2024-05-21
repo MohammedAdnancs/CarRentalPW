@@ -9,7 +9,6 @@ const initialState = {
     message: ''
 }
 
-//Register user
 export const ViewAllListing = createAsyncThunk('auth/ViewAllListing', async (user, thunkAPI) => {
     try {
         return await listServices.getalllistings()
@@ -51,6 +50,7 @@ const listSlice = createSlice({
                 state.isLoding = false
                 state.message = action.payload
             })
+            
     },
 })
 
