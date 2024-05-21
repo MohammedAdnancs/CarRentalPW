@@ -180,6 +180,24 @@ const ViewAllUsers = async (req, res) => {
         .catch(err => res.json(err))
 }
 
+const DeleteUser = async (req, res) => {
+    const { _id } = req.body;
+    try {
+      const user = await User.findById(_id);
+      if (!user) {
+        return res.status(404).json({ error: 'User not found' });
+      }
+
+      await User.deleteOne({ _id: _id });
+      return res.json({ message: 'User deleted successfully' });
+  
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: 'An error occurred while deleting the User' });
+    }
+  
+  }
+
 module.exports = {
     registerUser,
     loginUser,
@@ -188,5 +206,6 @@ module.exports = {
     EditUser,
     ViewAllUsers,
     Gettheusersinconversations,
+    DeleteUser,
     test
 }

@@ -55,6 +55,8 @@ img {
     padding: 2rem 1rem;
 }
 
+
+
 .Listing-title {
     font-size: 3rem;
     text-transform: capitalize;
@@ -68,10 +70,10 @@ img {
     content: "";
     position: absolute;
     left: 0;
-    bottom: 0;
+    bottom: 0%;
     height: 4px;
     width: 8rem;
-    background: #256eff;
+    background: #2192FF;
 }
 
 .User-link {
@@ -81,7 +83,7 @@ img {
     font-size: 0.9rem;
     display: inline-block;
     margin-bottom: 0.5rem;
-    background: #256eff;
+    background: #2192FF;
     color: #fff;
     padding: 0 0.3rem;
     transition: all 0.5s ease;
@@ -93,6 +95,8 @@ img {
 
 .Listing-rating {
     color: #ffc107;
+    display: flex;
+    column-gap: 0.3%;
 }
 
 .Listing-rating span {
@@ -119,7 +123,7 @@ img {
 
 .Listing-detail h2 {
     text-transform: capitalize;
-    color: #256eff;
+    color: #2192FF;
     padding-bottom: 0.6rem;
 }
 
@@ -174,13 +178,55 @@ img {
 }
 
 .purchase-info .btn:first-of-type {
-    background: #256eff;
+    background: #2192FF;
 }
 
 .purchase-info .btn:hover {
     opacity: 0.9;
 }
 
+.ListingRight
+{
+    display: flex;
+    flex-direction: row-reverse;
+    column-gap: 5rem;
+}
+
+.TopPart
+{
+    display: flex;
+    width: 50%;
+    padding: 2%;
+}
+
+.ListerInfo
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
+
+.ListerInfo h4{
+    color: #ffffff;
+    letter-spacing: 2px;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.ListerInfo p{
+    color: #ffffff;
+    letter-spacing: 2px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    background-color: #2192FF;
+    width: 100%;
+    text-align: center;
+}
+
+.ListerInfo img{
+    width: 110%;
+}
 
 @media screen and (min-width: 992px) {
     .Details-Container {

@@ -5,7 +5,7 @@ import { FaLongArrowAltRight } from "react-icons/fa";
 import '../Listings/Listings.css';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { ViewAllUsers, resetadmin, resetAllusers } from '../../redux/slices/adminslice/adminslice';
+import { ViewAllUsers, resetadmin, resetAllusers, DeleteUser } from '../../redux/slices/adminslice/adminslice';
 
 const Users = () => {
 
@@ -58,6 +58,19 @@ const Users = () => {
     }
   };
 
+  const Delete = async (_id) => {
+    console.log(_id)
+    try {
+      const data = {
+        _id
+      }
+      await dispatch(DeleteUser(data))
+      await dispatch(ViewAllUsers())
+    } catch (error) {
+      console.error('Delete failed medo is a loser :(', error);
+    }
+  }
+
   return (
     <div className='ListingsContainer'>
       <h1>All Users</h1>
@@ -71,8 +84,7 @@ const Users = () => {
               <h3>{User.username}</h3>
             </div>
             <div className='ListingButtons'>
-              <IButton margintop="2.5dvh" backgroundColor="#9f0606" text="Delete" width="15dvh" height="5dvh" id="Lbutton"></IButton>
-              <IButton margintop="2.5dvh" backgroundColor="#C2C8C8" text="Details" width="15dvh" height="5dvh" id="Lbutton"></IButton>
+              <IButton margintop="2.5dvh" backgroundColor="#9f0606" text="Delete" width="15dvh" height="5dvh" id="Lbutton" onClick={() => Delete(User._id)}></IButton>
             </div>
           </div>
         )) : ""}

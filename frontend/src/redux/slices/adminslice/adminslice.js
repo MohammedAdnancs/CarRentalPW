@@ -18,6 +18,15 @@ export const ViewAllUsers = createAsyncThunk('auth/ViewAllUsers', async (user, t
     }
 })
 
+export const DeleteUser = createAsyncThunk('auth/DeleteUser', async (User, thunkAPI) => {
+    try {
+        return await authServices.DeleteUser(User)
+    } catch (error) {
+        const message = error
+        return thunkAPI.rejectWithValue(message.response.data.error)
+    }
+})
+
 const adminSlice = createSlice({
     name: 'admin',
     initialState,
@@ -44,6 +53,20 @@ const adminSlice = createSlice({
                 state.isError = false
             })
             .addCase(ViewAllUsers.rejected, (state, action) => {
+                state.isLoding = false
+                state.isError = true
+                state.message = action.payload
+            })
+
+            .addCase(DeleteUser.pending, (state) => {
+                state.isLoding = true
+            })
+            .addCase(DeleteUser.fulfilled, (state, action) => {
+                state.isLoding = false
+                state.isSucces = true
+                state.isError = false
+            })
+            .addCase(DeleteUser.rejected, (state, action) => {
                 state.isLoding = false
                 state.isError = true
                 state.message = action.payload
