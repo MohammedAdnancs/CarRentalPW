@@ -4,24 +4,43 @@ import { FaLongArrowAltLeft } from "react-icons/fa";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import './Listings.css';
 import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { ViewAllListing, resetlist } from '../../redux/slices/listslice/listslice';
 
 const Listings = () => {
+
+  const dispatch = useDispatch();
+  const { ListInfo, isLoding, isError, isSucces, message } = useSelector((state) => state.list)
+
   const [listings, setListings] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const numListingsPerPage = 4;
   const [loading, setLoading] = useState(true); // Add loading state
 
   useEffect(() => {
-    axios.get('/ViewAllListing')
-      .then(response => {
-        setListings(response.data);
-        setLoading(false); // Set loading to false when data is fetched
-      })
-      .catch(err => {
-        console.log(err);
-        setLoading(false); // Set loading to false in case of error
-      });
-  }, []);
+
+    if (isError) {
+      console.log(message);
+    }
+    if (isSucces) {
+      dispatch(resetlist())
+      console.log()
+    }
+
+  }, [ListInfo, isLoding, isError, isSucces, message])
+
+  const fetchData = async () => {
+    try {
+      dispatch(ViewAllListing())
+      //dispatch(getUserContacts(senderId))
+    } catch (error) {
+      console.error('Error fetching list info:', error);
+    }
+  };
+
+  if (!ListInfo) {
+    fetchData()
+  }
 
   const showNextListings = () => {
     if (currentIndex + numListingsPerPage < listings.length) {
@@ -35,7 +54,7 @@ const Listings = () => {
     }
   };
 
-  if (loading) {
+  if (isLoding) {
     return <div>Loading...</div>; // Show loading indicator while data is being fetched
   }
 
@@ -43,7 +62,7 @@ const Listings = () => {
     <div className='ListingsContainer'>
       <h1>All listings</h1>
       <div className='ListingsWrapper'>
-        {listings.slice(currentIndex, currentIndex + numListingsPerPage).map((listing, index) => (
+        {ListInfo ? ListInfo.slice(currentIndex, currentIndex + numListingsPerPage).map((listing, index) => (
           <div className='Listing' key={index}>
             <div className="ListingPictures">
               <img className="firstPic" src={listing.image1} alt="Thumbnail 1" />
@@ -56,7 +75,7 @@ const Listings = () => {
               <IButton margintop="2.5dvh" backgroundColor="#C2C8C8" text="Details" width="15dvh" height="5dvh" id="Lbutton"></IButton>
             </div>
           </div>
-        ))}
+        )) : ""}
         <div className="NavigationButtons">
           <button onClick={showPreviousListings} className='NavB'><FaLongArrowAltLeft /></button>
           <button onClick={showNextListings} className='NavB'><FaLongArrowAltRight /></button>

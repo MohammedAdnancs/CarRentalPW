@@ -8,21 +8,55 @@ import { TbAirConditioning } from "react-icons/tb";
 import { useNavigate } from 'react-router-dom';
 import FilterBar from '../FilterBar/FilterBar';
 import { motion } from 'framer-motion';
+import { useDispatch, useSelector } from 'react-redux';
+import { ViewAllListing, resetlist } from '../../redux/slices/listslice/listslice';
 
 const Cards = () => {
+
+  const dispatch = useDispatch();
+  const { ListInfo, isLoding, isError, isSucces, message } = useSelector((state) => state.list)
+
   const [listings, setListings] = useState([]);
   const [filters, setFilters] = useState({
     priceRange: '',
     numDoors: '',
     carType: ''
   });
+
   const navigate = useNavigate();
 
+  useEffect(() => {
+
+    if (isError) {
+      console.log(message);
+    }
+    if (isSucces) {
+      dispatch(resetlist())
+      console.log()
+    }
+
+  }, [ListInfo, isLoding, isError, isSucces, message])
+
+  const fetchData = async () => {
+    try {
+      dispatch(ViewAllListing())
+      //dispatch(getUserContacts(senderId))
+    } catch (error) {
+      console.error('Error fetching list info:', error);
+    }
+  };
+
+  if (!ListInfo) {
+    fetchData()
+  }
+
+  /*
   useEffect(() => {
     axios.get('/ViewAllListing')
       .then(response => setListings(response.data))
       .catch(err => console.log(err));
   }, []);
+*/
 
   const getPriceRange = (price) => {
     if (price >= 0 && price <= 29) {
@@ -40,7 +74,7 @@ const Cards = () => {
     }
   };
 
-  const cardData = listings.map(listing => ({
+  const cardData = ListInfo.map(listing => ({
     id: listing._id, // Ensure you have an ID field in your listing
     name: listing.carName,
     thumbnail1: listing.image1,
