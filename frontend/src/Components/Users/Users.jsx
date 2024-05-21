@@ -46,22 +46,8 @@ const Users = () => {
     return <div>Loading...</div>; // Show loading indicator while data is being fetched
   }
 
-  /*
-  useEffect(() => {
-    axios.get('/ViewAllUsers')
-      .then(response => {
-        setUsers(response.data);
-        setLoading(false); // Set loading to false when data is fetched
-      })
-      .catch(err => {
-        console.log(err);
-        setLoading(false); // Set loading to false in case of error
-      });
-  }, []);
-*/
-
   const showNextUsers = () => {
-    if (currentIndex + numUsersPerPage < users.length) {
+    if (currentIndex + numUsersPerPage < Allusers.length) {
       setCurrentIndex(currentIndex + numUsersPerPage);
     }
   };

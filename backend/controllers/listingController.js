@@ -52,7 +52,6 @@ const ViewAllListing = async (req, res) => {
     .catch(err => res.status(500).json({ error: 'An error occurred while fetching listings' }));
 }
 
-// New function to view a specific listing by ID
 const ViewListing = async (req, res) => {
   const { _id } = req.params;
   try {
@@ -69,8 +68,36 @@ const ViewListing = async (req, res) => {
   }
 }
 
+const DeleteListing = async (req, res) => {
+  const  _id  = req.params;
+  console.log(_id)
+  try {
+    const listing = await Listing.findById(_id);
+    if (!listing) {
+      return res.status(404).json({ error: 'Listing not found' });
+    }
+
+    if (listing.image1) {
+      const imageName1 = listing.image1.split('/').pop().split('.')[0]; 
+      await cloudinary.uploader.destroy(imageName1);
+    }
+    if (listing.image2) {
+      const imageName2 = listing.image2.split('/').pop().split('.')[0]; 
+      await cloudinary.uploader.destroy(imageName2);
+    }
+
+    await listing.remove();
+    return res.json({ message: 'Listing deleted successfully' });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: 'An error occurred while deleting the listing' });
+  }
+}
+
 module.exports = {
   ViewAllListing,
   AddListing,
-  ViewListing, // Export the new function
+  ViewListing,
+  DeleteListing,  // Add the DeleteListing function to module exports
+  test
 }
