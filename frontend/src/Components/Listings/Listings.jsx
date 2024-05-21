@@ -61,7 +61,11 @@ const Listings = () => {
   const Delete = async (_id) => {
     console.log(_id)
     try {
-      dispatch(DeleteListing(_id))
+      const data = {
+        _id
+      }
+      await dispatch(DeleteListing(data))
+      await dispatch(ViewAllListing())
     } catch (error) {
       console.error('Delete failed medo is a loser :(', error);
     }

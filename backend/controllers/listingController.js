@@ -69,7 +69,7 @@ const ViewListing = async (req, res) => {
 }
 
 const DeleteListing = async (req, res) => {
-  const  _id  = req.params;
+  const { _id } = req.body;
   console.log(_id)
   try {
     const listing = await Listing.findById(_id);
@@ -78,20 +78,22 @@ const DeleteListing = async (req, res) => {
     }
 
     if (listing.image1) {
-      const imageName1 = listing.image1.split('/').pop().split('.')[0]; 
+      const imageName1 = listing.image1.split('/').pop().split('.')[0];
       await cloudinary.uploader.destroy(imageName1);
     }
     if (listing.image2) {
-      const imageName2 = listing.image2.split('/').pop().split('.')[0]; 
+      const imageName2 = listing.image2.split('/').pop().split('.')[0];
       await cloudinary.uploader.destroy(imageName2);
     }
 
-    await listing.remove();
+    await Listing.deleteOne({ _id: _id });
     return res.json({ message: 'Listing deleted successfully' });
+
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: 'An error occurred while deleting the listing' });
   }
+
 }
 
 module.exports = {

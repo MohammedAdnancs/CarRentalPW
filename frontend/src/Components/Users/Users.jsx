@@ -58,8 +58,6 @@ const Users = () => {
     }
   };
 
-
-
   return (
     <div className='ListingsContainer'>
       <h1>All Users</h1>
