@@ -39,7 +39,7 @@ const Cards = () => {
 
   const fetchData = async () => {
     try {
-      dispatch(ViewAllListing())
+      await dispatch(ViewAllListing())
       //dispatch(getUserContacts(senderId))
     } catch (error) {
       console.error('Error fetching list info:', error);
@@ -74,7 +74,7 @@ const Cards = () => {
     }
   };
 
-  const cardData = ListInfo.map(listing => ({
+  const cardData = ListInfo ? ListInfo.map(listing => ({
     id: listing._id, // Ensure you have an ID field in your listing
     name: listing.carName,
     thumbnail1: listing.image1,
@@ -84,14 +84,14 @@ const Cards = () => {
     Dprice: listing.price,
     seats: listing.numSeats,
     priceRange: getPriceRange(listing.price)
-  }));
+  })) : null;
 
-  const filteredCards = cardData.filter(card => {
+  const filteredCards = cardData ? cardData.filter(card => {
     if (filters.priceRange && card.priceRange !== filters.priceRange) return false;
     if (filters.numDoors && card.doors !== filters.numDoors) return false;
     if (filters.carType && card.type !== filters.carType) return false;
     return true;
-  });
+  }) : null;
 
   const handleDetailsClick = (id) => {
     navigate(`/ListingInfo/${id}`);
@@ -102,7 +102,7 @@ const Cards = () => {
       <FilterBar setFilters={setFilters} className="ffc" />
 
       <div className="Cwrapper">
-        {filteredCards.map((card, index) => (
+        {filteredCards && cardData ? filteredCards.map((card, index) => (
           <motion.div
             key={index}
             initial={{ x: 0, y: 100, opacity: 0.2 }}
@@ -148,7 +148,7 @@ const Cards = () => {
               </div>
             </div>
           </motion.div>
-        ))}
+        )) : ""}
       </div>
     </div>
   );
