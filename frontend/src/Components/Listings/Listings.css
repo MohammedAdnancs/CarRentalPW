@@ -46,10 +46,15 @@
 }
 
 .ListingPictures img{
-  width: 100%;
-  transition: 0.5s;
-  z-index: 80;
-  border-radius: 14px;
+  margin-left: 0.3dvw;
+    width: 120px;
+    height: 90px;
+    object-fit: cover;
+    transition: 0.3s;
+    position: relative;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 20px;
 }
 
 .ListingName{
