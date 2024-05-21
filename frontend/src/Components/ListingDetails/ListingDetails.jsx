@@ -2,14 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import './ListingDetails.css';
-import IButton from '../Button/Button'
-import { useDispatch, useSelector } from 'react-redux';
+import IButton from '../Button/Button';
+import Popup from '../popup/popup';
+import { useSelector } from 'react-redux';
 
 const ListingDetails = () => {
-
-  const { userInfo, isLodinglogin, isErrorlogin, isSucceslogin, messagelogin } = useSelector((state) => state.auth)
+  const { userInfo, isLodinglogin, isErrorlogin, isSucceslogin, messagelogin } = useSelector((state) => state.auth);
   const { _id } = useParams();
   const [listing, setListing] = useState(null);
+  const [Popupnotification, setPopup] = useState(false);
   const [imgId, setImgId] = useState(1);
 
   useEffect(() => {
@@ -51,45 +52,43 @@ const ListingDetails = () => {
           </div>
         </div>
         {/* card right */}
+        <Popup setPopup={setPopup} trigger={Popupnotification} text="Congrats Car booked Successfully" />
         <div className='ListingRight'>
-        <div className='TopPart'>
-          <div className='ListerInfo'>
-            <h4>LISTER:</h4>
-            <img src={listing.Lister.image}></img>
-            <p>{listing.Lister.username}</p>
-       
-          <div className="Listing-rating">
-            <i className="fas fa-star"></i>
-            <i className="fas fa-star"></i>
-            <i className="fas fa-star"></i>
-            <i className="fas fa-star"></i>
-            <i className="fas fa-star"></i>
-            <span>5.0</span>
+          <div className='TopPart'>
+            <div className='ListerInfo'>
+              <h4>LISTER:</h4>
+              <img src={listing.Lister.image} alt="lister" />
+              <p>{listing.Lister.username}</p>
+              <div className="Listing-rating">
+                <i className="fas fa-star"></i>
+                <i className="fas fa-star"></i>
+                <i className="fas fa-star"></i>
+                <i className="fas fa-star"></i>
+                <i className="fas fa-star"></i>
+                <span>5.0</span>
+              </div>
+            </div>
           </div>
-          </div>
-          </div>
-        <div className="Listing-content">
-          <div className="Listing-info">
-          <h2 className="Listing-title">{listing.listing.carName}</h2>
-            <p className="Listing-price">Price per day: <span>${listing.listing.price}</span></p>
-            <p className="Listing-Location">Location: <span>{listing.listing.location}</span></p>
-          </div>
-
-          <div className="Listing-detail">
-            <h2>About this Car: </h2>
-            <p>{listing.listing.description}</p>
-            <ul>
-              <li>Car Type: <span>{listing.carType}</span></li>
-              <li>Number of Doors: <span>{listing.listing.numDoors} Doors</span></li>
-              <li>Number of seats: <span>{listing.listing.numSeats} Seats</span></li>
-            </ul>
-          </div>
-
-          <div className="purchase-info">
-            <IButton margintop="1dvh" backgroundColor="#C2C8C8" text="Rent" width="24dvh" height="5dvh" id="Lbutton" type="submit"></IButton>
+          <div className="Listing-content">
+            <div className="Listing-info">
+              <h2 className="Listing-title">{listing.listing.carName}</h2>
+              <p className="Listing-price">Price per day: <span>${listing.listing.price}</span></p>
+              <p className="Listing-Location">Location: <span>{listing.listing.location}</span></p>
+            </div>
+            <div className="Listing-detail">
+              <h2>About this Car: </h2>
+              <p>{listing.listing.description}</p>
+              <ul>
+                <li>Car Type: <span>{listing.carType}</span></li>
+                <li>Number of Doors: <span>{listing.listing.numDoors} Doors</span></li>
+                <li>Number of seats: <span>{listing.listing.numSeats} Seats</span></li>
+              </ul>
+            </div>
+            <div className="purchase-info">
+              <IButton margintop="1dvh" backgroundColor="#C2C8C8" text="Rent" width="24dvh" height="5dvh" id="Lbutton" type="submit" onClick={() => { setPopup(true); }}></IButton>
+            </div>
           </div>
         </div>
-          </div>
       </div>
     </div>
   );

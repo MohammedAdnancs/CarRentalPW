@@ -85,7 +85,6 @@ const Listings = () => {
             </div>
             <div className='ListingButtons'>
               <IButton margintop="2.5dvh" backgroundColor="#9f0606" text="Delete" width="15dvh" height="5dvh" id="Lbutton" onClick={() => Delete(listing._id)}></IButton>
-              <IButton margintop="2.5dvh" backgroundColor="#C2C8C8" text="Details" width="15dvh" height="5dvh" id="Lbutton"></IButton>
             </div>
           </div>
         )) : ""}
