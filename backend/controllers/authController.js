@@ -34,6 +34,7 @@ const registerUser = async (req, res) => {
             email,
             password: hashedPassword,
             image,
+            type,
         })
 
         return res.json(user)
@@ -64,9 +65,19 @@ const loginUser = async (req, res) => {
         }
 
         if (match) {
-            const token = jwt.sign({ id: user._id, email: user.email, username: user.username, image: user.image }, process.env.JWT_Secret, { expiresIn: "6h" })
-            const profile = { id: user._id, email: user.email, username: user.username, image: user.image, token: token }
-            res.cookie("token", token).json(profile);
+            console.log(user.type)
+            if(user.type)
+                {
+                    const token = jwt.sign({ id: user._id, email: user.email, username: user.username, image: user.image, type: user.type}, process.env.JWT_Secret, { expiresIn: "6h" })
+                    const profile = { id: user._id, email: user.email, username: user.username, image: user.image, type: user.type, token: token }
+                    res.cookie("token", token).json(profile);
+                }
+                else{
+                    const token = jwt.sign({ id: user._id, email: user.email, username: user.username, image: user.image }, process.env.JWT_Secret, { expiresIn: "6h" })
+                    const profile = { id: user._id, email: user.email, username: user.username, image: user.image, token: token }
+                    res.cookie("token", token).json(profile);
+                }
+            
         }
 
     } catch (error) {
