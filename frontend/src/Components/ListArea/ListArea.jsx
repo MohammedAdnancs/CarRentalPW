@@ -17,9 +17,11 @@ import { MdDescription } from "react-icons/md";
 import { IoCarSport } from "react-icons/io5";
 import { FaCarSide } from "react-icons/fa6";
 import { useDispatch, useSelector } from 'react-redux';
-
+import { ViewAllListing, resetlist, DeleteListing } from '../../redux/slices/listslice/listslice';
 
 const ListArea = () => {
+
+  const dispatch = useDispatch();
   const { userInfo } = useSelector((state) => state.auth)
   const [Popupnotification, setPopup] = useState(false);
   const [loading, setloading] = useState(false);
@@ -50,6 +52,12 @@ const ListArea = () => {
       setloading(true);
       let userId = userInfo.id;
       await axios.post('/AddListing', { carName, carType, numDoors, numSeats, price, location, description, ImageUrl1, ImageUrl2, userId });
+      try {
+        dispatch(ViewAllListing())
+        //dispatch(getUserContacts(senderId))
+      } catch (error) {
+        console.error('Error fetching list info:', error);
+      }
       setListingData({
         carName: '',
         carType: '',
