@@ -73,7 +73,7 @@ const DeleteListing = async (req, res) => {
   console.log(_id)
   try {
     const listing = await Listing.findById(_id);
-    
+
     if (!listing) {
       return res.status(404).json({ error: 'Listing not found' });
     }
@@ -97,10 +97,36 @@ const DeleteListing = async (req, res) => {
 
 }
 
+const EditListing = async (req, res) => {
+
+  const { carName, numberDoors, numberSeats, price, listid } = req.body;
+  console.log(carName)
+  console.log(numberDoors)
+  console.log(numberSeats)
+  console.log(price)
+  console.log(listid)
+  try {
+    await Listing.updateOne({ _id: listid }, {
+      $set: {
+        carName: carName,
+        numDoors: numberDoors,
+        numSeats: numberSeats,
+        price: price
+      }
+    })
+    res.json('edit good');
+  } catch (error) {
+    console.log(error)
+    res.json(error);
+  }
+
+}
+
 module.exports = {
   ViewAllListing,
   AddListing,
   ViewListing,
-  DeleteListing,  // Add the DeleteListing function to module exports
+  DeleteListing, // Add the DeleteListing function to module exports
+  EditListing,
   test
 }

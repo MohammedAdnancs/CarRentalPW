@@ -1,8 +1,8 @@
 const express = require('express')
 const router = express.Router();
 const cors = require('cors');
-const { test, loginUser, registerUser, getProfileUser, logoutUser, EditUser, Gettheusersinconversations, ViewAllUsers, DeleteUser} = require('../controllers/authController')
-const { AddListing, ViewAllListing, ViewListing, DeleteListing } = require('../controllers/listingController')
+const { test, loginUser, registerUser, getProfileUser, logoutUser, EditUser, Gettheusersinconversations, ViewAllUsers, DeleteUser } = require('../controllers/authController')
+const { AddListing, ViewAllListing, ViewListing, DeleteListing, EditListing } = require('../controllers/listingController')
 const { SendMessage, getMessages } = require('../controllers/MessagingController')
 const multer = require('multer')
 
@@ -28,5 +28,6 @@ router.get('/ViewListing/:_id', ViewListing);
 router.post('/DeleteListing', DeleteListing);
 router.post('/DeleteUser', DeleteUser);
 router.post('/Getmessages', getMessages)
+router.post('/EditListingUser', EditListing)
 router.get('/Gettheusersinconversations', Gettheusersinconversations)
-module.exports = router;
+module.exports = router; 
