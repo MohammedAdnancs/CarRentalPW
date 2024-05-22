@@ -34,7 +34,6 @@ const registerUser = async (req, res) => {
             email,
             password: hashedPassword,
             image,
-            type,
         })
 
         return res.json(user)
