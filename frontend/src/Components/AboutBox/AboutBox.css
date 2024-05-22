@@ -7,12 +7,12 @@
   justify-content: space-between;
   align-items: center;
   padding: 20px;
-  background-color: #171A20; /* Updated color */
+  background-color: #171A20; 
 }
 
 .hero-text {
   max-width: 50%;
-  color: white; /* Changed color to white */
+  color: white; 
 }
 
 .hero-text h1 {
@@ -42,8 +42,8 @@
 
 .services {
   display: flex;
-  justify-content: space-around; /* Changed to space-around */
-  padding: 40px 0; /* Removed horizontal padding */
+  justify-content: space-around; 
+  padding: 40px 0; 
   background-color: #171A20;
 }
 
@@ -51,7 +51,7 @@
   background-color: #282c34;
   padding: 20px;
   border-radius: 10px;
-  width: 250px; /* Fixed width */
+  width: 250px; 
   text-align: center;
   color: white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -64,7 +64,7 @@
 }
 
 .service:hover {
-  transform: translateY(-10px); /* Lift card on hover */
+  transform: translateY(-10px); 
 }
 
 .service h2 {
@@ -79,20 +79,20 @@
   margin-bottom: 20px;
   overflow: hidden;
   border-radius: 50%;
-  transition: all 0.5s ease; /* Smooth transition for hover effect */
+  transition: all 0.5s ease;
 }
 
 .service-image-container:hover {
   width: 300px;
   height: 300px;
-  border-radius: 10px; /* Change back to rounded corners */
+  border-radius: 10px; 
 }
 
 .service img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Ensure the image covers the area within the circle */
-  transition: all 0.5s ease; /* Smooth transition for hover effect */
+  object-fit: cover; 
+  transition: all 0.5s ease; 
 }
 
 .service-image-container:hover img {
