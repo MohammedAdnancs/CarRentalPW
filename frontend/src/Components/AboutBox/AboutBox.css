@@ -1,57 +1,110 @@
-.allcon
-{
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 5%;
+.about-us {
+  font-family: Arial, sans-serif;
 }
 
-.Aparent {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: 1fr 0.5fr repeat(3, 1fr);
-  grid-column-gap: 19px;
-  background-color: #181C22;
-  width: 60%;
-  box-shadow: 20px 20px 0 rgba(0, 0, 0, 0.7);
-  border-radius: 20px;
-  }
-  
-  .Adiv1 { 
-    grid-area: 1 / 1 / 6 / 2;
-  }
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #171A20; /* Updated color */
+}
 
+.hero-text {
+  max-width: 50%;
+  color: white; /* Changed color to white */
+}
 
-  .Adiv1 img
-  {
-    width: 100%;
-    height: 100%;
-    border-radius: 20px 0px 0px 20px ;
-    border-right: solid 3px white;
-  }
+.hero-text h1 {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
 
+.hero-text p {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
 
+.call-button {
+  background-color: #2192FF;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 1em;
+}
 
-  .Adiv2 {
-    grid-area: 1 / 2 / 3 / 3;
-    display: flex;
-    justify-content: center;
-  }
+.hero-video video {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
 
-  .Adiv2 h1{
-    color: white;
-    letter-spacing: 0.2rem;
-    text-transform: uppercase;
-  }
+.services {
+  display: flex;
+  justify-content: space-around; /* Changed to space-around */
+  padding: 40px 0; /* Removed horizontal padding */
+  background-color: #171A20;
+}
 
+.service {
+  background-color: #282c34;
+  padding: 20px;
+  border-radius: 10px;
+  width: 250px; /* Fixed width */
+  text-align: center;
+  color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
 
+.service:hover {
+  transform: translateY(-10px); /* Lift card on hover */
+}
 
-  .Adiv3 { 
-    grid-area: 3 / 2 / 6 / 3;
-  }
+.service h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
 
-  .Adiv3 p{
-    color: white;
-    font-size: 1.5rem;
-  }
+.service-image-container {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  border-radius: 50%;
+  transition: all 0.5s ease; /* Smooth transition for hover effect */
+}
+
+.service-image-container:hover {
+  width: 300px;
+  height: 300px;
+  border-radius: 10px; /* Change back to rounded corners */
+}
+
+.service img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensure the image covers the area within the circle */
+  transition: all 0.5s ease; /* Smooth transition for hover effect */
+}
+
+.service-image-container:hover img {
+  width: 100%;
+  height: 100%;
+}
+
+.highlight {
+  color: red;
+}
+
+.service p {
+  font-size: 1em;
+  margin-bottom: 10px;
+}
