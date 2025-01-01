@@ -1,18 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState,useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import './ListingDetails.css';
 import IButton from '../Button/Button';
 import Popup from '../popup/popup';
 import { useSelector } from 'react-redux';
+import {SendUserMessages } from '../../redux/slices/Messagesslice/Messagesslice';
+import messageSentSound from '../Assets/messageSentSound.mp3';
+import { useDispatch} from 'react-redux';
 
 const ListingDetails = () => {
+
+  const dispatch = useDispatch();
   const { userInfo, isLodinglogin, isErrorlogin, isSucceslogin, messagelogin } = useSelector((state) => state.auth);
+  console.log(userInfo);
+  const audioRef = useRef(null);
   const { _id } = useParams();
   const [listing, setListing] = useState(null);
-  const [Popupnotification, setPopup] = useState(false);
+  const [Popupnotification1, setPopup1] = useState(false);
+  const [Popupnotification2, setPopup2] = useState(false);
   const [imgId, setImgId] = useState(1);
-
+  const [hoveredStar, setHoveredStar] = useState(0); // New state for star hover
   useEffect(() => {
     axios.get(`/ViewListing/${_id}`)
       .then(response => setListing(response.data))
@@ -25,6 +33,45 @@ const ListingDetails = () => {
 
   const handleImageClick = (id) => {
     setImgId(id);
+  };
+
+  const handleSendMessage = async () => {
+    setPopup2(true);
+    let receiverId = listing.Lister._id
+    let message = "hello" + listing.Lister.username
+    console.log(message);
+    console.log(userInfo.id);
+    console.log(receiverId);
+    audioRef.current.play();
+    const senderId = userInfo.id;
+      try {
+          const Data = {
+                message,
+                senderId,
+                receiverId
+              }
+              const newmessage = await dispatch(SendUserMessages(Data))
+              console.log(newmessage)
+      } catch (error) {
+              console.log(error)
+      }
+  };
+
+   // Function to render star icons
+   const renderStars = () => {
+    const stars = [];
+    const totalStars = 5; // Define total number of stars
+    for (let i = 1; i <= totalStars; i++) {
+      stars.push(
+        <i
+          key={i}
+          className={`fas fa-star ${i <= hoveredStar ? 'filled-star' : ''}`}
+          onMouseEnter={() => setHoveredStar(i)}
+          onMouseLeave={() => setHoveredStar(0)}
+        ></i>
+      );
+    }
+    return stars;
   };
 
   return (
@@ -52,7 +99,8 @@ const ListingDetails = () => {
           </div>
         </div>
         {/* card right */}
-        <Popup setPopup={setPopup} trigger={Popupnotification} text="Congrats Car booked Successfully" />
+        <Popup setPopup={setPopup1} trigger={Popupnotification1} text="Congrats Car booked Successfully" />
+        <Popup setPopup={setPopup2} trigger={Popupnotification2} text="Sent message got to messages" />
         <div className='ListingRight'>
           <div className='TopPart'>
             <div className='ListerInfo'>
@@ -60,12 +108,7 @@ const ListingDetails = () => {
               <img src={listing.Lister.image} alt="lister" />
               <p>{listing.Lister.username}</p>
               <div className="Listing-rating">
-                <i className="fas fa-star"></i>
-                <i className="fas fa-star"></i>
-                <i className="fas fa-star"></i>
-                <i className="fas fa-star"></i>
-                <i className="fas fa-star"></i>
-                <span>5.0</span>
+                {renderStars()}
               </div>
             </div>
           </div>
@@ -85,7 +128,9 @@ const ListingDetails = () => {
               </ul>
             </div>
             <div className="purchase-info">
-              <IButton margintop="1dvh" backgroundColor="#C2C8C8" text="Rent" width="24dvh" height="5dvh" id="Lbutton" type="submit" onClick={() => { setPopup(true); }}></IButton>
+              <audio ref={audioRef} src={messageSentSound} />
+              <IButton margintop="1dvh" backgroundColor="#C2C8C8" text="SendMessage" width="24dvh" height="5dvh" id="Lbutton" type="submit" onClick={() => { handleSendMessage() }}></IButton>
+              <IButton margintop="1dvh" backgroundColor="#C2C8C8" text="Rent" width="24dvh" height="5dvh" id="Lbutton" type="submit" onClick={() => { setPopup1(true); }}></IButton>
             </div>
           </div>
         </div>

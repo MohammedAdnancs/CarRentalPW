@@ -10,6 +10,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { FaArrowRightLong } from "react-icons/fa6";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import Button from '../Button/Button'
+import axios from 'axios';
 
 import './OurReviews.css'
 
@@ -70,6 +71,15 @@ const OurReviews = ({ isVisible }) => {
     const handlePrev = () => {
         setCurrentIndex((prevIndex) => (prevIndex - 1 + reviewsData.length) % reviewsData.length);
         setDirection("left");
+    };
+
+    const handleSendReview = async () => {  // Mark the function as async
+        try {
+            await axios.post('/SendReview');
+            console.log("Review sent successfully");
+        } catch (error) {
+            console.error("Error sending review:", error);
+        }
     };
 
     const [showpopreview, setshowpopreview] = useState(false);
@@ -133,7 +143,7 @@ const OurReviews = ({ isVisible }) => {
                                 <label htmlFor="review">Review:</label>
                                 <textarea id="review" name="review" />
 
-                                <button type="submit" >Submit</button>
+                                <Button type="button" onClick={() => { handleSendReview() }} text="Submit Review" height="5dvh" marginbottom="3dvh" color="#FFFFFF" backgroundColor="white" />
                             </form>
                         </div>
                     </motion.div>

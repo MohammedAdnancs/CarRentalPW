@@ -264,3 +264,13 @@ img {
     cursor: pointer;
     transition: 0.3s;
 }
+.Listing-rating i {
+    font-size: 1.5rem;
+    color: #ddd; /* Default gray for unfilled stars */
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+  }
+  
+  .Listing-rating .filled-star {
+    color: #ffcc00; /* Gold for filled stars */
+  }

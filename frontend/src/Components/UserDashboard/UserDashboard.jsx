@@ -16,11 +16,16 @@ import { FaCar } from "react-icons/fa";
 import { GiCarDoor, GiCarSeat } from "react-icons/gi";
 import { TbAirConditioning } from "react-icons/tb";
 import IButton from '../Button/Button';
-
+import Popup from '../popup/popup';
+import {DeleteListing } from '../../redux/slices/listslice/listslice';
 const UserDashboard = () => {
+
     const dispatch = useDispatch();
+
     const { ListInfo, isLoding, isError, isSucces, message } = useSelector((state) => state.list);
     const { userInfo, isLodinglogin, isErrorlogin, isSucceslogin, messagelogin } = useSelector((state) => state.auth);
+    const [Popupnotification1, setPopup1] = useState(false);
+    const [Popupnotification2, setPopup2] = useState(false);
 
     const [selectedImage, setSelectedImage] = useState(null);
     const fileInputRef = useRef(null);
@@ -93,6 +98,7 @@ const UserDashboard = () => {
 
         try {
             await dispatch(editUser(userData));
+            setPopup1(true);
         } catch (error) {
             console.error("Error editing user:", error);
         }
@@ -101,6 +107,7 @@ const UserDashboard = () => {
             setloading(false);
             setEditprofile(false);
             dispatch(resetUser());
+            setPopup1(true);
         }
     };
 
@@ -120,6 +127,15 @@ const UserDashboard = () => {
         });
     }, [userInfo, setValues]);
 
+   
+    if(!ListInfo){
+        try {
+            dispatch(ViewAllListing())
+            //dispatch(getUserContacts(senderId))
+        } catch (error) {
+            console.error('Error fetching list info:', error);
+        }
+    }
 
     const handleShowEdit = async (list, listid) => {
         console.log(list._id)
@@ -144,7 +160,25 @@ const UserDashboard = () => {
         }
         await axios.post('/EditListingUser', Data)
         await dispatch(ViewAllListing())
+        setEditList(false);
+        setPopup1(true);
     };
+
+    const Delete = async (_id) => {
+        console.log(_id)
+        try {
+          const data = {
+            _id
+          }
+          setloading(true);
+          await dispatch(DeleteListing(data))
+          setloading(false);
+          setPopup2(true);
+          await dispatch(ViewAllListing())
+        } catch (error) {
+          console.error('Delete failed medo is a loser :(', error);
+        }
+    }
 
     const listingFormik = useFormik({
         initialValues: {
@@ -171,6 +205,8 @@ const UserDashboard = () => {
 
     return (
         <div>
+            <Popup setPopup={setPopup1} trigger={Popupnotification1} text="Edited success" />
+            <Popup setPopup={setPopup2} trigger={Popupnotification2} text="Delete Car Listing success" />
             <div className='DashContainer'>
                 <img className='background' src={background} alt="Background" />
                 <div className="Dashboard">
@@ -181,6 +217,7 @@ const UserDashboard = () => {
                         {Editprofile && (
                             <input
                                 className='imageupload'
+                                id='imageUserupload'
                                 name="file"
                                 type="file"
                                 accept="image/*"
@@ -263,6 +300,7 @@ const UserDashboard = () => {
                                                 width="15dvh"
                                                 height="5dvh"
                                                 id="Lbutton"
+                                                onClick={() => { Delete(filteredItem._id) }}
                                             />
                                             <IButton
                                                 margintop="2.5dvh"

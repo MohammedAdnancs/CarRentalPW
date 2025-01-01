@@ -165,13 +165,18 @@ const Gettheusersinconversations = async (req, res) => {
             participants: { $in: [senderId] }
         }).populate("participants")
 
-        let Users = [];
+        console.log("Sender ID:", senderId);
 
+        let Users = [];
+        console.log(conversations)
         conversations.forEach(conversation => {
+            //console.log(conversation)
             if (conversation.participants) {
                 const participants = conversation.participants.filter(participant => participant._id != senderId);
-                participants[0].password = "";
-                Users.push(participants[0]);
+                if(participants[0].password != null){
+                    participants[0].password = "";
+                }
+                Users.push(participants[[0]]);
             }
         });
 
